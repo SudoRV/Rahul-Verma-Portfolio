@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahul Verma</title> 
+    <link rel="icon" type="image/x-icon" href="/imgs/favicon.png">   
+
+    <link href="./css/universal.css" rel="stylesheet">
+    <link href="./css/media.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/hireme.css">
+</head>
+
+<body>
+    
+    <div class="psuedo-body">  
+        <div id="menu" class="menu">
+            <li onclick="redirectScroll('about')" class="hand"><a class=" ">About</a></li>
+            <li onclick="redirectScroll('projects')" class="hand"><a class=" ">Projects</a></li>
+            <li onclick="redirectScroll('services')" class="hand"><a class=" ">Services</a></li>
+            <li onclick="redirectScroll('contact')" class="hand"><a class=" ">Contact</a></li>
+            <li class="hand"><a href="/signup" class=" ">Sign Up</a></li>
+        </div> 
+        
+        <nav>
+            <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/rahul1.png" alt=""></li>            
+            
+            <li onclick="redirectScroll('about')" class="hand"><a class=" ">About</a></li>
+            <li onclick="redirectScroll('projects')" class="hand"><a class=" ">Projects</a></li>
+            <li onclick="redirectScroll('services')" class="hand"><a class=" ">Services</a></li>
+            <li onclick="redirectScroll('contact')" class="hand"><a class=" ">Contact</a></li>
+            <li class="hand"><a href="/signup" class=" ">Sign Up</a></li>
+            <li class="hand">
+                <a href="/hireme" class="button curvy-btn  " id="hire">Hire Me</a>          
+            </li>
+            <li class="hand menuBtnLi">
+                <div id="menuBtn" class="hand menuBtn">
+                    
+                </div>
+            </li>
+        </nav> 
+        
+        <div id="" class="page">
+            <h2 class="text-center under-lg bold22">Hire Me</h2>
+
+            <form class="all-center  flex-direction-col hireForm" action="/hireme" method="POST">
+                <div class="flex all-center w100 hiretoprow">
+                    <input class="hireInp hiretop" name="name" type="text" placeholder="Name">
+                    <input class="hireInp hiretop" name="phone" type="tel" placeholder="Phone">
+                </div>
+                <input class="hireInp hireEmail" name="email" type="email" placeholder="Email">
+                <label class="checkServiceLabel bold18 mgt2" for="checkService">Select Service</label>
+                <div id="checkService" class="hireInp checkService">
+                    <input price=20000 class="checkServicesInp customCheckbox checkbox" type="checkbox" name="s1" id="">
+                    <input price=30000 class="checkServicesInp  customCheckbox checkbox" type="checkbox" name="s2" id="">
+                    <input price=10000  class="checkServicesInp  customCheckbox checkbox" type="checkbox" name="s3" id="">
+                </div>
+                <label id="estbudget" class="hireInp flex alignC estbudget w70 budget">Rs. You Can't Afford</label>
+                <textarea class="hireInp w70" name="customService" id="customService" cols="30" rows="10" placeholder="Enter Optioal Services"></textarea>
+                <input id="userBudget" class="budget hireInp w70 userBudget" name="userbudget" type="number" placeholder="Your Budget">
+                <input id="hireme" class="w70 hireInp" type="submit" value="Hire Me">
+            </form>
+        </div>
+        <footer class=""></footer>
+    </div>
+
+    <script src="./js/universal.js"></script>
+    <script src="./js/hire.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+/* services
+
+#servCont {
+    all:unset;
+    display :flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;    
+}
+
+.servItems {
+    width:40%;
+}
+
+.flex{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:4%;    
+}
+
+.rightt{  
+    width: 58%;
+    height:100%;    
+    display :grid; 
+    grid-template-columns: repeat(auto-fill,minmax(100px,1fr)); 
+    grid-template-rows: inherit;
+    gap:10px; 
+    margin:1%;
+    margin-left:2%;
+}            
+
+.rightt div{    
+    text-align:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background-color:var(--lightblue);
+    border-radius:8px;
+    height: 40px;
+} */

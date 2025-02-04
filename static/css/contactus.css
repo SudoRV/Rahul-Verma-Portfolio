@@ -1,0 +1,66 @@
+.contactCont {
+    min-height: 300px;
+}
+
+.w50 {
+    width: 50%;
+}
+
+
+
+.contactSocialsChildMgB {
+    margin-bottom: 8%;
+}
+
+.formBack {
+    /* box-shadow: 0 0 10px 2px rgb(210,210,210); */
+    width: 45%;
+    padding: 4%;
+    border-radius: 16px;
+    background-color: var(--primaryPageColor);
+}
+
+.formInput {
+    width: 65%;
+    height: 40px;
+    margin: 0% 14.5%;
+    margin-bottom: 6%;
+    font-size: 16px;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid grey;
+    padding: 0 2%;
+}
+
+.formInput:focus,
+.formInput:hover {
+    border-color: rgb(19, 136, 242);
+}
+
+.formLabel {
+    margin-left: 14.5%;
+}
+
+#contactMessage {
+    min-height: 80px;
+    resize: none;
+    padding: 2%;
+}
+
+#contactMessage::-webkit-scrollbar {
+    width: 6px;
+    cursor: pointer;
+}
+
+.formSubmit {
+    width: 70%;
+    border: 0;
+    border-radius: 16px;
+    margin-bottom: 0;
+    background: var(--primaryGrad);
+    color: white;
+}
+
+.formInput:focus {
+    outline: none;
+}

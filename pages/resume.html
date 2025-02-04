@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume-Rahul Verma</title>
+    <link rel="icon" type="image/x-icon" href="/imgs/favicon.png">  
+    <link href="./css/universal.css" rel="stylesheet">
+    <link href="./css/media.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js"></script>
+    <link rel="stylesheet" href="./css/resume.css">
+
+</head>
+
+<body>
+
+    <div id="psuedo-body" class="psuedo-body">
+        <div id="menu" class="menu">
+            <li onclick="redirectScroll('about')" class="hand"><a class=" ">About</a></li>
+            <li onclick="redirectScroll('projects')" class="hand"><a class=" ">Projects</a></li>
+            <li onclick="redirectScroll('services')" class="hand"><a class=" ">Services</a></li>
+            <li onclick="redirectScroll('contact')" class="hand"><a class=" ">Contact</a></li>
+            <li class="hand"><a href="/signup" class=" ">Sign Up</a></li>
+        </div>
+
+        <nav>
+            <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/rahul1.png" alt="">
+            </li>
+
+            <li onclick="redirectScroll('about')" class="hand"><a class=" ">About</a></li>
+            <li onclick="redirectScroll('projects')" class="hand"><a class=" ">Projects</a></li>
+            <li onclick="redirectScroll('services')" class="hand"><a class=" ">Services</a></li>
+            <li onclick="redirectScroll('contact')" class="hand"><a class=" ">Contact</a></li>
+            <li class="hand"><a href="/signup" class=" ">Sign Up</a></li>
+            <li class="hand">
+                <a href="/hireme" class="button curvy-btn  " id="hire">Hire Me</a>
+            </li>
+            <li class="hand menuBtnLi">
+                <div id="menuBtn" class="hand menuBtn">
+
+                </div>
+            </li>
+        </nav>
+
+        <div id="pdf-container"></div>
+                
+        <footer class=""></footer>
+    </div>
+    <script src="./js/universal.js"></script>  
+    <script>
+        if (PDFObject.supportsPDFs) {
+          PDFObject.embed("/pdfs/rahul resume.pdf", "#pdf-container");
+        } else {
+            pdfContainer = document.getElementById("pdf-container")
+            pdfContainer.style.backgroundImage = 'url("/imgs/resume/rahul resume.jpg")';
+        }
+      </script> 
+    
+</body>
+</html>

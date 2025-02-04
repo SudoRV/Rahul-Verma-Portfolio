@@ -1,0 +1,40 @@
+.flexJcc {
+    display: flex;
+    justify-content: center;
+}
+
+#newsLetter {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#newsFormBack {
+    width: 45%;
+    margin-right: 5%;
+    height: auto;
+}
+
+.newsInp {
+    height: 40px;
+    border: 0;
+    outline: none;
+    color: white;
+    margin-bottom: 10% !important;
+}
+
+.newsInp[type=email] {
+    height: 38px;
+    background-color: transparent;
+    border-right: 0;
+    padding: 0 2%;
+}
+
+.newsInp[type=submit] {
+    background: var(--primaryGrad);
+    border: 1px solid var(--lightblue);
+    padding: 0 4%;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}

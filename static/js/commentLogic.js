@@ -1,10 +1,10 @@
 let indexToAppendComment = 0;
-isReplyUserCommentLoaded=0;
+isReplyUserCommentLoaded = 0;
 
 let prevCommentData = {
-    username : "",
-    time:""
-}
+  username: "",
+  time: "",
+};
 
 let projectId = "NULL";
 let openInnovationDisplayStat = 0;
@@ -18,10 +18,10 @@ localData = JSON.parse(window.localStorage.getItem("loginData"));
 lastIndexToLoadComment = 0;
 
 // comment logic
-innovationContChilds = document.getElementsByClassName("innovationContAll");
+innovationContChilds = document.getElementsByClassName("innovationContChilds");
 
 for (innovationContChild of innovationContChilds) {
-  innovationContChild.addEventListener("click", () => {});
+  innovationContChild.addEventListener("click", () => { });
 }
 
 //functions
@@ -155,7 +155,7 @@ async function replyUserComment(elt) {
 
     replyingCommentTime = document
       .getElementsByClassName("comment-time")
-      [index].getAttribute("time");
+    [index].getAttribute("time");
 
     // add current reply comment to new comment box
 
@@ -165,47 +165,54 @@ async function replyUserComment(elt) {
     replyUserComments = document.getElementById("reply-user-comments");
     replyUserComments.style.display = "block";
     replyUserComments.classList.remove("flip-right");
-    replyUserComments.classList.add("flip-left");    
+    replyUserComments.classList.add("flip-left");
 
     // load replied comments
     activeCommentableElt = replyUserComments;
     indexToAppendComment = 1;
     elt.disabled = true;
     puname = await getUserName(elt);
-    
+
     crntCommentData = {
-        username : parentUserName,
-        time : replyingCommentTime
+      username: parentUserName,
+      time: replyingCommentTime,
+    };
+
+    console.log(crntCommentData, prevCommentData);
+    console.log(
+      !isReplyUserCommentLoaded ||
+      (crntCommentData.username == prevCommentData.username &&
+        crntCommentData.time == prevCommentData.time)
+    );
+
+    if (
+      !isReplyUserCommentLoaded ||
+      (crntCommentData.username == prevCommentData.username &&
+        crntCommentData.time == prevCommentData.time)
+    ) {
+      replyUserComments.innerHTML = "";
+      prevCommentData = crntCommentData;
+
+      setTimeout(function () {
+        comment = document.createElement("div");
+        comment.classList = "comment force-flex";
+        comment.innerHTML = dataOfActiveComment;
+        replyUserComments.insertBefore(comment, replyUserComments.firstChild);
+      }, 10);
+
+      fetchSetComments(
+        "/innovation/getcomments",
+        10,
+        projectId,
+        localData.username,
+        puname,
+        replyingCommentParent,
+        replyingCommentTime,
+        1
+      );
+      isReplyUserCommentLoaded = 1;
     }
-    
-    console.log(crntCommentData, prevCommentData)
-    console.log(!isReplyUserCommentLoaded || (crntCommentData.username == prevCommentData.username && crntCommentData.time == prevCommentData.time))
-        
-    if(!isReplyUserCommentLoaded || (crntCommentData.username == prevCommentData.username && crntCommentData.time == prevCommentData.time)){
-    
-    replyUserComments.innerHTML = "";
-    prevCommentData = crntCommentData;
-    
-    setTimeout(function () {
-      comment = document.createElement("div");
-      comment.classList = "comment force-flex";
-      comment.innerHTML = dataOfActiveComment;
-      replyUserComments.insertBefore(comment, replyUserComments.firstChild);
-    }, 10);      
-    
-        fetchSetComments(
-          "/innovation/getcomments",
-          10,
-          projectId,
-          localData.username,
-          puname,
-          replyingCommentParent,
-          replyingCommentTime,
-          1
-        );
-        isReplyUserCommentLoaded = 1;
-    }
-    replyUserComments.style.height = "auto"
+    replyUserComments.style.height = "auto";
     elt.disabled = false;
   } else {
     replyUserComments.classList.remove("flip-left");
@@ -213,7 +220,7 @@ async function replyUserComment(elt) {
     setTimeout(function () {
       /*replyUserComments.style.display = "none";*/
       /*replyUserComments.innerHTML = "";*/
-      replyUserComments.style.height = "0px"
+      replyUserComments.style.height = "0px";
       projectComments.style.height = "auto";
       projectComments.style.overflowY = "auto";
       /* fetchSetComments(
@@ -226,7 +233,7 @@ async function replyUserComment(elt) {
         "",
         0
       );*/
-    }, 300)
+    }, 300);
     activeCommentableElt = projectComments;
     indexToAppendComment = 0;
     parentUserName = "NULL";
@@ -258,7 +265,7 @@ function likeComment(btn) {
     document.getElementsByClassName("comment-username")[index].innerText;
   let time = document
     .getElementsByClassName("comment-time")
-    [index].getAttribute("time");
+  [index].getAttribute("time");
   let likesBtnData = document.getElementsByClassName("comment-likes")[index];
 
   btn.disabled = true;
@@ -378,9 +385,7 @@ function createCommentLogic() {
 }
 
 async function openInnovationDisplay(idelt) {
-  const currentInnovationDisplay = document.getElementById(
-    "currentInnovationDisplay"
-  );
+  const currentInnovationDisplay = document.getElementById("currentInnovationDisplay");
   currentInnovationDisplay.classList.remove("currentInnovationDisplayDownn");
   currentInnovationDisplay.classList.add("currentInnovationDisplayUpp");
 
@@ -393,14 +398,13 @@ async function openInnovationDisplay(idelt) {
   }
 
   let dataToAdd = await loadMediaForProject();
-  
+
   parser = new DOMParser();
   eltToAdd = parser.parseFromString(dataToAdd, "text/html").body.firstChild;
 
-  // currentInnovationDisplay.appendChild(eltToAdd);
+  currentInnovationDisplay.appendChild(eltToAdd);
 
   setTimeout(() => {
-    nav.classList.add("display-none");
     createCommentLogic();
     if (!idelt instanceof HTMLElement) {
       fetchSetComments(
@@ -418,12 +422,8 @@ async function openInnovationDisplay(idelt) {
   openInnovationDisplayStat = 1;
 }
 
-
-
-
-
 function closeInnovationDisplay(elt) {
-  nav.classList.remove("display-none");
+  // nav.classList.remove("display-none");
 
   if (
     window.location.href.toString().includes("pid") &&
@@ -439,7 +439,7 @@ function closeInnovationDisplay(elt) {
 
     try {
       document.getElementById("currentInnovationDisplay").removeChild(eltToRmv);
-    } catch (err) {}
+    } catch (err) { }
     openInnovationDisplayStat = 0;
   }, 300);
 }
@@ -471,13 +471,8 @@ window.addEventListener("load", () => {
   }
 });
 
-
-
-
-
-
 async function loadMediaForProject() {
-  return new Promise((resolve,reject)=>{
+  return new Promise((resolve, reject) => {
     fetch("/innovation/get/projectData", {
       method: "get",
       headers: {
@@ -485,11 +480,11 @@ async function loadMediaForProject() {
           query: `select * from projects where pid = "${projectId}"`,
         }),
       },
-    })            
+    })
       .then((res) => res.json())
       .then((res) => {
         let data = res.data[0];
-  
+
         fetch("/innovation/get/projectData", {
           method: "get",
           headers: {
@@ -501,7 +496,7 @@ async function loadMediaForProject() {
           .then((res) => res.json())
           .then((res) => {
             data.media = [res.data.map((elt) => elt.mediaurl)];
-  
+
             const {
               pid,
               title,
@@ -514,7 +509,7 @@ async function loadMediaForProject() {
               thumbnail,
               media,
             } = data;
-  
+
             context = `
             <div id="mainInnovationDiv" class="flex mg2 mgt2">
       <div class="innovationCont mianGalLeftSide">
@@ -583,5 +578,5 @@ async function loadMediaForProject() {
             resolve(context);
           });
       });
-  })
+  });
 }

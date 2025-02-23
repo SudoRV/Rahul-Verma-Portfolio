@@ -187,8 +187,8 @@ async function setData() {
   })
     .then((res) => res.json())
     .then((res) => {
-      const innovationCont =
-        document.getElementById("innovationProjects");
+      const innovationProjectsCont =
+        document.getElementById("innovationProjectsCont");
 
       res.data.forEach((data) => {
         const { pid, thumbnail, title, status, views, time, description } = data;
@@ -207,7 +207,7 @@ async function setData() {
             `window.location.href='/innovation?pid=${pid}'`
           );
         }
-        mainDiv.classList = "innovationContAll mgt2";
+        mainDiv.classList = "innovationContChilds mgt2";
 
         mainDiv.innerHTML = `
               <div class="innovationGalAll innovationChild">
@@ -215,10 +215,8 @@ async function setData() {
                       src="${thumbnail}">
               </div>
 
-              <span style="height:1px;width:100%;background-color:grey;margin-top:1%;" class=""></span>
-
               <div class="innovationTitle innovationChild">
-                  <p class="bold18">Title : ${title}</p>
+                  <p class="bold">Title : ${title}</p>
               </div>
               <div class="workStatus innovationChild">
                   <p>Project Status : ${status}</p>
@@ -230,12 +228,11 @@ async function setData() {
 
               <div
                   class="analyticsChild analyticsChildAll innovationChild force-flex">
-                  <p class="bold18">${views} views</p> 
-                  |  
-                  <p class="projectDate bold18">${timeAgo(parseInt(time))}</p>
+                  <p class="bold">${views} views</p> 
+                  <p class="projectDate bold">${timeAgo(parseInt(time))}</p>
               </div>
               `;
-        innovationCont.appendChild(mainDiv);
+        innovationProjectsCont.appendChild(mainDiv);
       });
     });
 }
@@ -247,3 +244,28 @@ async function sleep(t) {
     }, t);
   });
 }
+
+
+// preserve scroll at reload
+
+document.addEventListener("DOMContentLoaded", function () {
+  preserveScrollPosition("psuedo-body");
+});
+
+function preserveScrollPosition(elementId) {
+  const scrollableElement = document.getElementById(elementId);
+
+  // Restore scroll position from localStorage
+  const savedScrollPosition = localStorage.getItem(`${elementId}-scrollPosition`);
+  if (savedScrollPosition) {
+      setTimeout(() => {
+        scrollableElement.scrollTop = savedScrollPosition;
+      }, 100);
+  }
+
+  // Save scroll position when scrolling
+  scrollableElement.addEventListener("scroll", function () {
+      localStorage.setItem(`${elementId}-scrollPosition`, scrollableElement.scrollTop);
+  });
+}
+

@@ -7,12 +7,13 @@
         "ourl ourl ourl";
 
     grid-template-columns: 5% 40% 51%;
+    grid-template-rows: 300px auto auto; 
     gap: 20px;
 }
 
 .aboutItems div {
-    height: 100%;
     width: 100%;
+    height: 100%;
     border: 1px solid var(--lightblue);
     border-radius: 8px;
 }
@@ -30,10 +31,9 @@
 
 .aboutItems div:nth-child(2) {
     grid-area: photo;
-    overflow: hidden;
-    background-color: ;
     width: 100%;
     aspect-ratio: 1;
+    overflow: hidden;
 }
 
 .aboutItems div:nth-child(2) img {

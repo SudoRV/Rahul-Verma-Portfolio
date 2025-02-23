@@ -471,7 +471,7 @@
     }
 
     /* innovation section */
-    #innovationProjects{ 
+    #innovationProjectsCont{ 
         grid-template-columns: repeat(auto-fit, minmax(250px, 3fr));
     }
     .innovationCont{

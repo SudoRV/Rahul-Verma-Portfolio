@@ -93,8 +93,9 @@ if (window.localStorage.getItem("scrollId")){
 // scroll to the page onclick
 async function getPage(id) {
     page = document.getElementById(id)
-    y = page.getBoundingClientRect().top + window.scrollY - ((window.innerHeight * 12) / 100)
-    window.scrollTo(0, y)
+    sudo_body = document.getElementById("psuedo-body");
+    y = page.getBoundingClientRect().top + sudo_body.scrollTop - ((window.innerHeight * 12) / 100)
+    sudo_body.scrollTo(0, y)
     window.history.pushState("", "", `#${id}`)
 }
 

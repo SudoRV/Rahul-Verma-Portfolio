@@ -45,21 +45,28 @@
             <li class="hand"><a href="/signup" class=" ">Sign Up</a></li>
         </div> 
         
-        <nav>
-            <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/rahul1.png" alt=""></li>                      
-            <li class="hand" onclick="getPage('about')"><a>About</a></li>
-            <li onclick="getPage('projects')" class="hand"><a>Projects</a></li>
-            <li onclick="getPage('services')" class="hand"><a>Services</a></li>
-            <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
-            <li class="hand"><a href="/signup" class=" ">Sign Up</a></li>
-            <li class="hand">
-                <a href="/hireme" class="button curvy-btn  " id="hire">Hire Me</a>          
-            </li>
-            <li class="hand menuBtnLi">
-                <div id="menuBtn" class="hand menuBtn">                   
-                </div>
-            </li>
-        </nav>                                     
+        <div class="navbar">
+            <nav>
+                <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/rahul1.png" alt=""></li>                      
+                <li class="hand" onclick="getPage('about')"><a>About</a></li>
+                <li onclick="getPage('projects')" class="hand"><a>Projects</a></li>
+                <li onclick="getPage('services')" class="hand"><a>Services</a></li>
+                <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
+                <li class="hand"><a href="/signup" class=" ">Sign Up</a></li>
+                <li class="hand">
+                    <a href="/hireme" class="button curvy-btn  " id="hire">Hire Me</a>          
+                </li>
+                <li class="hand menuBtnLi">
+                    <div id="menuBtn" class="hand menuBtn">                   
+                    </div>
+                </li>
+            </nav> 
+
+            <!-- <div class="skew-div">
+                <div class="skew"></div>
+                <div class="skew"></div>
+            </div> -->
+        </div>                                   
     
         <div id="home" class=" firstPage page flex"> 
             <div id="about-profile">
@@ -72,7 +79,7 @@
     
                 <div id="resgal" class="allCenter">
                     <a href="/resume" class="button curvy-btn" id="resume">Resume</a>                                  
-                    <a href="/innovation" class="button curvy-btn  " id="">Innovation</a> 
+                    <a onclick="getPage('innovation')" class="button curvy-btn  " id="">Innovation</a> 
                 </div>
             </div>         
                  
@@ -111,19 +118,20 @@
         <div id="about" class="page">
         <h2 class="   text-center      under-lg bold22">About</h2>
            <div class="aboutItems">
-             <div class="all-center">
+            <div class="all-center">
                 <p class="bold22">Rahul Verma</p>
             </div>
+            
             <div>
                 <!-- <img src="/imgs/mine/pic.jpg" alt=""> -->
             </div>
 
             <div>
-                <p id="aboutText">Hey there! I'm Rahul Verma, a passionate individual currently pursuing my B.Tech in Computer Science and Engineering at Dr. APJ Abdul Kalam Institute of Technology. My educational journey started at Kendriya Vidyalaya No.2 NHPC Banbasa, where I completed my schooling. 🎓
+                <p id="aboutText"><!--Hey there! I'm Rahul Verma, a passionate individual currently pursuing my B.Tech in Computer Science and Engineering at Dr. APJ Abdul Kalam Institute of Technology. My educational journey started at Kendriya Vidyalaya No.2 NHPC Banbasa, where I completed my schooling. 🎓
 
-I consider myself a versatile developer with expertise in various areas. My skills span across full-stack web development, utilizing HTML, CSS, JavaScript, Node.js, and working with databases such as SQLite, MongoDB, and MySQL. I also have a strong foundation in Python, which I employ for software development. Additionally, I possess intermediate knowledge in the C programming language. 💻 
-
-One of my areas of interest lies in the field of Artificial Intelligence and Machine Learning, where I leverage my Python skills to develop AI/ML applications. I enjoy exploring the potential of these technologies and applying them to solve real-world problems.🤖</p>
+                    I consider myself a versatile developer with expertise in various areas. My skills span across full-stack web development, utilizing HTML, CSS, JavaScript, Node.js, and working with databases such as SQLite, MongoDB, and MySQL. I also have a strong foundation in Python, which I employ for software development. Additionally, I possess intermediate knowledge in the C programming language. 💻 
+                    
+                    One of my areas of interest lies in the field of Artificial Intelligence and Machine Learning, where I leverage my Python skills to develop AI/ML applications. I enjoy exploring the potential of these technologies and applying them to solve real-world problems.🤖--></p>
                 <p class="readmore hand">Read More</p>
             </div>
 
@@ -355,7 +363,7 @@ One of my areas of interest lies in the field of Artificial Intelligence and Mac
         
         <div id="innovation" class="page">
             <h2 class="text-center under-lg bold22">Innovation</h2>
-            <div id="innovationProjects" class="mgt2">
+            <div id="innovationProjectsCont" class="mgt2">
                 
             </div>
             <a class="expandAll button curvy-btn  " href="/innovation">Explore All</a>  
@@ -560,7 +568,15 @@ One of my areas of interest lies in the field of Artificial Intelligence and Mac
             </div>
         </div>
     
-        <footer class=""></footer>
+        <footer id="footer" class="footer">
+            <div class="header">
+                <div></div>
+                <div></div>
+            </div>
+            <div class="container">
+                
+            </div>
+        </footer>
     </div>
 
     <script src="./js/universal.js"></script>

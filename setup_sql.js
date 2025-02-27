@@ -16,15 +16,15 @@ function runCommand(command) {
 // Function to install MySQL
 function installMySQL() {
     console.log("Installing MySQL...");
-    runCommand('sudo apt update && sudo apt install -y mysql-server');
+    runCommand('apt update && apt install -y mysql-server');
     console.log("Starting MySQL service...");
-    runCommand('sudo service mysql start');
+    runCommand('  service mysql start');
 }
 
 // Function to set MySQL root password
 function setRootPassword(password) {
     console.log("Setting MySQL root password...");
-    runCommand(`sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${password}'; FLUSH PRIVILEGES;"`);
+    runCommand(`  mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${password}'; FLUSH PRIVILEGES;"`);
     console.log("Root password changed successfully.");
 }
 

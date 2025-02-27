@@ -7,6 +7,12 @@ const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const { REFUSED } = require("dns");
 
+const setupSql = require("./setup_sql");
+const setData = require("./sql");
+
+setupSql();
+setData();
+
 const app = express();
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "static")));

@@ -24,7 +24,6 @@ Say goodbye to time-consuming meal preparations and hello to a smarter way of co
 }
 
 
-setdata(data);
 async function setdata(data) {
     const { title,status,description } = data;
 
@@ -50,3 +49,4 @@ async function setdata(data) {
     })
 }
 
+module.exports = setdata;

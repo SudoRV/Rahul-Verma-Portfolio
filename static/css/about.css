@@ -1,0 +1,78 @@
+.aboutItems {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-areas:
+        "name photo about"
+        "url url about"
+        "ourl ourl ourl";
+
+    grid-template-columns: 5% 40% 51%;
+    grid-template-rows: 300px auto auto; 
+    gap: 20px;
+}
+
+.aboutItems div {
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--lightblue);
+    border-radius: 8px;
+}
+
+.aboutItems div:nth-child(1) {
+    grid-area: name;
+    border: 0;
+}
+
+.aboutItems div:nth-child(1) p {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    font-size: 38px;
+}
+
+.aboutItems div:nth-child(2) {
+    grid-area: photo;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+}
+
+.aboutItems div:nth-child(2) img {
+    width: 100%;
+    height: 100%;
+}
+
+.aboutItems div:nth-child(3) {
+    grid-area: about;
+    padding: 3%;
+    overflow: hidden;
+}
+
+.aboutItems div:nth-child(3) p {
+    /* overflow-y: auto; */
+}
+
+
+.aboutItems div:nth-child(4) {
+    grid-area: url;
+    height: 60px;
+    border: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5%;
+    margin: 0;
+}
+
+.aboutItems div:nth-child(5) {
+    grid-area: ourl;
+    height: min-content;
+    padding: 1%;
+}
+
+.readmore {
+    color: var(--lightblue);
+    font-weight: bold;
+    background-color: transparent;
+    border: 0;
+    padding: 2%;
+    font-size: 18px;
+}

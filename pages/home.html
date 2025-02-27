@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#171A1DD8" />
+    <title>Rahul Verma</title>    
+    <link rel="icon" type="image/x-icon" href="/imgs/favicon.png">   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto:wght@300&family=Playfair+Display&display=swap&family=PT+Serif&family=Playfair+Display&display=swap"
+        rel="stylesheet"> 
+
+    <link href="./css/universal.css" rel="stylesheet">
+    <link href="./css/media.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/background-animation.css">
+    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/about.css">
+    <link rel="stylesheet" href="./css/skills.css">
+    <link rel="stylesheet" href="./css/projects.css">
+    <link rel="stylesheet" href="./css/services.css">
+    <link rel="stylesheet" href="./css/newsletter.css">
+    <link rel="stylesheet" href="./css/contactus.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <link rel="stylesheet" href="./css/resume.css">
+    <link rel="stylesheet" href="./css/hireme.css">
+    <link rel="stylesheet" href="./css/innovation.css">
+    
+</head>
+
+<body>
+
+    <!-- <div class="animation-cont">
+        <img class="background" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/221808/sky.jpg"/>
+    </div> -->
+
+    <div class="psuedo-body" id="psuedo-body"> 
+         
+        <div id="menu" class="menu">
+            <li class="hand" onclick="getPage('about')"><a>About</a></li>
+            <li onclick="getPage('projects')" class="hand"><a>Projects</a></li>
+            <li onclick="getPage('services')" class="hand"><a>Services</a></li>
+            <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
+            <li class="hand"><a href="/signup" class=" ">Sign Up</a></li>
+        </div> 
+        
+        <div class="navbar">
+            <nav>
+                <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/rahul1.png" alt=""></li>                      
+                <li class="hand" onclick="getPage('about')"><a>About</a></li>
+                <li onclick="getPage('projects')" class="hand"><a>Projects</a></li>
+                <li onclick="getPage('services')" class="hand"><a>Services</a></li>
+                <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
+                <li class="hand"><a href="/signup" class=" ">Sign Up</a></li>
+                <li class="hand">
+                    <a href="/hireme" class="button curvy-btn  " id="hire">Hire Me</a>          
+                </li>
+                <li class="hand menuBtnLi">
+                    <div id="menuBtn" class="hand menuBtn">                   
+                    </div>
+                </li>
+            </nav> 
+
+            <!-- <div class="skew-div">
+                <div class="skew"></div>
+                <div class="skew"></div>
+            </div> -->
+        </div>                                   
+    
+        <div id="home" class=" firstPage page flex"> 
+            <div id="about-profile">
+                <h1 style="display: inline;" class="my-name animatedHeadings">Rahul </h1><h1 style="color: var(--lightblue);display: inline;" class="my-name">Verma</h1>
+    
+                <p class="profile-bio animatedTexts bold">Web & Android Developer | Software Developer | Exploring IoT & Robotics
+</p>
+    
+                <h3 class="bold18">Introduction</h3>
+                <p class="ans animatedTexts lightWhite">Hello! I'm Rahul Verma, a passionate Software, Android and Web Developer with a keen interest in IoT & Robotics. I love building intuitive and efficient applications, creating smart solutions, and exploring emerging technologies to drive innovation.</p>
+    
+                <div id="resgal" class="allCenter">
+                    <a href="/resume" class="button curvy-btn" id="resume">Resume</a>                                  
+                    <a onclick="getPage('innovation')" class="button curvy-btn  " id="">Innovation</a> 
+                </div>
+            </div>         
+                 
+            <div id="profile-photo-container">
+                <div id="profile-photo"></div>
+                
+                <!-- <div class="flex innovation" id="">
+                    <div class="button curvy-btn" id="">Innovation</div>
+                    <div class="button curvy-btn" id="">Projects</div> 
+                </div> -->
+                
+                <!-- <div class="socialLink all-center">
+                    <div>
+                        <img class="hand" src="./imgs/whats.png" alt="">
+                    </div>
+                    <div>
+                        <img class="hand" src="./imgs/fb.png" alt="">
+                    </div>
+                    <div>
+                        <img class="hand" src="./imgs/insta.png" alt="">
+                    </div>
+                    <div>
+                        <img class="hand" src="./imgs/tweet.png" alt="">
+                    </div>
+                    <div>
+                        <img class="hand" src="./imgs/linked.png" alt="">
+                    </div>
+                </div>        -->                       
+            </div>                        
+        </div>
+        
+        
+        
+        <!-- about -->
+        
+        <div id="about" class="page">
+        <h2 class="   text-center      under-lg bold22">About</h2>
+           <div class="aboutItems">
+            <div class="all-center">
+                <p class="bold22">Rahul Verma</p>
+            </div>
+            
+            <div>
+                <!-- <img src="/imgs/mine/pic.jpg" alt=""> -->
+            </div>
+
+            <div>
+                <p id="aboutText"><!--Hey there! I'm Rahul Verma, a passionate individual currently pursuing my B.Tech in Computer Science and Engineering at Dr. APJ Abdul Kalam Institute of Technology. My educational journey started at Kendriya Vidyalaya No.2 NHPC Banbasa, where I completed my schooling. 🎓
+
+                    I consider myself a versatile developer with expertise in various areas. My skills span across full-stack web development, utilizing HTML, CSS, JavaScript, Node.js, and working with databases such as SQLite, MongoDB, and MySQL. I also have a strong foundation in Python, which I employ for software development. Additionally, I possess intermediate knowledge in the C programming language. 💻 
+                    
+                    One of my areas of interest lies in the field of Artificial Intelligence and Machine Learning, where I leverage my Python skills to develop AI/ML applications. I enjoy exploring the potential of these technologies and applying them to solve real-world problems.🤖--></p>
+                <p class="readmore hand">Read More</p>
+            </div>
+
+            <div class="socialLink">
+                <img class="hand" src="./imgs/whats.png" alt="twitter">
+                <img class="hand" src="./imgs/fb.png" alt="twitter">
+                <img class="hand" src="./imgs/insta.png" alt="twitter">
+                <img class="hand" src="./imgs/tweet.png" alt="twitter">
+                <img class="hand" src="./imgs/linked.png" alt="twitter">
+            </div>
+
+            <div>
+                <p class="bold18">Rahul Verma<br>Contact Information : 📞 +918126936663 || 📧 rahulverma.1.2005@gmail.com</p>
+            </div>
+           </div>
+        </div>
+    
+        <!-- skills -->
+        <div id="skills" class="page">
+            <h2 class="   text-center      under-lg bold22">Skills</h2>
+            <div class="skillsCont">
+                <div class="skillItemMain all-center">
+                    <div class="skillItem all-center" style="--val:90">
+                        <svg>
+                            <circle cx="50%" cy="50%" r="42%"></circle>
+                            <circle  cx="50%" cy="50%" r="42%">
+                        </svg>
+                        <p class="text-center">90% <br> Frontend</p>
+                    </div>
+                    <!-- skills Child -->
+                    <div class="flexJcc skillItem-child-main skills-display-none">
+                        <div class="skillItem all-center skillItem-child" style="--valChild:99">
+                            <svg>
+                                <circle cx="50%" cy="50%" r="42%"></circle>
+                                <circle  cx="50%" cy="50%" r="42%">
+                            </svg>
+                            <p class="text-center">99% <br>Html</p>
+                        </div>
+                        <div class="skillItem all-center skillItem-child" style="--valChild:99">
+                            <svg>
+                                <circle cx="50%" cy="50%" r="42%"></circle>
+                                <circle  cx="50%" cy="50%" r="42%">
+                            </svg>
+                            <p class="text-center">99% <br>Css</p>
+                        </div>
+                        <div class="skillItem all-center skillItem-child" style="--valChild:99">
+                            <svg>
+                                <circle cx="50%" cy="50%" r="42%"></circle>
+                                <circle  cx="50%" cy="50%" r="42%">
+                            </svg>
+                            <p class="text-center">99% <br>JavaScript</p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+
+
+                <div class="skillItemMain all-center">
+                    <div class="skillItem all-center" style="--val:84">
+                        <svg>
+                            <circle cx="50%" cy="50%" r="42%"></circle>
+                            <circle  cx="50%" cy="50%" r="42%">
+                        </svg>
+                        <p class="text-center">84% <br>Backend</p>
+                    </div>
+                    <div class="flexJcc skillItem-child-main  skills-display-none">
+                        <div class="skillItem all-center skillItem-child" style="--valChild:80">
+                            <svg>
+                                <circle cx="50%" cy="50%" r="42%"></circle>
+                                <circle  cx="50%" cy="50%" r="42%">
+                            </svg>
+                            <p class="text-center">80% <br>Nodejs</p>
+                        </div>
+                        <div class="skillItem all-center skillItem-child" style="--valChild:90">
+                            <svg>
+                                <circle cx="50%" cy="50%" r="42%"></circle>
+                                <circle  cx="50%" cy="50%" r="42%">
+                            </svg>
+                            <p class="text-center">90% <br>ExpressJs</p>
+                        </div>
+                        <div class="skillItem all-center skillItem-child" style="--valChild:70">
+                            <svg>
+                                <circle cx="50%" cy="50%" r="42%"></circle>
+                                <circle  cx="50%" cy="50%" r="42%">
+                            </svg>
+                            <p class="text-center">90% <br>Django</p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+
+
+                <div class="skillItemMain all-center">
+                    <div class="skillItem all-center" style="--val:75">
+                        <svg>
+                            <circle cx="50%" cy="50%" r="42%"></circle>
+                            <circle  cx="50%" cy="50%" r="42%">
+                        </svg>
+                        <p class="text-center">75% <br>Database</p>
+                    </div>
+                    <div class="flexJcc skillItem-child-main skills-display-none">
+                        <div class="skillItem all-center skillItem-child" style="--valChild:92">
+                            <svg>
+                                <circle cx="50%" cy="50%" r="42%"></circle>
+                                <circle  cx="50%" cy="50%" r="42%">
+                            </svg>
+                            <p class="text-center">92% <br>MySQL</p>
+                        </div>
+                        <div class="skillItem all-center skillItem-child" style="--valChild:88">
+                            <svg>
+                                <circle cx="50%" cy="50%" r="42%"></circle>
+                                <circle  cx="50%" cy="50%" r="42%">
+                            </svg>
+                            <p class="text-center">88% <br>SQLite</p>
+                        </div>
+                        <div class="skillItem all-center skillItem-child" style="--valChild:72">
+                            <svg>
+                                <circle cx="50%" cy="50%" r="42%"></circle>
+                                <circle  cx="50%" cy="50%" r="42%">
+                            </svg>
+                            <p class="text-center">72% <br>MongoDB</p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+
+
+                <div class="skillItemMain all-center">
+                    <div class="skillItem all-center" style="--val:95">
+                        <svg>
+                            <circle cx="50%" cy="50%" r="42%"></circle>
+                            <circle  cx="50%" cy="50%" r="42%">
+                        </svg>
+                        <p class="text-center">95% <br>Software Dev</p>
+                    </div>
+                    <div class="flexJcc skillItem-child-main skills-display-none">
+                        <div class="skillItem all-center skillItem-child" style="--valChild:92">
+                            <svg>
+                                <circle cx="50%" cy="50%" r="42%"></circle>
+                                <circle  cx="50%" cy="50%" r="42%">
+                            </svg>
+                            <p class="text-center">92% <br>Python</p>
+                        </div>
+                        <div class="skillItem all-center skillItem-child" style="--valChild:76">
+                            <svg>
+                                <circle cx="50%" cy="50%" r="42%"></circle>
+                                <circle  cx="50%" cy="50%" r="42%">
+                            </svg>
+                            <p class="text-center">76% <br>#C</p>
+                        </div>
+                        <div class="skillItem all-center skillItem-child" style="--valChild:20">
+                            <svg>
+                                <circle cx="50%" cy="50%" r="42%"></circle>
+                                <circle  cx="50%" cy="50%" r="42%">
+                            </svg>
+                            <p class="text-center">20% <br>Java</p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+
+
+                <div class="skillItemMain all-center">
+                    <div class="skillItem all-center" style="--val:70">
+                        <svg>
+                            <circle cx="50%" cy="50%" r="42%"></circle>
+                            <circle  cx="50%" cy="50%" r="42%">
+                        </svg>
+                        <p class="text-center">70% <br>Graphic Design</p>
+                    </div>
+                    <div class="flexJcc skillItem-child-main skills-display-none">
+                        <div class="skillItem all-center skillItem-child" style="--valChild:80">
+                            <svg>
+                                <circle cx="50%" cy="50%" r="42%"></circle>
+                                <circle  cx="50%" cy="50%" r="42%">
+                            </svg>
+                            <p class="text-center">80% <br>Canva</p>
+                        </div>
+                        <div class="skillItem all-center skillItem-child" style="--valChild:65">
+                            <svg>
+                                <circle cx="50%" cy="50%" r="42%"></circle>
+                                <circle  cx="50%" cy="50%" r="42%">
+                            </svg>
+                            <p class="text-center">65% <br>Photoshop</p>
+                        </div>
+                        <!-- <div class="skillItem all-center skillItem-child" style="--valChild:70">
+                            <svg>
+                                <circle cx="50%" cy="50%" r="42%"></circle>
+                                <circle  cx="50%" cy="50%" r="42%">
+                            </svg>
+                            <p class="text-center">90% <br>JavaScript</p>
+                        </div> -->
+                        
+                    </div>
+                </div>
+
+
+
+
+                <div class="skillItemMain all-center">
+                    <div class="skillItem all-center" style="--val:50">
+                        <svg>
+                            <circle cx="50%" cy="50%" r="42%"></circle>
+                            <circle  cx="50%" cy="50%" r="42%">
+                        </svg>
+                        <p class="text-center">50% <br>CAD</p>
+                    </div>
+                    <div class="flexJcc skillItem-child-main skills-display-none">
+                        <div class="skillItem all-center skillItem-child" style="--valChild:90">
+                            <svg>
+                                <circle cx="50%" cy="50%" r="42%"></circle>
+                                <circle  cx="50%" cy="50%" r="42%">
+                            </svg>
+                            <p class="text-center">90% <br>AutoCAD</p>
+                        </div>                                        
+                    </div>
+                </div>  
+            </div>
+        </div>
+    
+        
+        <div id="innovation" class="page">
+            <h2 class="text-center under-lg bold22">Innovation</h2>
+            <div id="innovationProjectsCont" class="mgt2">
+                
+            </div>
+            <a class="expandAll button curvy-btn  " href="/innovation">Explore All</a>  
+        </div>
+    
+        
+        
+        <!-- projects -->
+        <div id="projects" class="page">
+            <h2 class="text-center   under-lg bold22">Projects</h2>
+            <div class="all-center project-cont">
+                <div class="projectItem">
+                    <div class="projectImg"><img src="" alt=""></div>
+                    <div class="projectInfo">
+                        <div class="projectLang"><p class="roboto primary-blue text-center">Python</p></div>
+                        <div class="projectTitle"><p class="roboto">Music Player : GUI - Tkinter/ttk</p></div>
+                        <div class="projectDesc"><p class=" lightWhite
+                            ">This music player made with tkinter for GUI playback with PyGame and eyed3 libraries and can fetch all  mp3 files from your system. </p></div>
+                        <div class="jcsb">
+                            <div class="projectViews arial mg2">2M views</div>
+                            <div class="projectDate arial">23 May 2023</div>                            
+                        </div>
+                    </div>
+                </div>
+                <div class="projectItem">
+                    <div class="projectImg"><img src="" alt=""></div>
+                    <div class="projectInfo">
+                        <div class="projectLang"><p class="roboto primary-blue text-center">Python</p></div>
+                        <div class="projectTitle"><p class="roboto">Music Player : GUI - Tkinter/ttk</p></div>
+                        <div class="projectDesc"><p class=" lightWhite
+                            ">This music player made with tkinter for GUI playback with PyGame and eyed3 libraries and can fetch all  mp3 files from your system. </p></div>
+                        <div class="jcsb">
+                            <div class="projectViews arial mg2">2M views</div>
+                            <div class="projectDate arial">23 May 2023</div>                           
+                        </div>
+                    </div>
+                </div>
+                <div class="projectItem">
+                    <div class="projectImg"><img src="" alt=""></div>
+                    <div class="projectInfo">
+                        <div class="projectLang"><p class="roboto primary-blue text-center">Python</p></div>
+                        <div class="projectTitle"><p class="roboto">Music Player : GUI - Tkinter/ttk</p></div>
+                        <div class="projectDesc"><p class=" lightWhite
+                            ">This music player made with tkinter for GUI playback with PyGame and eyed3 libraries and can fetch all  mp3 files from your system. </p></div>
+                        <div class="jcsb">
+                            <div class="projectViews arial mg2">2M views</div>
+                            <div class="projectDate arial">23 May 2023</div>                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="expandAll button curvy-btn  " href="/projects">Explore All</a>         
+        </div>
+                  
+
+
+        <!-- services -->
+        <div id="services" class="page">
+            <h2 class="text-center      under-lg bold22">Services</h2>
+            <div id="servCont" class="">
+                <div id="webDevelopment" class="servItems">
+                    <span></span>
+                    <span></span>
+                    <div class="content">
+                        <div class="serviceImg">
+                            <img class="img100" src="./imgs/serviceWeb.svg" alt="">
+                        </div>
+                        <div class="serviceTitle">
+                            <p class="bold18 text-center">Expert Web Development</p>
+                        </div>
+                        <div class="serviceDesc">
+                            <p class="lightWhite text-center">Crafting professional, responsive, and user-friendly websites. We also specialize in integrating Twilio/WhatsApp functionalities to enhance customer engagement and provide seamless communication.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="softwareDevelopment" class="servItems">
+                    <span></span>
+                    <span></span>
+                    <div class="content">
+                        <div class="serviceImg">
+                            <img class="img100" src="./imgs/softService.svg" alt="">
+                        </div>
+                        <div class="serviceTitle">
+                            <p class="bold18 text-center">Innovative Software Solutions</p>
+                        </div>
+                        <div class="serviceDesc">
+                            <p class="lightWhite text-center">Building scalable and cutting-edge applications for diverse industries. Our expertise includes integrating AI-powered chatbots to streamline user interactions and optimize business processes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="graphicDesign" class="servItems">
+                    <span></span>
+                    <span></span>
+                    <div class="content">
+                        <div class="serviceImg">
+                            <img class="img100" src="./imgs/serviceGraphic.svg" alt="">
+                        </div>
+                        <div class="serviceTitle">
+                            <p class="bold18 text-center">Creative Design Services</p>
+                        </div>
+                        <div class="serviceDesc">
+                            <p class="lightWhite text-center">Unlocking the power of visual communication through compelling designs. Additionally, we offer UI/UX design services for chatbots and AI-powered software, ensuring an intuitive and delightful user experience.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div style="display: none;" id="cad" class="servItems">
+                    <span></span>
+                    <span></span>
+                    <div class="content">
+                        <div class="serviceImg">
+                            <img class="img100" src="./imgs/serviceGraphic.svg" alt="">
+                        </div>
+                        <div class="serviceTitle">
+                            <p class="bold18 text-center">CAD</p>
+                        </div>
+                        <div class="serviceDesc">
+                            <p class="lightWhite text-center">Unlocking the power of visual communication through compelling designs. Additionally, we offer UI/UX design services for chatbots and AI-powered software, ensuring an intuitive and delightful user experience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="/services" class="expandAll button curvy-btn  ">Explore All</a>
+        </div>
+
+    
+        <!-- newsletter -->
+    
+        <div id="newsLetter" class="page flex all-center">
+            <div class="newsletter-icon w50">
+                <img style="width: 80%;" class="" src="./imgs/newsback.png" alt="">
+            </div>
+        
+            <div id="newsFormBack" class="formBack flexJcc  flex-direction-col">
+                <p class="under-lg bold22 text-center newsHead">Get Updated</p>
+        
+                <form onsubmit="submitForm(event)" action="newsletter" method="post">
+                    <label for="newsName newsLabel" class="formLabel">Name</label>
+                    <input autocapitalize="online" title="online" placeholder="Enter your full name" type="text" name="name"
+                        class="formInput newsInp" id="newsName">
+        
+                    <label for="newsEmail newsLabel" class="formLabel">Email</label>
+                    <input placeholder="Enter your email" type="email" name="email" class="formInput newsInp" id="newsEmail">
+        
+                    <input type="submit" name="" value="Subscribe" class="formInput formSubmit" id="newsSubmit">
+                </form>
+            </div>
+        </div>
+    
+        <!-- Contact section -->
+        <div id="contact" class="contactCont page all-center" id="contactCont">
+            <div class="w50 left-contact ">
+                <p class="bold22">Let's Talk About Everything</p>
+                <p class="      contactSocialsChild">Address</p>
+                <p class="ans primary-blue contact-fields"> 🌍 Bilhairi Chakarpur khatima (262308) Udham Singh Nagar Uttarakhand</p>
+    
+                <p class="   contactSocials">Let's Talk</p>
+                <p class="ans primary-blue contact-fields">📞 +918126936663 || +918057578564</p>
+    
+                <p class="   contactSocials">General Support</p>
+                <p class="ans primary-blue contact-fields">📧 rahulverma.1.2005@gmail.com</p>
+    
+                <div class="socialLink">
+                    <div>
+                        <img class="hand" src="./imgs/whats.png" alt="twitter">
+                    </div>
+                    <div>
+                        <img class="hand" src="./imgs/fb.png" alt="twitter">
+                    </div>
+                    <div>
+                        <img class="hand" src="./imgs/insta.png" alt="twitter">
+                    </div>
+                    <div>
+                        <img class="hand" src="./imgs/tweet.png" alt="twitter">
+                    </div>
+                    <div>
+                        <img class="hand" src="./imgs/linked.png" alt="twitter">
+                    </div>
+                </div>
+    
+            </div>
+    
+            <div class="formBack">
+                <p class="bold22 under-lg text-center">Get In Touch</p>
+    
+                <form onsubmit="submitForm(event)" action="/contactus" method="post">
+                    <label for="contactName" class="formLabel">Name</label>
+                    <input autocapitalize="online" title="online" placeholder="Enter your full name" type="text" name="name" class="formInput" id="contactName">
+                    
+                    <label for="contactEmail" class="formLabel">Email</label>
+                    <input placeholder="Enter your email" type="email" name="email" class="formInput" id="contactEmail">
+                    
+                    <label for="contactMessage" class="formLabel">Message</label>
+                    <textarea placeholder="Enter message to send" id="contactMessage" class="formInput" name="message" id="" cols="30"
+                        rows="10"></textarea>
+                    
+                    <input type="submit" name="" value="Send Message" class="formInput formSubmit" id="contactSubmit">
+                </form>
+                
+            </div>
+        </div>
+    
+        <footer id="footer" class="footer">
+            <div class="header">
+                <div></div>
+                <div></div>
+            </div>
+            <div class="container">
+                
+            </div>
+        </footer>
+    </div>
+
+    <script src="./js/universal.js"></script>
+    <script src="./js/home.js"></script>
+    <script>
+        setData();
+    </script>
+</body>
+
+</html>

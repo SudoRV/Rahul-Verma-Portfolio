@@ -1,0 +1,79 @@
+
+
+.contactCont {
+    min-height: 300px;
+}
+
+.formBack .under-lg::before{
+    width:90%;
+    left:5%;
+}
+
+.contact-fields {
+    margin-bottom: 8%;
+}
+
+.formBack {    
+    width: 45%;
+    padding: 4% 2%;
+    margin: 2% 0;
+    border-radius: 16px;
+    background-color: var(--primaryPageColor);
+    
+    box-shadow: 0 0 16px 0px rgba(40,42,46,1),
+                8px 8px 8px 0 rgba(0,0,2,1);
+}
+
+.formBack form{
+    width: 65%;
+    display:block;
+    margin:auto;
+}
+
+.formBack form label{
+    font-size: 15px;
+    color: rgb(200,200,200);
+    font-weight: 600;
+}
+
+.formInput {
+    width: 100%;
+    height: 40px;       
+    margin-bottom: 6%; 
+    padding: 0 2%;
+    font-size: 16px;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid grey;
+    outline: none;
+}
+
+.formInput:focus,
+.formInput:hover {
+    border-color: rgb(19, 136, 242);
+}
+
+.formLabel {   
+    
+}
+
+#contactMessage {
+    min-height: 80px;
+    resize: none;
+    padding: 2%;
+}
+
+#contactMessage::-webkit-scrollbar {
+    width: 6px;
+    cursor: pointer;
+}
+
+.formSubmit { 
+    width: 104%; 
+    margin-left:-2%;     
+    margin-top:2%;
+    border: 0;
+    border-radius: 16px;    
+    background: var(--primaryGrad);
+    color: white;
+}

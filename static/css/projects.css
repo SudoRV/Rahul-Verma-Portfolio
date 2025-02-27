@@ -1,0 +1,36 @@
+.project-cont {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.projectItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+    border: 1px solid var(--lightblue);
+    border-radius: 8px;
+}
+
+.projectImg {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 1px solid grey;
+    margin-bottom: 2%;
+}
+
+.projectInfo {
+    width: 100%;
+}
+
+.projectTitle {
+    font-weight: bold;
+}
+
+.projectLang,
+.projectTitle,
+.projectDesc {
+    margin-bottom: 2%;
+}

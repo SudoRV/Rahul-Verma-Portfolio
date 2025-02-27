@@ -1,0 +1,146 @@
+.skillsCont {
+    display: grid;
+    grid-template-columns: repeat(3, 32%);
+    gap: 2%;
+    transition: all 2s;
+}
+
+.skillItemMain {
+    flex-direction: column;
+    transition: all 2s;
+}
+
+.skillItem {
+    position: relative;
+    height: 200px;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    transform: rotateZ(-90deg);
+}
+
+.skillItem svg {
+    width: 100%;
+    height: 100%;
+}
+
+.skillItem svg circle {
+    fill: transparent;
+    stroke: rgb(20, 20, 20);
+    stroke-width: 5;
+}
+
+.skillItem svg circle:nth-child(2) {
+    stroke: var(--lightblue) !important;
+    /* stroke-dasharray: 1000; */
+    stroke-dashoffset: 528;
+    animation: full 2s 1 linear forwards;
+}
+
+@keyframes full {
+    0% {
+        stroke-dasharray: 528;
+    }
+
+    33% {
+        stroke-dasharray: 1056;
+    }
+
+    76% {
+        stroke-dasharray: 528;
+    }
+
+    100% {
+        stroke-dasharray: calc(1056 - (((100 - var(--val)) * 528))/100);
+    }
+}
+
+.skillItem p {
+    position: absolute;
+    transform: rotateZ(90deg);
+    /* color: rgb(200,200,200); */
+    font-size: 18px;
+    /* font-weight: bold; */
+    font-family: "Roboto", sans-serif !important;
+}
+
+/*skills item child */
+.skillItem-child-main {
+    height: 90px;
+    opacity: 1;
+}
+
+/* opens up the skills chillld  */
+.skillItem-child-main-heightp {
+    animation: heightp 0.5s 1 linear forwards;
+}
+
+@keyframes heightp {
+    0% {
+        height: 0;
+        opacity: 0;
+    }
+
+    80% {
+        height: 90px;
+        opacity: 0;
+    }
+
+    100% {
+        height: 90px;
+        opacity: 1;
+    }
+}
+
+/* folds up the skills chillld  */
+.skillItem-child-main-heightn {
+    animation: heightn 0.5s 1 linear forwards;
+}
+
+@keyframes heightn {
+    0% {
+        height: 90px;
+        opacity: 1;
+    }
+
+    20% {
+        height: 90px;
+        opacity: 0;
+    }
+
+    100% {
+        height: 0;
+        opacity: 0;
+    }
+}
+
+.skills-display-none {
+    display: none !important;
+}
+
+.skills-display-flex {
+    display: flex !important;
+}
+
+.skillItem-child {
+    height: 100%;
+    aspect-ratio: 1;
+    font-size: 12px;
+    margin: 0;
+    margin-bottom: 3%;
+}
+
+
+.skillItem-child svg circle {
+    stroke-width: 3;
+}
+
+.skillItem-child svg circle:nth-child(2) {
+    stroke: var(--lightblue) !important;
+    stroke-dasharray: calc(476 - (((100 - var(--valChild)) * 238))/100) !important;
+    stroke-dashoffset: 238 !important;
+}
+
+.skillItem-child p {
+    font-size: 12px;
+
+}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahul Verma</title>
+    <link rel="icon" type="image/x-icon" href="/imgs/favicon.png"> 
+    <link href="./css/universal.css" rel="stylesheet">
+    <link href="./css/media.css" rel="stylesheet">
+    <style>
+        .psuedo-body {
+            height: 100vh;
+        }
+
+        .signup-container {
+            margin: 12.5vh auto;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .signup-container h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            color: black;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #007BFF;
+        }
+
+        .btn {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="shutterBack" class="beforeLoad">
+        <div class="loaders loader1"></div>
+        <div class="loaders loader2"></div>
+        <div class="loaders loader3"></div>
+        <div class="loaders loader4"></div>
+        <div class="loaders loader5"></div>
+        <div class="loaders loader6"></div>
+    </div>
+
+    <div class="shutters shutter1"></div>
+    <div class="shutters shutter2"></div>
+    <div class="shutters shutter3"></div>
+    <div class="shutters shutter4"></div>
+
+
+    <div class="psuedo-body">
+        
+        <div id="menu" class="menu">
+            <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
+            <li onclick="redirectScroll('projects')" class="hand"><a>Projects</a></li>
+            <li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>
+            <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
+        </div>
+
+        <nav>
+            <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/rahul1.png" alt="">
+            </li>
+            <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
+            <li class="hand"><a>Blog</a></li>
+            <li onclick="redirectScroll('projects')" class="hand"><a>Projects</a></li>
+            <li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>
+            <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
+            <li class="hand">
+                <a href="/hireme" class="button curvy-btn  " id="hire">Hire Me</a>
+            </li>
+            <li class="hand menuBtnLi">
+                <div id="menuBtn" class="hand menuBtn">
+
+                </div>
+            </li>
+        </nav>
+
+        <div class="signup-container">
+            <h1>Sign Up</h1>
+            <form action="/signup" method="post" onsubmit="validateForm()">
+                <div class="input-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username">
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password">
+                </div>
+                <button type="submit" class="btn" id="submitBtn">Sign Up</button>
+            </form>
+        </div>
+
+
+        <footer class=""></footer>
+    </div>
+
+    <script src="./js/universal.js"></script>
+
+    <script>
+        var formIsValid = false;
+        function validateForm() {
+            let username = document.getElementById('username');
+            let email = document.getElementById('email');
+            let password = document.getElementById('password');
+            let isValid = true;
+
+            if (username.value.trim() === '') {
+                username.style.borderColor = 'red';
+                isValid = false;
+            } else {
+                username.style.borderColor = '';
+            }
+
+            if (email.value.trim() === '') {
+                email.style.borderColor = 'red';
+                isValid = false;
+            } else {
+                email.style.borderColor = '';
+            }
+
+            if (password.value.trim() === '') {
+                password.style.borderColor = 'red';
+                isValid = false;
+            } else {
+                password.style.borderColor = '';
+            }
+            formIsValid = isValid;
+            return isValid;
+        }
+
+        form = document.getElementsByTagName("form")[0]
+        form.addEventListener("submit",(event)=>{
+            event.preventDefault();
+            let loginData = new FormData(event.target);
+            loginData = Object.fromEntries(loginData.entries());
+            loginData.username = "@"+loginData.username;
+
+            if(!formIsValid){
+                return;
+            }
+            
+            fetch("/signup",{
+                method:"POST",
+                headers:{
+                    "Content-Type": "application/json",
+                },
+                body:JSON.stringify(loginData),
+            })
+                .then((res)=>res.json())
+                .then((res)=>{
+                    window.localStorage.setItem("loginData",JSON.stringify(res));
+                    form.reset();
+                    userRes = 
+                    alert("Logged In Successfully");
+                    window.history.back();
+                })            
+        })
+    </script>
+</body>
+
+</html>

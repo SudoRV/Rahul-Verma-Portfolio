@@ -7,12 +7,6 @@ const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const { REFUSED } = require("dns");
 
-const setupSql = require("./setup_sql");
-const setData = require("./sql");
-
-setupSql();
-setData();
-
 const app = express();
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "static")));
@@ -21,10 +15,11 @@ app.use(express.urlencoded({ extended: true }));
 // database
 
 const sql = mysql.createConnection({
-  user: "root",
-  host: "localhost",
-  password: "rahul@1992#",
-  database: "rahulPortfolio",
+  user: "uj5suaanxezqhsed",
+  host: "bqj7zvnxjcplitgtnwmi-mysql.services.clever-cloud.com",
+  password: "xjK7Ke5JcAXgSnjUz9LQ",
+  database: "bqj7zvnxjcplitgtnwmi",
+  port: 21411,
 });
 
 sql.query("show tables like 'loginData'", (err, result) => {

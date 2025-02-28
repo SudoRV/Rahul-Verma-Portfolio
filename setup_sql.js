@@ -16,15 +16,16 @@ function runCommand(command) {
 // Function to install MySQL
 function installMySQL() {
     console.log("Installing MySQL...");
-    runCommand('apt update && apt install -y mysql-server');
+    runCommand('apt update && apt install -y mariadb');
+
     console.log("Starting MySQL service...");
-    runCommand('  service mysql start');
+    runCommand('mysqld'); // Start MySQL in the background
 }
 
 // Function to set MySQL root password
 function setRootPassword(password) {
     console.log("Setting MySQL root password...");
-    runCommand(`  mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${password}'; FLUSH PRIVILEGES;"`);
+    runCommand(`mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${password}'; FLUSH PRIVILEGES;"`);
     console.log("Root password changed successfully.");
 }
 
@@ -78,8 +79,8 @@ function setupDatabase() {
     installMySQL();
     setRootPassword(rootPassword);
     createDatabase(dbConfig, dbName);
-    
-    // Wait for a second before importing to ensure DB is created
+
+    // Wait before importing to ensure DB is created
     setTimeout(() => importSQL(dbConfig, dbName, sqlFile), 1000);
 }
 

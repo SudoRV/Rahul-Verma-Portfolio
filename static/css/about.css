@@ -1,78 +1,115 @@
-.aboutItems {
-    box-sizing: border-box;
+
+      .about .info{          
+          color: white;   
+          margin-bottom: 32px;                    
+      }
+      
+      .about .about-ih{
+          display: flex; 
+          justify-content: center;         
+          gap: 2rem;
+      }
+      
+      .about-ih .image{
+          width: 45%;   
+          height: fit-content;                      
+          border: 2px solid rgba(19,132,242,0.4);
+          border-radius: 16px;
+          overflow: hidden;
+      }
+      
+      .about-ih img{
+          width: 100%;
+          height: auto;
+      }
+      
+      .about-ih .hobbies{
+          width: 55%;
+          min-height: 200px;                
+          padding: 1rem 0;          
+      }
+      
+      .hobbies h2{
+          margin: 0;                    
+          color: rgb(19,132,242);
+      }
+                  
+      .tech-stack{
+         width; 100%;                  
+         margin: 8px 0;
+         
+         display: flex;
+         flex-wrap: wrap;        
+         overflow: hidden;   
+         justify-content: center;
+         gap: 16px;    
+         
+         margin-bottom: 48px;
+      }
+      
+      .tech-stack img{
+        width: 60px;
+        aspect-ratio: 1;
+        border-radius: 16px;        
+      }
+      
+      .hobbies p{
+          color: #eee;
+          fint-size: 24px;          
+      }
+      
+
+
+.icons {
     display: grid;
-    grid-template-areas:
-        "name photo about"
-        "url url about"
-        "ourl ourl ourl";
-
-    grid-template-columns: 5% 40% 51%;
-    grid-template-rows: 300px auto auto; 
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;    
+    gap: 10px;
+    padding: 10px;   
+    margin: 26px auto;
+    width: 50%;
+    aspect-ratio: 1;  
 }
 
-.aboutItems div {
-    width: 100%;
-    height: 100%;
-    border: 1px solid var(--lightblue);
-    border-radius: 8px;
+.img3{
+    transform: translateX(50%) translateY(-15%);
 }
 
-.aboutItems div:nth-child(1) {
-    grid-area: name;
-    border: 0;
+.hexagon {
+  position: relative;
+  background-color: rgb(19,132,242);
+  clip-path: polygon(
+    50% 0%, 
+    93% 25%, 
+    93% 75%, 
+    50% 100%, 
+    7% 75%, 
+    7% 25%
+  );    
+  z-index: 1;
 }
 
-.aboutItems div:nth-child(1) p {
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
-    font-size: 38px;
+.hexagon::after {
+  content: '';
+  position: absolute;
+  top: 4px; 
+  left: 4px;
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  background-color: white;
+  clip-path: inherit;
+  box-sizing: border-box;
+  z-index: -1;
 }
 
-.aboutItems div:nth-child(2) {
-    grid-area: photo;
-    width: 100%;
-    aspect-ratio: 1;
-    overflow: hidden;
+.hexagon:nth-child(1)::after{
+  background: url("../imgs/robot.svg") no-repeat center / 65% 65%;  
 }
 
-.aboutItems div:nth-child(2) img {
-    width: 100%;
-    height: 100%;
+.hexagon:nth-child(2)::after{
+  background: url("../imgs/drone.svg") no-repeat center / 80% 80%;  
 }
 
-.aboutItems div:nth-child(3) {
-    grid-area: about;
-    padding: 3%;
-    overflow: hidden;
+.hexagon:nth-child(3)::after{
+  background: url("../imgs/iot.svg") no-repeat center / 55% 55%;  
 }
 
-.aboutItems div:nth-child(3) p {
-    /* overflow-y: auto; */
-}
-
-
-.aboutItems div:nth-child(4) {
-    grid-area: url;
-    height: 60px;
-    border: 0;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 5%;
-    margin: 0;
-}
-
-.aboutItems div:nth-child(5) {
-    grid-area: ourl;
-    height: min-content;
-    padding: 1%;
-}
-
-.readmore {
-    color: var(--lightblue);
-    font-weight: bold;
-    background-color: transparent;
-    border: 0;
-    padding: 2%;
-    font-size: 18px;
-}

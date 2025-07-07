@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Me</title>
+  <style>    
+      
+      *{
+          box-sizing: border-box; 
+          <!-- border: 1px solid red;    -->
+      }       
+      
+      .about{
+          width: calc(100% - 32px);
+          min-height: 300px;
+          margin: 16px;
+          background: rgba(19,26,29,0.85);
+          border-radius: 16px;
+          
+          padding: 2rem;
+      }
+      
+      .about h1{
+          color: white;                       
+          margin: auto;
+          width: fit-content;
+          position: relative;  
+          text-align: center;
+          margin-bottom: 2rem;     
+      }
+      
+      .about h1::before{
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 2.2rem;
+          width: 100%;
+          height: 8px;
+          border-radius: 100px;
+          background: linear-gradient(90deg, white, rgb(40,132,242))          
+      }
+      
+      .about .info{
+          color: white;
+          font-size: 20px;
+      }
+      
+      .about .about-ih{
+          display: flex; 
+          justify-content: center;         
+          gap: 2rem;
+      }
+      
+      .about-ih .image{
+          width: 45%;   
+          height: fit-content;                      
+          border: 2px solid rgba(19,132,242,0.4);
+          border-radius: 16px;
+          overflow: hidden;
+      }
+      
+      .about-ih img{
+          width: 100%;
+          height: auto;
+      }
+      
+      .about-ih .hobbies{
+          width: 55%;
+          min-height: 200px;                
+          padding: 1rem 0;          
+      }
+      
+      .hobbies h2{
+          margin: 0;
+          font-size: 26px;
+          color: rgb(19,132,242);
+      }
+                  
+      .tech-stack{
+         width; 100%;                  
+         margin: 8px 0;
+         
+         display: flex;
+         flex-wrap: wrap;        
+         overflow: hidden;   
+         justify-content: center;
+         gap: 16px;    
+         
+         margin-bottom: 32px;
+      }
+      
+      .tech-stack img{
+        width: 60px;
+        aspect-ratio: 1;
+        border-radius: 16px;        
+      }
+      
+      .hobbies p{
+          color: white;
+          fint-size: 24px;
+      }
+      
+
+
+.icons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;    
+    gap: 10px;
+    padding: 10px;   
+    margin: auto;
+    width: 60%;
+    aspect-ratio: 1;  
+}
+
+.img3{
+    transform: translateX(50%) translateY(-15%);
+}
+
+.hexagon {
+  position: relative;
+  background-color: rgb(19,132,242);
+  clip-path: polygon(
+    50% 0%, 
+    93% 25%, 
+    93% 75%, 
+    50% 100%, 
+    7% 75%, 
+    7% 25%
+  );    
+  z-index: 1;
+}
+
+.hexagon::after {
+  content: '';
+  position: absolute;
+  top: 4px; 
+  left: 4px;
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  background-color: white;
+  clip-path: inherit;
+  box-sizing: border-box;
+  z-index: -1;
+}
+
+.hexagon:nth-child(1)::after{
+  background: url("./robot.svg") no-repeat center / 65% 65%;  
+}
+
+.hexagon:nth-child(2)::after{
+  background: url("./drone.svg") no-repeat center / 80% 80%;  
+}
+
+.hexagon:nth-child(3)::after{
+  background: url("./iot.svg") no-repeat center / 55% 55%;  
+}
+
+
+   
+  </style>
+</head>
+<body>
+    <div class="about">
+      <h1>About Me</h1>
+      <p class="info">I am a full-stack developer and loT robotics enthusiast pursuing projects on V2V communication, remote-controlled water pumps, and DIY smart home automation with the ESP8266 I am a full-stack developer and loT robotics enthusiast pursuing projects on V2V communication, remote-controlled water pumps, and DIY smart home automation with the ESP8266.
+
+Tech Stack</p>
+   
+     <div class="about-ih">
+        <div class="image">
+            <img src="./about-image.jpg" />
+        </div>
+        <div class="hobbies">
+            <h2>Tech Stack</h3>
+            <div class='tech-stack'>
+              <img src="./Python.svg" />
+              <img src="./java.svg" />
+              <img src="./c.svg" />
+              <img src="./node-js.svg" />
+              <img src="./javascript.svg" />
+              <img src="./react.svg" />
+              <img src="./android.svg" />
+              <img src="./mysql.svg" /> 
+              <img src="./DynamoDB.svg" />
+              <img src="./Lambda.svg" />                                        
+            </div>
+            
+            <h2>Hobbies</h2>
+            <p>Tinkering with electronics, building projects like my drone with the ESP8266 and diving into machine learning for disease detection in fruits and vegetables Tinkering with electronics, building projects like my drone with the ESP8266 and diving into machine learning for disease detection in fruits and vegetables.</p>
+            
+            <div class="icons">
+                <div class="img1 hexagon"></div>
+                <div class="img2 hexagon"></div>
+                <div class="img3 hexagon"></div>
+            </div>
+            
+        </div>
+     </div>
+   
+    </div>
+    
+   
+</body>
+</html>
+

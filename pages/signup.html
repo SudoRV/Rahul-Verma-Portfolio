@@ -2,207 +2,467 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rahul Verma</title>
-    <link rel="icon" type="image/x-icon" href="/imgs/favicon.png"> 
-    <link href="./css/universal.css" rel="stylesheet">
-    <link href="./css/media.css" rel="stylesheet">
-    <style>
-        .psuedo-body {
-            height: 100vh;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auth | Rahul Verma</title>
+  <link rel="icon" type="image/x-icon" href="/imgs/favicon.png" />
+  <link rel="stylesheet" href="./css/universal.css">
+  <style>
+    :root {
+      --primary: rgb(19, 132, 242);
+      --dark: rgba(28, 31, 34, 255);
+      --light: #ffffff;
+      --glass-bg: rgba(255, 255, 255, 0.06);
+    }
 
-        .signup-container {
-            margin: 12.5vh auto;
-            background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 20px;
-            width: 300px;
-            text-align: center;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .signup-container h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #333;
-        }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--dark);
+      color: var(--light);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
 
-        .input-group {
-            margin-bottom: 20px;
-        }
+    .auth-wrapper {
+      background: var(--glass-bg);
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      width: 90%;
+      max-width: 700px;
+      height: 100%;
+      height: auto;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      margin: auto;
 
-        .input-group label {
-            display: block;
-            text-align: left;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #333;
-        }
+    }
 
-        .input-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            color: black;
-        }
+    .form-container {
+      width: 50%;
+      padding: 40px;
+      transition: transform 0.6s ease;
+    }
 
-        .input-group input:focus {
-            outline: none;
-            border-color: #007BFF;
-        }
+    .form-container h2 {
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
 
-        .btn {
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
+    .form-container input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
 
-        .btn:hover {
-            background-color: #0056b3;
-            color: #fff;
-        }
-    </style>
+    .form-container input:focus {
+      outline: 2px solid var(--primary);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: rgb(15, 104, 193);
+    }
+
+    .switch-panel {
+      width: 50%;
+      background-color: var(--primary);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      position: absolute;
+      height: 100%;
+      top: 0;
+      right: 0;
+      transition: transform 0.3s linear;
+    }
+
+    .switch-panel h2 {
+      margin-bottom: 20px;
+    }
+
+    .switch-panel button {
+      background-color: white;
+      color: var(--primary);
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .switch-panel button:hover {
+      background-color: #e1e1e1;
+    }
+
+    .auth-wrapper.active .switch-panel {
+      transform: translateX(-100%);
+    }
+
+    .auth-wrapper.active .form-container.login {
+      animation: switch-login 0.3s linear forwards;
+    }
+
+    @keyframes switch-login {
+      0% {
+        transform: translateX(0);
+      }
+
+      50% {
+        transform: translateX(40%);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    .auth-wrapper.revert .form-container.login {
+      animation: revert-login 0.3s linear forwards;
+    }
+
+    @keyframes revert-login {
+      0% {
+        transform: translateX(0);
+      }
+
+      50% {
+        transform: translateX(40%);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    .form-container.signup {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background-color: transparent;
+      transform: translateX(100%);
+
+      overflow-y: scroll;
+    }
+
+    .form-container.signup::-webkit-scrollbar {
+      display: none;
+    }
+
+    .auth-wrapper.active .form-container.signup {
+      animation: switch-signup 0.3s linear forwards;
+    }
+
+    @keyframes switch-signup {
+      0% {
+        transform: translateX(100%);
+      }
+
+      50% {
+        transform: translateX(40%);
+      }
+
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    .auth-wrapper.revert .form-container.signup {
+      animation: revert-signup 0.3s linear forwards;
+    }
+
+    @keyframes revert-signup {
+      0% {
+        transform: translateX(100%);
+      }
+
+      50% {
+        transform: translateX(40%);
+      }
+
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    .form-container.login {
+      background-color: transparent;
+    }
+
+
+
+    @media screen and (max-width: 768px) {
+      .auth-wrapper {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .form-container,
+      .switch-panel {
+        width: 100%;
+        position: static;
+        transform: none !important;
+      }
+
+      .switch-panel {
+        order: -1;
+        height: auto;
+      }
+
+      .auth-wrapper.active .switch-panel {
+        transform: none;
+      }
+    }
+  </style>
+
+  <link href="./css/universal.css" rel="stylesheet">
+  <link href="./css/media.css" rel="stylesheet">
 </head>
 
 <body>
+  <div class="psuedo-body w100 h100 flex flex-direction-col" id="psuedo-body">
 
-    <div id="shutterBack" class="beforeLoad">
-        <div class="loaders loader1"></div>
-        <div class="loaders loader2"></div>
-        <div class="loaders loader3"></div>
-        <div class="loaders loader4"></div>
-        <div class="loaders loader5"></div>
-        <div class="loaders loader6"></div>
+    <div id="menu" class="menu">
+      <li class="hand" onclick="getPage('about')"><a>About</a></li>
+      <li onclick="getPage('projects')" class="hand"><a>Projects</a></li>
+      <li onclick="getPage('services')" class="hand"><a>Services</a></li>
+      <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
     </div>
 
-    <div class="shutters shutter1"></div>
-    <div class="shutters shutter2"></div>
-    <div class="shutters shutter3"></div>
-    <div class="shutters shutter4"></div>
+    <div class="navbar">
+      <nav>
+        <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/rahul1.png" alt></li>
+        <li class="hand" onclick="getPage('about')"><a>About</a></li>
+        <li onclick="getPage('projects')" class="hand"><a>Projects</a></li>
+        <li onclick="getPage('services')" class="hand"><a>Services</a></li>
+        <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
+        <li class="hand">
+          <a href="/hireme" class="button curvy-btn  " id="hire">Hire Me</a>
+        </li>
+        <li class="hand menuBtnLi">
+          <div id="menuBtn" class="hand menuBtn">
+          </div>
+        </li>
+      </nav>
 
-
-    <div class="psuedo-body">
-        
-        <div id="menu" class="menu">
-            <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
-            <li onclick="redirectScroll('projects')" class="hand"><a>Projects</a></li>
-            <li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>
-            <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
-        </div>
-
-        <nav>
-            <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/rahul1.png" alt="">
-            </li>
-            <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
-            <li class="hand"><a>Blog</a></li>
-            <li onclick="redirectScroll('projects')" class="hand"><a>Projects</a></li>
-            <li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>
-            <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
-            <li class="hand">
-                <a href="/hireme" class="button curvy-btn  " id="hire">Hire Me</a>
-            </li>
-            <li class="hand menuBtnLi">
-                <div id="menuBtn" class="hand menuBtn">
-
-                </div>
-            </li>
-        </nav>
-
-        <div class="signup-container">
-            <h1>Sign Up</h1>
-            <form action="/signup" method="post" onsubmit="validateForm()">
-                <div class="input-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name">
-                </div>
-                <div class="input-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username">
-                </div>
-                <div class="input-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email">
-                </div>
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password">
-                </div>
-                <button type="submit" class="btn" id="submitBtn">Sign Up</button>
-            </form>
-        </div>
-
-
-        <footer class=""></footer>
+      <!-- <div class="skew-div">
+                <div class="skew"></div>
+                <div class="skew"></div>
+            </div> -->
     </div>
 
-    <script src="./js/universal.js"></script>
+    <div id="content" class="flex-grow-1 all-center">
+      <div class="auth-wrapper" id="authBox">
+        <!-- Login Form -->
+        <div class="form-container login">
+          <h2>Welcome Back</h2>
+          <form id="loginForm">
+            <input type="text" placeholder="Username or Email" required />
+            <input type="password" placeholder="Password" required />
+            <button class="btn" type="submit">Login</button>
+          </form>
+        </div>
 
-    <script>
-        var formIsValid = false;
-        function validateForm() {
-            let username = document.getElementById('username');
-            let email = document.getElementById('email');
-            let password = document.getElementById('password');
-            let isValid = true;
+        <!-- Signup Form -->
+        <div class="form-container signup">
+          <h2>Create Account</h2>
+          <form id="signupForm">
+            <input type="text" placeholder="Full Name" required />
+            <input type="text" placeholder="Username" required />
+            <input type="email" placeholder="Email" required />
+            <input type="password" placeholder="Password" required />
+            <button class="btn" type="submit">Sign Up</button>
+          </form>
+        </div>
 
-            if (username.value.trim() === '') {
-                username.style.borderColor = 'red';
-                isValid = false;
-            } else {
-                username.style.borderColor = '';
-            }
+        <!-- Switch Panel -->
+        <div class="switch-panel">
+          <h2 id="switchText">New here?</h2>
+          <button onclick="toggleForm()">Sign Up</button>
+        </div>
+      </div>
+    </div>
 
-            if (email.value.trim() === '') {
-                email.style.borderColor = 'red';
-                isValid = false;
-            } else {
-                email.style.borderColor = '';
-            }
+  </div>
 
-            if (password.value.trim() === '') {
-                password.style.borderColor = 'red';
-                isValid = false;
-            } else {
-                password.style.borderColor = '';
-            }
-            formIsValid = isValid;
-            return isValid;
+  <script>
+    const authBox = document.getElementById('authBox');
+    const switchText = document.getElementById('switchText');
+
+    function toggleForm() {
+      authBox.classList.toggle('active');
+
+      if (!authBox.classList.contains("active") || authBox.classList.contains("revert")) {
+        authBox.classList.toggle('revert');
+      }
+
+      const isSignup = authBox.classList.contains('active');
+      switchText.innerText = isSignup ? "Already a member?" : "New here?";
+      document.querySelector(".switch-panel button").innerText = isSignup ? "Login" : "Sign Up";
+    }
+
+    // SIGNUP FORM SUBMIT
+    // SIGNUP FORM SUBMIT
+    document.getElementById("signupForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const form = e.target;
+
+      const data = {
+        name: form[0].value,
+        username: form[1].value,
+        email: form[2].value,
+        password: form[3].value
+      };
+
+      try {
+        const res = await fetch("/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: new URLSearchParams(data)  // send as form data
+        });
+
+        const message = await res.text();  // get plain text response
+
+        if (res.ok) {
+          alert("✅ " + message);
+          form.reset();
+          toggleForm(); // Switch to login
+        } else {
+          alert("❌ Signup failed: " + message);
         }
 
-        form = document.getElementsByTagName("form")[0]
-        form.addEventListener("submit",(event)=>{
-            event.preventDefault();
-            let loginData = new FormData(event.target);
-            loginData = Object.fromEntries(loginData.entries());
-            loginData.username = "@"+loginData.username;
+      } catch (err) {
+        console.error("Signup error:", err);
+        alert("Something went wrong during signup.");
+      }
+    });
 
-            if(!formIsValid){
-                return;
-            }
-            
-            fetch("/signup",{
-                method:"POST",
-                headers:{
-                    "Content-Type": "application/json",
-                },
-                body:JSON.stringify(loginData),
-            })
-                .then((res)=>res.json())
-                .then((res)=>{
-                    window.localStorage.setItem("loginData",JSON.stringify(res));
-                    form.reset();
-                    userRes = 
-                    alert("Logged In Successfully");
-                    window.history.back();
-                })            
-        })
-    </script>
+    // LOGIN FORM SUBMIT
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        email: form[0].value,
+        password: form[1].value
+      };
+
+      try {
+        const res = await fetch("/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+
+        const response = await res.json();
+        if (response.success) {
+          alert("Login successful!");
+          window.location.href = "/dashboard" // or wherever you want to redirect
+        } else {
+          alert("Login failed: " + response.message);
+        }
+      } catch (err) {
+        console.error("Login error:", err);
+        alert("Something went wrong during login.");
+      }
+    });
+  </script>
+
+  <script>
+    // Utility function to debounce user input
+    function debounce(func, delay) {
+      let timeout;
+      return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), delay);
+      };
+    }
+
+    // Validate a field (username or email)
+    async function validateField(field, value, inputElement) {
+      if (!value.trim()) return;
+
+      try {
+        const res = await fetch(`/check-signup-creds?${field}=${encodeURIComponent(value)}`);
+        const data = await res.json();
+
+        if (data.available) {
+          inputElement.style.border = "2px solid green";
+          inputElement.setCustomValidity(""); // allow form submit
+          removeErrorMessage(inputElement);
+        } else {
+          inputElement.style.border = "2px solid red";
+          inputElement.setCustomValidity(`${field} not available`);
+          showErrorMessage(inputElement, `${field} not available`);
+        }
+      } catch (err) {
+        console.error(`Error checking ${field}:`, err);
+      }
+    }
+
+    function showErrorMessage(input, message) {
+      removeErrorMessage(input);
+      const span = document.createElement("span");
+      span.textContent = message;
+      span.style.color = "red";
+      span.style.fontSize = "0.8em";
+      span.classList.add("error-msg");
+      input.parentNode.insertBefore(span, input.nextSibling);
+    }
+
+    function removeErrorMessage(input) {
+      const next = input.nextSibling;
+      if (next && next.classList && next.classList.contains("error-msg")) {
+        next.remove();
+      }
+    }
+
+    const signupForm = document.getElementById("signupForm");
+    const usernameInput = signupForm[1]; // Username field
+    const emailInput = signupForm[2];    // Email field
+
+    usernameInput.addEventListener("input", debounce(() => {
+      validateField("username", usernameInput.value, usernameInput);
+    }, 500));
+
+    emailInput.addEventListener("input", debounce(() => {
+      validateField("email", emailInput.value, emailInput);
+    }, 500));
+  </script>
+
+
 </body>
 
 </html>

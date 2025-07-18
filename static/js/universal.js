@@ -130,15 +130,14 @@ function setPid(field) {
 }
 
 //open description in full mode 
-function openFull(elt) {
-  if(elt.getAttribute("height")=="initial" || elt.getAttribute("height") == null){
-    elt.style.height = "auto";
-    elt.setAttribute("height","full");
-  }else{
-    elt.style.height = "100px";
-    elt.setAttribute("height","initial");
+function expandProjectDescription(elt) {
+  if (elt.classList.contains("expanded")) {
+    elt.classList.remove("expanded");
+  } else {
+    elt.classList.add("expanded");
   }
 }
+
 
 
 //submit form 
@@ -268,4 +267,3 @@ function preserveScrollPosition(elementId) {
       localStorage.setItem(`${elementId}-scrollPosition`, scrollableElement.scrollTop);
   });
 }
-

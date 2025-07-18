@@ -10,26 +10,26 @@ I have a strong aversion to restrictions and constraints, always seeking to expa
 
 Thank you for taking the time to visit my portfolio. I'm excited to connect with like-minded individuals, potential collaborators, and employers who share a passion for technology and innovation. If you have any inquiries or would like to discuss potential projects or collaborations, please feel free to reach out. Let's embark on an exciting journey together! ✨`
 
-readmore.addEventListener("click", async (e) => {
-    if (readmore.innerText == "Read More") {
-        readmorePn = document.getElementById("aboutText")
-        readmorePnt = readmorePn.innerHTML
+// readmore.addEventListener("click", async (e) => {
+//     if (readmore.innerText == "Read More") {
+//         readmorePn = document.getElementById("aboutText")
+//         readmorePnt = readmorePn.innerHTML
 
-        await sleepFor(0, rmt.length, `
-            readmorePnt+= rmt[i]
-            readmorePn.innerHTML = readmorePnt
-        `)
-        readmore.innerText = "Read Less"
-    }
-    else {
-        aboutText.innerText = `Hey there! I'm Rahul Verma, a passionate individual currently pursuing my B.Tech in Computer Science and Engineering at Dr. APJ Abdul Kalam Institute of Technology. My educational journey started at Kendriya Vidyalaya No.2 NHPC Banbasa, where I completed my schooling. 🎓
+//         await sleepFor(0, rmt.length, `
+//             readmorePnt+= rmt[i]
+//             readmorePn.innerHTML = readmorePnt
+//         `)
+//         readmore.innerText = "Read Less"
+//     }
+//     else {
+//         aboutText.innerText = `Hey there! I'm Rahul Verma, a passionate individual currently pursuing my B.Tech in Computer Science and Engineering at Dr. APJ Abdul Kalam Institute of Technology. My educational journey started at Kendriya Vidyalaya No.2 NHPC Banbasa, where I completed my schooling. 🎓
         
-        I consider myself a versatile developer with expertise in various areas. My skills span across full-stack web development, utilizing HTML, CSS, JavaScript, Node.js, and working with databases such as SQLite, MongoDB, and MySQL. I also have a strong foundation in Python, which I employ for software development. Additionally, I possess intermediate knowledge in the C programming language. 💻
+//         I consider myself a versatile developer with expertise in various areas. My skills span across full-stack web development, utilizing HTML, CSS, JavaScript, Node.js, and working with databases such as SQLite, MongoDB, and MySQL. I also have a strong foundation in Python, which I employ for software development. Additionally, I possess intermediate knowledge in the C programming language. 💻
 
-        One of my areas of interest lies in the field of Artificial Intelligence and Machine Learning, where I leverage my Python skills to develop AI/ML applications. I enjoy exploring the potential of these technologies and applying them to solve real-world problems.🤖`
-        readmore.innerText = "Read More"
-    }
-})
+//         One of my areas of interest lies in the field of Artificial Intelligence and Machine Learning, where I leverage my Python skills to develop AI/ML applications. I enjoy exploring the potential of these technologies and applying them to solve real-world problems.🤖`
+//         readmore.innerText = "Read More"
+//     }
+// })
 
 // render child skills on hover  parent 
 skillItemMain = document.getElementsByClassName("skillItemMain")

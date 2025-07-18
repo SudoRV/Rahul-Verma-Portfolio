@@ -1,97 +1,87 @@
+.about .info {
+  color: rgb(200, 200, 200);
+  margin-bottom: 40px;
+}
 
-      .about .info{          
-          color: white;   
-          margin-bottom: 32px;                    
-      }
-      
-      .about .about-ih{
-          display: flex; 
-          justify-content: center;         
-          gap: 2rem;
-      }
-      
-      .about-ih .image{
-          width: 45%;   
-          height: fit-content;                      
-          border: 2px solid rgba(19,132,242,0.4);
-          border-radius: 16px;
-          overflow: hidden;
-      }
-      
-      .about-ih img{
-          width: 100%;
-          height: auto;
-      }
-      
-      .about-ih .hobbies{
-          width: 55%;
-          min-height: 200px;                
-          padding: 1rem 0;          
-      }
-      
-      .hobbies h2{
-          margin: 0;                    
-          color: rgb(19,132,242);
-      }
-                  
-      .tech-stack{
-         width; 100%;                  
-         margin: 8px 0;
-         
-         display: flex;
-         flex-wrap: wrap;        
-         overflow: hidden;   
-         justify-content: center;
-         gap: 16px;    
-         
-         margin-bottom: 48px;
-      }
-      
-      .tech-stack img{
-        width: 60px;
-        aspect-ratio: 1;
-        border-radius: 16px;        
-      }
-      
-      .hobbies p{
-          color: #eee;
-          fint-size: 24px;          
-      }
-      
+.about .about-ih {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.about-ih .image {
+  width: 45%;
+  height: fit-content;
+  border: 2px solid rgba(19, 132, 242, 0.4);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.about-ih img {
+  width: 100%;
+}
+
+.about-ih .hobbies {
+  width: 55%;
+  min-height: 200px;
+  padding: 1rem 0;
+}
+
+.hobbies h2 {
+  margin-bottom: 16px;
+  color: rgb(19, 132, 242);
+}
+
+.tech-stack {
+  margin: 8px 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  justify-content: center;
+  gap: 16px;
+
+  margin-bottom: 48px;
+}
+
+.tech-stack img {
+  width: 60px;
+  aspect-ratio: 1;
+  border-radius: 16px;
+}
 
 
 .icons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;    
-    gap: 10px;
-    padding: 10px;   
-    margin: 26px auto;
-    width: 50%;
-    aspect-ratio: 1;  
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 10px;
+  margin: auto;
+  margin-top: 10px;
+  width: 50%;
+  aspect-ratio: 1;
 }
 
-.img3{
-    transform: translateX(50%) translateY(-15%);
+.img3 {
+  transform: translateX(50%) translateY(-15%);
 }
 
 .hexagon {
   position: relative;
-  background-color: rgb(19,132,242);
-  clip-path: polygon(
-    50% 0%, 
-    93% 25%, 
-    93% 75%, 
-    50% 100%, 
-    7% 75%, 
-    7% 25%
-  );    
+  background-color: rgb(19, 132, 242);
+  clip-path: polygon(50% 0%,
+      93% 25%,
+      93% 75%,
+      50% 100%,
+      7% 75%,
+      7% 25%);
   z-index: 1;
 }
 
 .hexagon::after {
   content: '';
   position: absolute;
-  top: 4px; 
+  top: 4px;
   left: 4px;
   width: calc(100% - 8px);
   height: calc(100% - 8px);
@@ -101,15 +91,14 @@
   z-index: -1;
 }
 
-.hexagon:nth-child(1)::after{
-  background: url("../imgs/robot.svg") no-repeat center / 65% 65%;  
+.hexagon:nth-child(1)::after {
+  background: url("../imgs/robot.svg") no-repeat center / 65% 65%;
 }
 
-.hexagon:nth-child(2)::after{
-  background: url("../imgs/drone.svg") no-repeat center / 80% 80%;  
+.hexagon:nth-child(2)::after {
+  background: url("../imgs/drone.svg") no-repeat center / 80% 80%;
 }
 
-.hexagon:nth-child(3)::after{
-  background: url("../imgs/iot.svg") no-repeat center / 55% 55%;  
+.hexagon:nth-child(3)::after {
+  background: url("../imgs/iot.svg") no-repeat center / 55% 55%;
 }
-

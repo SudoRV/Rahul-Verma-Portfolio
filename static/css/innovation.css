@@ -1,3 +1,7 @@
+body{
+    overflow-x: hidden;
+}
+
 #innovationProjectsCont {    
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -133,13 +137,28 @@
     height: 50%;
 }
 
+.project-likes{
+    cursor: pointer;
+}
+
 .innovationDesc {
     border-top: 1px solid grey;
     margin-top: 2%;
-    height: 100px;
-    overflow: hidden;
     padding: 2% 0;
-    transform: height 0.3s ease;
+    transition: max-height 0.4s ease;
+}
+
+.innovationDesc {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;         /* Limit to 5 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.innovationDesc.expanded {
+ -webkit-line-clamp: unset;
+  max-height: 1000px;            /* Enough to show full content */
 }
 
 .mianGalLeftSide {
@@ -158,6 +177,7 @@
     position: relative;
     overflow: hidden;
     border-top: 1px solid grey;
+    padding: 2px 6px;
 }
 
 .comment-head {
@@ -352,7 +372,7 @@
     width: 100%;
     height: calc(100% - 60px);
     background: rgba(20, 20, 20, 0.925);
-    overflow: auto;
+    overflow: auto hidden;
 }
 
 .currentInnovationDisplayUpp {

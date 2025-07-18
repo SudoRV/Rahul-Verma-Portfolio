@@ -1,5 +1,5 @@
 let indexToAppendComment = 0;
-isReplyUserCommentLoaded = 0;
+let isReplyUserCommentLoaded = 0;
 
 let prevCommentData = {
   username: "",
@@ -8,21 +8,45 @@ let prevCommentData = {
 
 let projectId = "NULL";
 let openInnovationDisplayStat = 0;
-parentUserName = "NULL";
-replyingCommentParent = "NULL";
-replyingCommentTime = "";
-replyingCommentReplies = "";
+let parentUserName = "NULL";
+let replyingCommentParent = "NULL";
+let replyingCommentTime = "";
+let replyingCommentReplies = "";
+let lastScrollOfInnoationCont;
 
-localData = JSON.parse(window.localStorage.getItem("loginData"));
+let localData = JSON.parse(window.localStorage.getItem("loginData")) || {
+  name: "Guest",
+  username: "guest-adam",
+  email: "adam@apple.com",
+};
 
-lastIndexToLoadComment = 0;
+let lastIndexToLoadComment = 0;
+
+// load specific project if pid in url
+if(window.location.href.includes("pid")){
+  const pid = new URLSearchParams(window.location.search).get("pid");
+  if(pid){
+    openInnovationDisplay(pid);
+  }
+}
+
+window.addEventListener('popstate', (event) => {
+  if(window.location.href.includes("pid")){
+    const pid = new URLSearchParams(window.location.search).get("pid");
+    if(pid){
+      openInnovationDisplay(pid);
+    }
+  }else if(window.location.href.includes("/innovation")){
+    closeInnovationDisplay()
+  }
+});
 
 // comment logic
-innovationContChilds = document.getElementsByClassName("innovationContChilds");
+// let innovationContChilds = document.getElementsByClassName("innovationContChilds");
 
-for (innovationContChild of innovationContChilds) {
-  innovationContChild.addEventListener("click", () => { });
-}
+// for (innovationContChild of innovationContChilds) {
+//   innovationContChild.addEventListener("click", () => { alert() });
+// }
 
 //functions
 
@@ -317,7 +341,7 @@ function createCommentLogic() {
 
   comment_send.addEventListener("click", () => {
     commentText = comment_input.value;
-    localData = JSON.parse(window.localStorage.getItem("loginData"));
+    // localData = JSON.parse(window.localStorage.getItem("loginData"));
     currentTime = new Date().getTime();
 
     // add comment to backend
@@ -389,6 +413,12 @@ async function openInnovationDisplay(idelt) {
   currentInnovationDisplay.classList.remove("currentInnovationDisplayDownn");
   currentInnovationDisplay.classList.add("currentInnovationDisplayUpp");
 
+  lastScrollOfInnoationCont = currentInnovationDisplay.parentElement.scrollTop;
+  setTimeout(()=>{
+    currentInnovationDisplay.parentElement.scrollTo(0,0);
+    currentInnovationDisplay.parentElement.style.overflow = "hidden";
+  },100)
+
   if (idelt instanceof HTMLElement) {
     projectId = idelt.id;
   } else if (window.location.href.toString().includes("pid")) {
@@ -397,7 +427,8 @@ async function openInnovationDisplay(idelt) {
     projectId = idelt;
   }
 
-  let dataToAdd = await loadMediaForProject();
+  let projectData = await loadMediaForProject("advance", {"username": localData.username, "email": localData.email});
+  dataToAdd = buildContext(projectData);
 
   parser = new DOMParser();
   eltToAdd = parser.parseFromString(dataToAdd, "text/html").body.firstChild;
@@ -418,12 +449,16 @@ async function openInnovationDisplay(idelt) {
         0
       );
     }
-  }, 300);
+  }, 10);
   openInnovationDisplayStat = 1;
 }
 
-function closeInnovationDisplay(elt) {
+function closeInnovationDisplay() {
   // nav.classList.remove("display-none");
+  currentInnovationDisplay.parentElement.style.overflowY = "auto";
+  setTimeout(()=>{
+    currentInnovationDisplay.parentElement.scrollTo(0, lastScrollOfInnoationCont);
+  },100)
 
   if (
     window.location.href.toString().includes("pid") &&
@@ -446,45 +481,29 @@ function closeInnovationDisplay(elt) {
 
 // detect back and fro page and then make a innovation dispaly if the url contains pid
 
-window.addEventListener("popstate", (event) => {
-  if (window.location.href.toString().includes("pid")) {
-    projectId = new URL(window.location.href).searchParams.get("pid");
-    if (openInnovationDisplayStat == 0) {
-      openInnovationDisplay(projectId);
-      return;
-    }
-    closeInnovationDisplay(projectId);
-    setTimeout(() => {
-      openInnovationDisplay(projectId);
-    }, 300);
-  } else {
-    if (openInnovationDisplayStat) {
-      closeInnovationDisplay(projectId);
-      openInnovationDisplayStat = 0;
-    }
-  }
-});
-
-window.addEventListener("load", () => {
-  if (window.location.href.toString().includes("pid")) {
-    openInnovationDisplay(projectId);
-  }
-});
-
-async function loadMediaForProject() {
+async function loadMediaForProject(mode = "normal", payload) {
   return new Promise((resolve, reject) => {
     fetch("/innovation/get/projectData", {
       method: "get",
       headers: {
         body: JSON.stringify({
+          pid: projectId,
           query: `select * from projects where pid = "${projectId}"`,
+          payload: payload
         }),
       },
     })
       .then((res) => res.json())
       .then((res) => {
         let data = res.data[0];
+        // console.log("Project Data:", data);
 
+        // If mode is not 'advance', skip fetching media
+        if (mode !== "advance") {
+          return data;
+        }
+
+        // Fetch media if mode is 'advance'
         fetch("/innovation/get/projectData", {
           method: "get",
           headers: {
@@ -495,88 +514,119 @@ async function loadMediaForProject() {
         })
           .then((res) => res.json())
           .then((res) => {
-            data.media = [res.data.map((elt) => elt.mediaurl)];
-
-            const {
-              pid,
-              title,
-              status,
-              time,
-              views,
-              likes,
-              rating,
-              description,
-              thumbnail,
-              media,
-            } = data;
-
-            context = `
-            <div id="mainInnovationDiv" class="flex mg2 mgt2">
-      <div class="innovationCont mianGalLeftSide">
-  
-      <div class="innovationGal innovationChild">
-          <!--<img class="galChild row1 col1" src="./imgs/innovationGallery/images/img1.webp" alt="">
-          <img class="galChild row1 col1" src="./imgs/innovationGallery/images/img2.jpg" alt="">
-          <img class="galChild row2 col1" src="./imgs/innovationGallery/images/img3.jpg" alt="">
-          <video class="galChild row1 col2" type="mp4" controls></video>                
-          <img class="galChild row1 col1" src="./imgs/innovationGallery/images/img5.jpg" alt="">
-          <img class="galChild row2 col1" src="./imgs/innovationGallery/images/img6.jpg" alt="">
-          <img class="galChild row1 col1" src="./imgs/innovationGallery/images/img7.jpg" alt="">
-          <img class="galChild row1 col1" src="./imgs/innovationGallery/images/img9.jpg" alt="">-->
-      </div>
-  
-      <div class="innovationTitle innovationChild">
-          <p class="bold20">Title : ${title}</p>
-      </div>
-      <div class="workStatus innovationChild">
-          <p class="bold20">Project Status : ${status}</p>
-      </div>
-      <p class="projectDate innovationChild">${timeAgo(parseInt(time))}</p>
-  
-      <div class="innovationAnalytics innovationChild">
-          <div class="views analyticsChild">
-              <img class="img100" src="./imgs/viewIcon.svg">
-              <p>${views} Views</p>
-          </div>
-          <div class="project-likes analyticsChild">
-              <img class="img100" src="./imgs/like.svg">
-              <p>${likes} likes</p>
-          </div>
-          <div class="rating analyticsChild">
-              <img class="img100" src="./imgs/rate.svg">
-              <img class="img100" src="./imgs/rate.svg">
-              <img class="img100" src="./imgs/rate.svg">
-              <img class="img100" src="./imgs/rate.svg">
-              <img class="img100" src="./imgs/rate.svg">
-          </div>
-      </div>
-      <div onclick="openFull(this)" class="innovationDesc innovationChild">
-          <p class="">${description.trim()}</p>
-      </div>
-  </div>
-  
-  <div onclick="" class="comments">
-  <p class="comment-head">Comments<span id="projectTotalComment" style="color: grey; font-size: 14px;margin-left:2%;"> 1000</span></p>
-  
-  <div class="commentInpBox force-flex">
-      <div class="user-comment-prof-pic-box">
-          <p class="user-comment-prof-pic">R</p>
-      </div>
-      <textarea id="comment-input" rows="1" type="text" placeholder="Write Something"></textarea>
-      <button id="comment-send" class="curvy-btn" disabled>Comment</button>
-  </div>
-  
-  <div id="reply-user-comments" class="reply-user-comments">
-  </div>
-  <div id="projectComments" class="projectComments">
-  </div>
-  </div>
-      </div>
-      
-            `;
-
-            resolve(context);
-          });
-      });
+            data.media = res.data.map((elt) => elt.mediaurl); // fix: remove nested array
+            resolve(data);
+          })
+          .catch((err) => reject(err));
+      })
+      .catch((err) => reject(err));
   });
+}
+
+// Extracted rendering logic into a separate function
+function buildContext(data) {
+  const {
+    pid,
+    title,
+    status,
+    time,
+    views,
+    likes,
+    description,
+    thumbnail,
+    media = [],
+    liked
+  } = data;
+
+
+  return `
+    <div id="mainInnovationDiv" class="flex mg2 mgt2">
+      <div class="innovationCont mianGalLeftSide">
+
+        <div class="innovationGal innovationChild">
+          ${media.map((url) => {
+            if (url.endsWith(".mp4")) {
+              return `<video class="galChild row1 col2" controls><source src="${url}" type="video/mp4"></video>`;
+            } else {
+              return `<img class="galChild row1 col1" src="${url}" alt="">`;
+            }
+          }).join("")}
+        </div>
+
+        <div class="innovationTitle innovationChild">
+          <p class="bold20">Title : ${title}</p>
+        </div>
+        <div class="workStatus innovationChild">
+          <p class="bold20">Project Status : ${status}</p>
+        </div>
+        <p class="projectDate innovationChild">${timeAgo(parseInt(time))}</p>
+
+        <div class="innovationAnalytics innovationChild">
+          <div class="views analyticsChild">
+            <img class="img100" src="./imgs/viewIcon.svg">&nbsp
+            <p>${views} Views</p>
+          </div>
+          <div onclick="likeProject('${pid}', this)" class="project-likes analyticsChild">
+            <img class="img100" src="${liked ? './imgs/like.svg' : './imgs/dislike.svg'}">&nbsp
+            <p>${likes || 0} Likes</p>
+          </div>
+        </div>
+        <div onclick="expandProjectDescription(this)" class="innovationDesc innovationChild">
+          <p class="">${description?.trim()}</p>
+        </div>
+      </div>
+
+      <div onclick="" class="comments">
+        <p class="comment-head">Comments
+          <span id="projectTotalComment" style="color: grey; font-size: 14px;margin-left:2%;">1000</span>
+        </p>
+        <div class="commentInpBox force-flex">
+          <div class="user-comment-prof-pic-box">
+            <p class="user-comment-prof-pic">R</p>
+          </div>
+          <textarea id="comment-input" rows="1" type="text" placeholder="Write Something"></textarea>
+          <button id="comment-send" class="curvy-btn" disabled>Comment</button>
+        </div>
+        <div id="reply-user-comments" class="reply-user-comments"></div>
+        <div id="projectComments" class="projectComments"></div>
+      </div>
+    </div>
+  `;
+}
+
+
+
+function likeProject(pid, element) {
+  if (localData.username.includes("guest")) {
+    alert("You must be logged in to like a project");
+    return;
+  }
+
+  fetch(`/like-project?pid=${pid}&username=${localData.username}&email=${localData.email}`)
+    .then(res => res.json())
+    .then((data) => {
+      console.log(data);
+
+      // Find the <p> tag inside the clicked element
+      const pTag = element.querySelector("p");
+      const imgTag = element.querySelector("img");
+      if (!pTag || !imgTag) return;
+
+      // Extract current likes from the text (e.g., "15 Likes")
+      let currentLikes = parseInt(pTag.innerText) || 0;
+
+      // Update based on response
+      if (data.success && data.message == "liked") {
+        // Like added
+        currentLikes += 1;
+        imgTag.src = "./imgs/like.svg";
+      } else {
+        // Like removed
+        currentLikes = Math.max(currentLikes - 1, 0);
+        imgTag.src = "./imgs/dislike.svg";
+      }
+
+      // Update the text inside <p>
+      pTag.innerText = `${currentLikes} Likes`;
+    });
 }

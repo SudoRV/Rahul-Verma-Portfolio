@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 // const { resourceLimits } = require("worker_threads");
 const nodemailer = require("nodemailer");
 const { REFUSED } = require("dns");
+const { clear } = require("console");
 
 const app = express();
 app.use(bodyParser.json());

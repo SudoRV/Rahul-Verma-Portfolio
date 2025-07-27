@@ -1,3 +1,4 @@
+let loginData = JSON.parse(window.localStorage.getItem("loginData"));
 
 function timeAgo(date) {
   old = new Date(date);
@@ -108,7 +109,7 @@ function redirectScroll(id) {
 //     prev=crnt;
 // })
 
-document.body.addEventListener("touchstart", () => {});
+document.body.addEventListener("touchstart", () => { });
 document.body.addEventListener("touchend", () => {
   navTop = parseInt(window.getComputedStyle(nav).top.replace("px"));
 
@@ -142,33 +143,34 @@ function expandProjectDescription(elt) {
 
 //submit form 
 
-function submitForm(form){
+function submitForm(form) {
   formElement = form.currentTarget;
   submitBtn = formElement.querySelector("input[type=submit]")
   submitBtn.disabled = true;
   form.preventDefault()
-  const { method, action } =  formElement.attributes; 
+  const { method, action } = formElement.attributes;
 
-  var formData =  new FormData(event.target);
+  var formData = new FormData(event.target);
   formData = Object.fromEntries(formData.entries())
-  
-  fetch(action.value,{
-    method:method.value,
-    headers:{
-      "Content-Type":"application/json"
+
+  fetch(action.value, {
+    method: method.value,
+    headers: {
+      "Content-Type": "application/json"
     },
-    body:JSON.stringify(formData)
+    body: JSON.stringify(formData)
   })
-  .then(res=>res.json())
-  .then((res)=>{
-    formElement.reset()
-    submitBtn.disabled = false;
-    alert(res.msg)
-  })
+    .then(res => res.json())
+    .then((res) => {
+      formElement.reset()
+      submitBtn.disabled = false;
+      alert(res.msg)
+    })
 }
 
 
 
+// innovation section
 // innovation section
 async function setData() {
   if (window.location.href.toString().includes("pid")) {
@@ -179,62 +181,78 @@ async function setData() {
     method: "get",
     headers: {
       body: JSON.stringify({
-        query:
-          "select * from projects",
+        query: "select * from projects",
       }),
     },
   })
     .then((res) => res.json())
     .then((res) => {
-      const innovationProjectsCont =
-        document.getElementById("innovationProjectsCont");
-
       res.data.forEach((data) => {
-        const { pid, thumbnail, title, status, views, time, description } = data;
+        const {
+          pid,
+          thumbnail,
+          title,
+          status,
+          views,
+          time,
+          description,
+          type, // <-- Extract type from each project
+        } = data;
+
+        console.log(type)
+
         const mainDiv = document.createElement("div");
         mainDiv.id = pid;
-        
-        if(window.location.href.toString().includes('/innovation')){
+
+        // Set click behavior only if type is 'innovation'
+        if (window.location.href.toString().includes("/innovation") || window.location.href.toString().includes("/projects")) {
           mainDiv.setAttribute(
             "onclick",
             "openInnovationDisplay(this);setPid(this);"
           );
-        }
-        else{
+        } else {
           mainDiv.setAttribute(
             "onclick",
             `window.location.href='/innovation?pid=${pid}'`
           );
         }
+
         mainDiv.classList = "innovationContChilds mgt2";
 
         mainDiv.innerHTML = `
-              <div class="innovationGalAll innovationChild">
-                  <img class="galChild"
-                      src="${thumbnail}">
-              </div>
+          <div class="innovationGalAll innovationChild">
+              <img class="galChild" src="${thumbnail}">
+          </div>
 
-              <div class="innovationTitle innovationChild">
-                  <p class="bold">Title : ${title}</p>
-              </div>
-              <div class="workStatus innovationChild">
-                  <p>Project Status : ${status}</p>
-              </div>
+          <div class="innovationTitle innovationChild">
+              <p class="bold">Title : ${title}</p>
+          </div>
 
-              <div class="innovationChild mg2">
-                  <p>${description.trim().slice(0,100)}</p>
-              </div>
+          <div class="workStatus innovationChild">
+              <p>Project Status : ${status}</p>
+          </div>
 
-              <div
-                  class="analyticsChild analyticsChildAll innovationChild force-flex">
-                  <p class="bold">${views} views</p> 
-                  <p class="projectDate bold">${timeAgo(parseInt(time))}</p>
-              </div>
-              `;
-        innovationProjectsCont.appendChild(mainDiv);
+          <div class="innovationChild mg2">
+              <p>${description.trim().slice(0, 100)}</p>
+          </div>
+
+          <div class="analyticsChild analyticsChildAll innovationChild force-flex">
+              <p class="bold">${views} views</p> 
+              <p class="projectDate bold">${timeAgo(parseInt(time))}</p>
+          </div>
+        `;
+
+        // Append to appropriate container
+        const container =
+          type === "innovation"
+            ? document.getElementById("innovationProjectsCont")
+            : document.getElementById("projectsContainer");
+
+        container?.appendChild(mainDiv);
       });
     });
 }
+
 
 async function sleep(t) {
   return new Promise((resolve, reject) => {
@@ -246,7 +264,6 @@ async function sleep(t) {
 
 
 // preserve scroll at reload
-
 document.addEventListener("DOMContentLoaded", function () {
   preserveScrollPosition("psuedo-body");
 });
@@ -257,13 +274,23 @@ function preserveScrollPosition(elementId) {
   // Restore scroll position from localStorage
   const savedScrollPosition = localStorage.getItem(`${elementId}-scrollPosition`);
   if (savedScrollPosition) {
-      setTimeout(() => {
-        scrollableElement.scrollTop = savedScrollPosition;
-      }, 100);
+    setTimeout(() => {
+      scrollableElement.scrollTop = savedScrollPosition;
+    }, 100);
   }
 
   // Save scroll position when scrolling
   scrollableElement.addEventListener("scroll", function () {
-      localStorage.setItem(`${elementId}-scrollPosition`, scrollableElement.scrollTop);
+    localStorage.setItem(`${elementId}-scrollPosition`, scrollableElement.scrollTop);
   });
 }
+
+
+// remove login a tag if already logged in
+// if(localStorage.get)
+if (loginData.email) {
+  const login = document.querySelectorAll('a[href="/login"]');
+  [...login].forEach((log) => {
+    log.remove();
+  })
+};

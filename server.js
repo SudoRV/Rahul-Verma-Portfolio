@@ -14,7 +14,6 @@ app.use(express.static(path.join(__dirname, "static")));
 app.use(express.urlencoded({ extended: true }));
 
 // database
-
 const sql = mysql.createConnection({
   user: "root",
   host: "localhost",
@@ -54,11 +53,21 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+
+app.get("/rough",(req,res)=>{
+  res.sendFile(path.join(__dirname,"pages","rough.html"));
+})
+
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "pages", "home.html"));
 });
 
 app.get("/signup", (req, res) => {
+  res.sendFile(path.join(__dirname, "pages", "signup.html"));
+});
+
+app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "pages", "signup.html"));
 });
 

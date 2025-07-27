@@ -1,146 +1,189 @@
 .skillsCont {
+    grid-template-columns: repeat(3, 32%);
+}
+
+
+.skillsCont {
+    /* width: calc(100% - 48px); */
+    /* padding: 80px;
+    margin: 24px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.3); */
     display: grid;
     grid-template-columns: repeat(3, 32%);
-    gap: 2%;
-    transition: all 2s;
-}
-
-.skillItemMain {
-    flex-direction: column;
-    transition: all 2s;
-}
-
-.skillItem {
+    grid-template-columns: repeat(auto-fill, 260px);
+    gap: 100px;
+    justify-content: center;
     position: relative;
-    height: 200px;
-    aspect-ratio: 1;
-    border-radius: 100%;
-    transform: rotateZ(-90deg);
-}
+    transition: all 0.3s ease;
+    padding: 80px 0px;
 
-.skillItem svg {
-    width: 100%;
-    height: 100%;
-}
+    background-color: rgba(100, 0, 0, 0.2);
 
-.skillItem svg circle {
-    fill: transparent;
-    stroke: rgb(20, 20, 20);
-    stroke-width: 5;
-}
 
-.skillItem svg circle:nth-child(2) {
-    stroke: var(--lightblue) !important;
-    /* stroke-dasharray: 1000; */
-    stroke-dashoffset: 528;
-    animation: full 2s 1 linear forwards;
-}
-
-@keyframes full {
-    0% {
-        stroke-dasharray: 528;
+    .container {
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        cursor: pointer;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        z-index: 6;
+        box-shadow: 0 0 0px 36px rgba(200, 200, 200, 0.4);
+        transition: all 0.3s ease;
+        transform-origin: center left;
     }
 
-    33% {
-        stroke-dasharray: 1056;
+    .container.active {
+        z-index: 100;
     }
 
-    76% {
-        stroke-dasharray: 528;
-    }
-
-    100% {
-        stroke-dasharray: calc(1056 - (((100 - var(--val)) * 528))/100);
-    }
-}
-
-.skillItem p {
-    position: absolute;
-    transform: rotateZ(90deg);
-    /* color: rgb(200,200,200); */
-    font-size: 18px;
-    /* font-weight: bold; */
-    font-family: "Roboto", sans-serif !important;
-}
-
-/*skills item child */
-.skillItem-child-main {
-    height: 90px;
-    opacity: 1;
-}
-
-/* opens up the skills chillld  */
-.skillItem-child-main-heightp {
-    animation: heightp 0.5s 1 linear forwards;
-}
-
-@keyframes heightp {
-    0% {
-        height: 0;
+    .blurred {
+        filter: blur(4px);
         opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
     }
 
-    80% {
+    .icon {
+        font-size: 36px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .container h2 {
+        font-size: 18px;
+        font-weight: 500;
+        color: #555;
+        letter-spacing: 1px;
+    }
+
+    .container h1 {
+        font-size: 22px;
+        font-weight: 800;
+        color: #222;
+        margin-top: 5px;
+    }
+
+    .divider {
+        margin: 10px 0;
+        border-top: 2px dotted #aaa;
+        width: 60px;
+    }
+
+    .container p {
+        font-size: 14px;
+        color: #777;
+        padding: 0 20px;
+    }
+
+
+
+    /* skill wrapper */
+
+    .skill-wrapper {
+        max-width: 44%;
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 12px;
+        padding-right: 24px;
+
+        border-radius: 100px;
+
+        /* clip-path: polygon(0 0, 95% 0, 100% 50%, 95% 100%, 0 100%);*/
+
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        z-index: 1;
+    }
+
+    .skill-icon {
         height: 90px;
-        opacity: 0;
+        aspect-ratio: 1;
+        margin-right: 16px;
+        border-radius: 60px;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        z-index: 2;
     }
 
-    100% {
-        height: 90px;
-        opacity: 1;
-    }
-}
-
-/* folds up the skills chillld  */
-.skillItem-child-main-heightn {
-    animation: heightn 0.5s 1 linear forwards;
-}
-
-@keyframes heightn {
-    0% {
-        height: 90px;
-        opacity: 1;
+    .icon {
+        font-size: 28px;
+        color: #2f3640;
     }
 
-    20% {
-        height: 90px;
-        opacity: 0;
+    .info-box {}
+
+    .info-box h3 {
+        margin-bottom: 8px;
+        font-size: 18px;
+        font-weight: 600;
     }
 
-    100% {
-        height: 0;
-        opacity: 0;
+    .info-box p {
+        font-size: 14px;
+        color: #dcdde1;
     }
-}
-
-.skills-display-none {
-    display: none !important;
-}
-
-.skills-display-flex {
-    display: flex !important;
-}
-
-.skillItem-child {
-    height: 100%;
-    aspect-ratio: 1;
-    font-size: 12px;
-    margin: 0;
-    margin-bottom: 3%;
-}
 
 
-.skillItem-child svg circle {
-    stroke-width: 3;
-}
+    /* lines to connect skills to the category */
+    .dot {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        transform: translate(-50%, -50%);
+        border-radius: 8px;
+        background-color: red;
+        z-index: 100;
+    }
 
-.skillItem-child svg circle:nth-child(2) {
-    stroke: var(--lightblue) !important;
-    stroke-dasharray: calc(476 - (((100 - var(--valChild)) * 238))/100) !important;
-    stroke-dashoffset: 238 !important;
-}
+    .branch-line {
+        position: absolute;
+        width: 100px;
+        height: 4px;
+        background-color: white;
+        transform-origin: left center;
+        transform: translate(-50%, -50%);
+        transition: all 0.3s ease;
+    }
 
-.skillItem-child p {
-    font-size: 12px;
+    .tail-line::before {
+        position: absolute;
+        content: "";
+        top: 50%;
+        left: 0;
+        width: 8px;
+        height: 8px;
+        border-radius: 8px;
+        background-color: white;
+        transform: translate(-50%, -50%);
+    }
+
+    /* .end-line{
+        
+    } */
+
+    .end-line::after,
+    .center-line::after {
+        position: absolute;
+        content: "";
+        top: 50%;
+        right: -7px;
+        width: 8px;
+        height: 8px;
+        border-radius: 8px;
+        background-color: white;
+        transform: translateY(-50%);
+    }
 
 }

@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Auth | Rahul Verma</title>
-  <link rel="icon" type="image/x-icon" href="/imgs/favicon.png" />
+  <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.png" />
   <link rel="stylesheet" href="./css/universal.css">
   <style>
     :root {
@@ -260,7 +260,7 @@
 
     <div class="navbar">
       <nav>
-        <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/rahul1.png" alt></li>
+        <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/icons/rahul1.png" alt></li>
         <li class="hand" onclick="getPage('about')"><a>About</a></li>
         <li onclick="getPage('projects')" class="hand"><a>Projects</a></li>
         <li onclick="getPage('services')" class="hand"><a>Services</a></li>
@@ -318,6 +318,10 @@
     const authBox = document.getElementById('authBox');
     const switchText = document.getElementById('switchText');
 
+    if(location.href.includes("/signup")){
+      toggleForm();
+    }
+
     function toggleForm() {
       authBox.classList.toggle('active');
 
@@ -328,9 +332,10 @@
       const isSignup = authBox.classList.contains('active');
       switchText.innerText = isSignup ? "Already a member?" : "New here?";
       document.querySelector(".switch-panel button").innerText = isSignup ? "Login" : "Sign Up";
+
+      window.history.replaceState({}, isSignup ? "Signup" : "Login", isSignup ? "/signup" : "/login");
     }
 
-    // SIGNUP FORM SUBMIT
     // SIGNUP FORM SUBMIT
     document.getElementById("signupForm").addEventListener("submit", async (e) => {
       e.preventDefault();

@@ -92,13 +92,13 @@
 }
 
 .hexagon:nth-child(1)::after {
-  background: url("../imgs/robot.svg") no-repeat center / 65% 65%;
+  background: url("../imgs/icons/robot.svg") no-repeat center / 65% 65%;
 }
 
 .hexagon:nth-child(2)::after {
-  background: url("../imgs/drone.svg") no-repeat center / 80% 80%;
+  background: url("../imgs/icons/drone.svg") no-repeat center / 80% 80%;
 }
 
 .hexagon:nth-child(3)::after {
-  background: url("../imgs/iot.svg") no-repeat center / 55% 55%;
+  background: url("../imgs/icons/iot.svg") no-repeat center / 55% 55%;
 }

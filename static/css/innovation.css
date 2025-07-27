@@ -3,20 +3,35 @@ body{
 }
 
 #innovationProjectsCont {    
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-auto-rows: min-content;
+    gap: 30px; 
+    justify-content: left; */
+
+    display: flex;
+    flex-wrap: wrap;
     gap: 30px;
+    justify-content: flex-start;
+}
+
+.project-cont {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: flex-start;
 }
 
 .innovationContChilds {
-    margin: auto;
+    flex: 1 1 300px;
+    max-width: 400px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     border: 1px solid var(--lightblue);
     border-radius: 8px;
-    padding: 2%;    
+    padding: 1rem;    
 }
 
 
@@ -304,14 +319,14 @@ body{
 }
 
 .like-comment {
-    background-image: url("../imgs/like.png");
+    background-image: url("../imgs/icons/like.png");
     background-repeat: no-repeat;
     background-size: 100%;
     background-origin: center;
 }
 
 .reply-comment-btn {
-    background-image: url("../imgs/chat.svg");
+    background-image: url("../imgs/icons/chat.svg");
     background-repeat: no-repeat;
     background-size: 100%;
     background-origin: center;

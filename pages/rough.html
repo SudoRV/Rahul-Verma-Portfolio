@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Business Infographic</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        background: url("https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1050&q=80")
+          no-repeat center center/cover;
+        font-family: "Segoe UI", sans-serif;
+        position: relative;
+      }
+
+      #skills {
+        width: calc(100% - 48px);
+        padding: 80px;
+        margin: 24px;
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.3);
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 260px);
+        gap: 100px;
+        justify-content: center;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .container {
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        cursor: pointer;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        z-index: 6;
+        box-shadow: 0 0 0px 36px rgba(200, 200, 200, 0.4);
+        transition: all 0.3s ease;
+        transform-origin: center left;
+      }
+
+      .container.active {
+        z-index: 100;
+      }
+
+      .blurred {
+        filter: blur(4px);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+      }
+
+      .icon {
+        font-size: 36px;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .container h2 {
+        font-size: 18px;
+        font-weight: 500;
+        color: #555;
+        letter-spacing: 1px;
+      }
+
+      .container h1 {
+        font-size: 22px;
+        font-weight: 800;
+        color: #222;
+        margin-top: 5px;
+      }
+
+      .divider {
+        margin: 10px 0;
+        border-top: 2px dotted #aaa;
+        width: 60px;
+      }
+
+      .container p {
+        font-size: 14px;
+        color: #777;
+        padding: 0 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="skills"></div>
+
+    <script>
+      const categoryData = [
+        {
+          icon: "🌐",
+          title: "FRONTEND",
+          subtitle: "WEB MAGIC",
+          description: "Craft beautiful, interactive user experiences.",
+          skills: ["HTML", "CSS", "JavaScript", "React"],
+        },
+        {
+          icon: "🛠️",
+          title: "BACKEND",
+          subtitle: "SERVER POWER",
+          description: "Handle logic, databases, and APIs behind the scenes.",
+          skills: ["Node.js", "Django", "Spring Boot"],
+        },
+        {
+          icon: "💻",
+          title: "PROGRAMMING",
+          subtitle: "CODE WIZARD",
+          description: "Master languages to build anything.",
+          skills: ["Python", "C", "C++", "Java"],
+        },
+        {
+          icon: "🗄️",
+          title: "DATABASE",
+          subtitle: "DATA HUB",
+          description: "Store, retrieve, and manage information efficiently.",
+          skills: ["MySQL", "MongoDB", "PostgreSQL", "DynamoDB"],
+        },
+        {
+          icon: "🎨",
+          title: "UI/GRAPHICS",
+          subtitle: "VISUAL THINKER",
+          description: "Design engaging and user-friendly interfaces.",
+          skills: ["Figma", "Canva", "Photoshop"],
+        },
+        {
+          icon: "📦",
+          title: "TOOLS",
+          subtitle: "DEV ESSENTIALS",
+          description: "Boost your development workflow with essential tools.",
+          skills: ["GitHub", "Git", "VS Code"],
+        },
+      ];
+
+      const skillsContainer = document.getElementById("skills");
+
+      // Inject cards dynamically
+      categoryData.forEach((cat) => {
+        const card = document.createElement("div");
+        card.classList.add("container", "skill-categories");
+
+        card.innerHTML = `
+      <div class="icon">${cat.icon}</div>
+      <h2>${cat.title}</h2>
+      <h1>${cat.subtitle}</h1>
+      <div class="divider"></div>
+      <p>${cat.description}</p>
+    `;
+
+        skillsContainer.appendChild(card);
+      });
+
+      // Card Click Logic (same as your original)
+      const categories = [...document.querySelectorAll(".skill-categories")];
+      const parent = document.getElementById("skills");
+      let originalHeight = parent.clientHeight;
+      let isAspectSet = false;
+      const firstEltRect = categories[0].getBoundingClientRect();
+
+      categories.forEach((category) => {
+        category.addEventListener("click", (event) => {
+          const currentEl = event.currentTarget;
+          const isActive = currentEl.classList.contains("active");
+
+          categories.forEach((cat) => {
+            cat.classList.remove("active", "blurred");
+            cat.style.transform = "translate(0, 0)";
+          });
+
+          if (isActive) {
+            parent.style.aspectRatio = "";
+            parent.style.height = originalHeight + "px";
+            isAspectSet = false;
+            return;
+          }
+
+          currentEl.classList.add("active");
+
+          if (!isAspectSet) {
+            originalHeight = parent.clientHeight;
+            parent.style.height = "";
+            parent.style.aspectRatio = "16/9";
+            isAspectSet = true;
+          }
+
+          categories.forEach((cat) => {
+            if (cat !== currentEl) {
+              cat.classList.add("blurred");
+            }
+          });
+
+          const parentRect = parent.getBoundingClientRect();
+          const currentRect = currentEl.getBoundingClientRect();
+          const xOffset =
+            -(currentRect.left - parentRect.left) +
+            firstEltRect.left -
+            parentRect.left;
+          const yOffset =
+            parentRect.height / 2 -
+            (currentRect.top - parentRect.top) -
+            currentEl.offsetHeight / 2;
+
+          currentEl.style.transform = `translate(${xOffset}px, ${yOffset}px) scale(0.8)`;
+        });
+      });
+    </script>
+  </body>
+</html>

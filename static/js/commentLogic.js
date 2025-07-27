@@ -127,9 +127,9 @@ function addComment(
 ) {
   comment = document.createElement("div");
   if (likedOrNot) {
-    likedOrNotUrl = "/imgs/like-filled.png";
+    likedOrNotUrl = "/imgs/icons/like-filled.png";
   } else {
-    likedOrNotUrl = "/imgs/like.png";
+    likedOrNotUrl = "/imgs/icons/like.png";
   }
   comment.classList = "comment force-flex";
   comment.innerHTML += `
@@ -313,9 +313,9 @@ function likeComment(btn) {
       btn.disabled = false;
 
       if (likedSurity == 1) {
-        btn.style.backgroundImage = "url('/imgs/like-filled.png')";
+        btn.style.backgroundImage = "url('/imgs/icons/like-filled.png')";
       } else {
-        btn.style.backgroundImage = "url('/imgs/like.png')";
+        btn.style.backgroundImage = "url('/imgs/icons/like.png')";
       }
     });
 }
@@ -563,11 +563,11 @@ function buildContext(data) {
 
         <div class="innovationAnalytics innovationChild">
           <div class="views analyticsChild">
-            <img class="img100" src="./imgs/viewIcon.svg">&nbsp
+            <img class="img100" src="./imgs/icons/viewIcon.svg">&nbsp
             <p>${views} Views</p>
           </div>
           <div onclick="likeProject('${pid}', this)" class="project-likes analyticsChild">
-            <img class="img100" src="${liked ? './imgs/like.svg' : './imgs/dislike.svg'}">&nbsp
+            <img class="img100" src="${liked ? './imgs/icons/like.svg' : './imgs/icons/dislike.svg'}">&nbsp
             <p>${likes || 0} Likes</p>
           </div>
         </div>
@@ -619,11 +619,11 @@ function likeProject(pid, element) {
       if (data.success && data.message == "liked") {
         // Like added
         currentLikes += 1;
-        imgTag.src = "./imgs/like.svg";
+        imgTag.src = "./imgs/icons/like.svg";
       } else {
         // Like removed
         currentLikes = Math.max(currentLikes - 1, 0);
-        imgTag.src = "./imgs/dislike.svg";
+        imgTag.src = "./imgs/icons/dislike.svg";
       }
 
       // Update the text inside <p>

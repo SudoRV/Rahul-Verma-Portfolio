@@ -9,39 +9,31 @@
   gap: 2rem;
 }
 
-.about-ih .image {
+.info-left{
   width: 45%;
-  height: fit-content;
-  border: 2px solid rgba(19, 132, 242, 0.4);
-  border-radius: 16px;
-  overflow: hidden;
+  flex-grow: 1;
+  overflow: auto hidden;
+  margin-bottom: 30px;
 }
 
-.about-ih img {
-  width: 100%;
-}
-
-.about-ih .hobbies {
+.about-ih .skills {
   width: 55%;
-  min-height: 200px;
-  padding: 1rem 0;
 }
 
-.hobbies h2 {
+.skills h2 {
   margin-bottom: 16px;
   color: rgb(19, 132, 242);
 }
 
 .tech-stack {
   margin: 8px 0;
-
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
   justify-content: center;
   gap: 16px;
 
-  margin-bottom: 48px;
+  margin-bottom: 40px;
 }
 
 .tech-stack img {
@@ -50,24 +42,26 @@
   border-radius: 16px;
 }
 
-
-.icons {
+.hobbies {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  justify-content: center;
   gap: 10px;
   padding: 10px;
   margin: auto;
-  margin-top: 10px;
-  width: 50%;
+  margin-top: 16px;
+  width: 220px;
   aspect-ratio: 1;
 }
 
-.img3 {
-  transform: translateX(50%) translateY(-15%);
+.hobbies > :nth-child(3) {
+  transform: translate(calc(50% + 5px), -15px);
 }
 
 .hexagon {
   position: relative;
+  /* width: 100px;
+  height: 100px; */
   background-color: rgb(19, 132, 242);
   clip-path: polygon(50% 0%,
       93% 25%,

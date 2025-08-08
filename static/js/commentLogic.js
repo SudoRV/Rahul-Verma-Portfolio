@@ -42,12 +42,6 @@ window.addEventListener('popstate', (event) => {
 });
 
 // comment logic
-// let innovationContChilds = document.getElementsByClassName("innovationContChilds");
-
-// for (innovationContChild of innovationContChilds) {
-//   innovationContChild.addEventListener("click", () => { alert() });
-// }
-
 //functions
 
 function fetchSetComments(
@@ -464,7 +458,7 @@ function closeInnovationDisplay() {
     window.location.href.toString().includes("pid") &&
     openInnovationDisplayStat
   ) {
-    window.history.pushState("null", "null", `${window.location.pathname}`);
+    window.history.pushState("null", "", `${window.location.pathname}`);
   }
   currentInnovationDisplay.classList.add("currentInnovationDisplayDownn");
   setTimeout(() => {

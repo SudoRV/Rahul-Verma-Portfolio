@@ -132,11 +132,7 @@ function setPid(field) {
 
 //open description in full mode 
 function expandProjectDescription(elt) {
-  if (elt.classList.contains("expanded")) {
-    elt.classList.remove("expanded");
-  } else {
-    elt.classList.add("expanded");
-  }
+  elt.classList.toglle("expanded");
 }
 
 
@@ -172,16 +168,21 @@ function submitForm(form) {
 
 // innovation section
 // innovation section
-async function setData() {
+async function setData(queryType) {
   if (window.location.href.toString().includes("pid")) {
     await sleep(400);
+  }
+
+  if (queryType == "all") queryType = "";
+  else {
+    queryType = `where type = '${queryType}'`;
   }
 
   fetch("/innovation/get/projectData", {
     method: "get",
     headers: {
       body: JSON.stringify({
-        query: "select * from projects",
+        query: "select * from projects " + queryType,
       }),
     },
   })
@@ -213,7 +214,7 @@ async function setData() {
         } else {
           mainDiv.setAttribute(
             "onclick",
-            `window.location.href='/innovation?pid=${pid}'`
+            `window.location.href='/${type}s?pid=${pid}'`
           );
         }
 
@@ -243,10 +244,10 @@ async function setData() {
         `;
 
         // Append to appropriate container
-        const container =
-          type === "innovation"
+        const container = queryType == "" ?
+          (type === "innovation"
             ? document.getElementById("innovationProjectsCont")
-            : document.getElementById("projectsContainer");
+            : document.getElementById("projectsContainer")) : document.getElementById("innovationProjectsCont");
 
         container?.appendChild(mainDiv);
       });

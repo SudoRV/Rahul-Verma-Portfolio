@@ -1,3 +1,7 @@
+.home-page{
+    padding: 4%;
+}
+
 #about-profile {
     width: 60%;
     padding: 0 2%;
@@ -21,15 +25,23 @@
 }
 
 #profile-photo {
-    width: 80%;
-    aspect-ratio: 1;
-    border-radius: 100%;
-    border: 0;
-    margin: 8% 0;
-    background: url("../imgs/mine/profilePic.jpg") no-repeat center;
-    background-size: 105%;
+  width: 300px;
+  aspect-ratio: 1;
+  border-radius: 65% 35% 45% 55% / 43% 33% 67% 57% ;
+  background: url("../imgs/mine/profilePic.jpg") no-repeat center;
+  background-size: cover;
+  transition: all 0.4s ease;
 
+  box-shadow:
+    0 -1px 8px rgba(62, 157, 221, 0.945),
+    6px 12px 26px rgba(28, 62, 124, 0.712);
 }
+
+#profile-photo:hover {
+  border-radius:  37% 63% 68% 32% / 65% 55% 45% 35%;
+  transform: scale(1.06) rotate(1deg);
+}
+
 
 #profile-photo img {
     width: 100%;

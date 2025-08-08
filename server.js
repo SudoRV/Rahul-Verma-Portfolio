@@ -79,13 +79,22 @@ app.get("/hireme", (req, res) => {
   res.sendFile(path.join(__dirname, "pages", "hireme.html"));
 });
 
-app.get("/innovation", (req, res) => {
+app.get("/innovations", (req, res) => {
+  res.sendFile(path.join(__dirname, "pages", "innovation.html"));
+});
+
+app.get("/projects", (req, res) => {
   res.sendFile(path.join(__dirname, "pages", "innovation.html"));
 });
 
 app.get("/services", (req, res) => {
   res.sendFile(path.join(__dirname, "pages", "services.html"));
 });
+
+
+
+
+
 
 //get project's data
 app.get("/innovation/get/projectData", async (req, res) => {

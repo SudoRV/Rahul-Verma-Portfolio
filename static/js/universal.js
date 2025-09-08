@@ -167,7 +167,7 @@ function submitForm(form) {
 
 
 // innovation section
-// innovation section
+// innovation section home page
 async function setData(queryType) {
   if (window.location.href.toString().includes("pid")) {
     await sleep(400);
@@ -200,8 +200,6 @@ async function setData(queryType) {
           type, // <-- Extract type from each project
         } = data;
 
-        console.log(type)
-
         const mainDiv = document.createElement("div");
         mainDiv.id = pid;
 
@@ -214,7 +212,7 @@ async function setData(queryType) {
         } else {
           mainDiv.setAttribute(
             "onclick",
-            `window.location.href='/${type}s?pid=${pid}'`
+            `window.location.href='/${type}s?pid=${pid}';`
           );
         }
 
@@ -233,12 +231,12 @@ async function setData(queryType) {
               <p>Project Status : ${status}</p>
           </div>
 
-          <div class="innovationChild mg2">
-              <p>${description.trim().slice(0, 100)}</p>
+          <div class="innovationChild description mg2">
+              <p>${description.trim()}</p>
           </div>
 
           <div class="analyticsChild analyticsChildAll innovationChild force-flex">
-              <p class="bold">${views} views</p> 
+              <p class="bold views-count">${views} views</p> 
               <p class="projectDate bold">${timeAgo(parseInt(time))}</p>
           </div>
         `;
@@ -289,9 +287,21 @@ function preserveScrollPosition(elementId) {
 
 // remove login a tag if already logged in
 // if(localStorage.get)
-if (loginData.email) {
+if (loginData?.email) {
   const login = document.querySelectorAll('a[href="/login"]');
   [...login].forEach((log) => {
     log.remove();
   })
 };
+
+
+
+// button click animation
+function clicked(elt) {
+  elt.style.transform = "scale(1.02)";
+  const clickedTimeout = setTimeout(() => {
+    elt.style.transform = "scale(1)";
+    clearTimeout(clickedTimeout);
+  }, 300)
+}
+

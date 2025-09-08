@@ -46,16 +46,16 @@ sql.query("show tables like 'loginData'", (err, result) => {
 
 // Create a transporter with your email service credentials
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  service: "Gmail",
   auth: {
-    user: "rahulverma.1.2005@gmail.com", // Replace with your email address
-    pass: "mahhsilqlhpzyxxl", // Replace with your email password
+    user: "help.sudorv@gmail.com",
+    pass: "frbu rijm dzaz qxsx",
   },
 });
 
 
-app.get("/rough",(req,res)=>{
-  res.sendFile(path.join(__dirname,"pages","rough.html"));
+app.get("/rough", (req, res) => {
+  res.sendFile(path.join(__dirname, "pages", "rough.html"));
 })
 
 
@@ -90,6 +90,15 @@ app.get("/projects", (req, res) => {
 app.get("/services", (req, res) => {
   res.sendFile(path.join(__dirname, "pages", "services.html"));
 });
+
+app.get("/blogs", (req, res) => {
+  res.sendFile(path.join(__dirname, "pages", "blogs.html"));
+});
+
+app.get("/blog", (req, res) => {
+  res.sendFile(path.join(__dirname, "pages", "blog.html"));
+});
+
 
 
 
@@ -352,29 +361,301 @@ app.get("/innovation/getcomments", (req, res) => {
   });
 });
 
+
+// pagination endpoint
+app.get("/get/blogs", (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 6;
+  const offset = (page - 1) * limit;
+
+  // First, get total count
+  sql.query("SELECT COUNT(*) AS count FROM blogs", (err, countResult) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "DB error" });
+    }
+
+    const total = countResult[0].count;
+
+    // Then, get page data
+    sql.query(
+      "SELECT * FROM blogs ORDER BY created_at DESC LIMIT ? OFFSET ?",
+      [limit, offset],
+      (err, rows) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).json({ error: "DB error" });
+        }
+
+        res.json({
+          page,
+          limit,
+          total,
+          totalPages: Math.ceil(total / limit),
+          blogs: rows,
+        });
+      }
+    );
+  });
+});
+
+
+// search blogs OR fetch by ID
+app.get("/search/blogs", (req, res) => {
+  const { id, q = "", filter = "", page = 1, limit = 6, email } = req.query;
+  const offset = (page - 1) * limit;
+
+  // ✅ If `id` is provided → fetch single blog + increment views safely
+  if (id) {
+    const ipAddress =
+      req.headers["x-forwarded-for"]?.split(",")[0] || req.socket.remoteAddress;
+
+    // Step 1: check if already viewed
+    const checkQuery = `
+      SELECT * FROM blog_views 
+      WHERE blog_id = ? AND (email = ? OR (email IS NULL AND ip_address = ?)) 
+      LIMIT 1`;
+
+    sql.query(checkQuery, [id, email || null, ipAddress], (err, rows) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Failed to check views" });
+      }
+
+      if (rows.length === 0) {
+        // Step 2: not viewed → increment views
+        const updateQuery = `UPDATE blogs SET views = views + 1 WHERE id = ?`;
+        sql.query(updateQuery, [id], (err2) => {
+          if (err2) {
+            console.error(err2);
+            return res.status(500).json({ error: "Failed to update views" });
+          }
+
+          // Step 3: insert into blog_views
+          const insertQuery = `INSERT INTO blog_views (blog_id, email, ip_address) VALUES (?, ?, ?)`;
+          sql.query(insertQuery, [id, email || null, ipAddress], (err3) => {
+            if (err3) {
+              console.error(err3);
+              // still continue to fetch blog even if insert fails
+            }
+
+            // Step 4: fetch updated blog
+            const fetchQuery = `SELECT * FROM blogs WHERE id = ? LIMIT 1`;
+            sql.query(fetchQuery, [id], (err4, rows2) => {
+              if (err4) {
+                console.error(err4);
+                return res.status(500).json({ error: "Failed to fetch blog" });
+              }
+
+              if (rows2.length === 0) {
+                return res.status(404).json({ error: "Blog not found" });
+              }
+
+              return res.json(rows2[0]);
+            });
+          });
+        });
+      } else {
+        // Already viewed → just fetch blog without increment
+        const fetchQuery = `SELECT * FROM blogs WHERE id = ? LIMIT 1`;
+        sql.query(fetchQuery, [id], (err2, rows2) => {
+          if (err2) {
+            console.error(err2);
+            return res.status(500).json({ error: "Failed to fetch blog" });
+          }
+
+          if (rows2.length === 0) {
+            return res.status(404).json({ error: "Blog not found" });
+          }
+
+          return res.json(rows2[0]);
+        });
+      }
+    });
+    return;
+  }
+
+  // ✅ Otherwise → normal search + pagination
+  let where = [];
+  let values = [];
+
+  if (q) {
+    where.push("(title LIKE ? OR excerpt LIKE ? OR content LIKE ?)");
+    values.push(`%${q}%`, `%${q}%`, `%${q}%`);
+  }
+
+  if (filter) {
+    where.push("category = ?");
+    values.push(filter);
+  }
+
+  const whereClause = where.length ? `WHERE ${where.join(" AND ")}` : "";
+
+  const searchQuery = `
+    SELECT * FROM blogs
+    ${whereClause}
+    ORDER BY created_at DESC
+    LIMIT ? OFFSET ?`;
+
+  sql.query(searchQuery, [...values, Number(limit), Number(offset)], (err, rows) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Search failed" });
+    }
+
+    const countQuery = `SELECT COUNT(*) as total FROM blogs ${whereClause}`;
+    sql.query(countQuery, values, (err2, countResult) => {
+      if (err2) {
+        console.error(err2);
+        return res.status(500).json({ error: "Count failed" });
+      }
+
+      const total = countResult[0].total;
+
+      res.json({
+        data: rows,
+        pagination: {
+          total,
+          page: Number(page),
+          limit: Number(limit),
+          pages: Math.ceil(total / limit),
+        },
+      });
+    });
+  });
+});
+
+
+
 // post request
 
-app.post("/newsletter", (req, res) => {
-  req.body.time = new Date().getTime();
+// Login route
+app.post("/login", (req, res) => {
+  const { email, password } = req.body;
 
-  const { name, email, time } = req.body;
-  let query = `insert into newsletter values("${name}", "${email}", "${time}")`;
-  sql.query(query, (err, result) => {
+  if (!email || !password) {
+    return res.json({ success: false, message: "Email and password required" });
+  }
+
+  const query = "SELECT * FROM loginData WHERE email = ? AND password = ?";
+  sql.query(query, [email, password], (err, results) => {
     if (err) {
-      console.log(err);
-      res.json({ msg: "already subscribed the newsletter" });
+      console.error(err);
+      return res.json({ success: false, message: "Database error" });
+    }
+
+    if (results.length > 0) {
+      // User found
+      res.json({ success: true, message: "Login successful", data: results[0] });
     } else {
-      res.json({ msg: "subscribed the newsletter" });
+      // No matching user
+      res.json({ success: false, message: "Invalid email or password" });
     }
   });
 });
+
+app.post("/newsletter", (req, res) => {
+  const { name, email } = req.body;
+  const time = new Date().getTime();
+
+  // Insert into database
+  const query = `INSERT INTO newsletter (name, email, time) VALUES (?, ?, ?)`;
+  sql.query(query, [name, email, time], (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.json({ msg: "Already subscribed to the newsletter." });
+    }
+
+    // Send welcome email
+    const mailOptions = {
+      from: "help.sudorv@gmail.com",
+      to: email,
+      subject: "Newsletter Subscription @Rahul Verma's Portfolio!",
+      html: `
+  <div
+    style="font-family: Arial, sans-serif; color:#333; max-width:600px; margin:0 auto; border:1px solid #e0e0e0; border-radius:10px; overflow:hidden;">
+
+    <!-- Header -->
+    <div style="background:#f9f9f9; padding:15px; text-align:center;">
+      <img src="https://v2vision.blog/imgs/rahul1.png" alt="Rahul Verma Logo" style="width:60px;" />
+    </div>
+
+    <!-- Body -->
+    <div style="padding:25px; text-align:left; font-family: Arial, sans-serif; line-height:1.6; color:#333;">
+      <p style="font-size:14px; color:#777; margin:0;">📩 Subscription Confirmed</p>
+
+      <h2 style="color:#111; margin:8px 0 15px; font-size:22px;">
+        Welcome aboard, ${name}! 🎉
+      </h2>
+
+      <p style="font-size:15px; margin:0 0 15px;">
+        You’ve successfully joined <span style="color:#0d6efd; font-weight:bold;">Rahul Verma’s Newsletter</span>.
+        From now on, you’ll be the first to receive updates on my latest <strong>blogs</strong>,
+        <strong>projects</strong>, and <strong>innovations</strong> 🚀
+      </p>
+
+      <div style="background:#f9f9f9; border-left:4px solid #0d6efd; padding:15px; margin:15px 0; border-radius:5px;">
+        <p style="margin:0; font-size:14px; color:#444;">
+          Here’s what you can expect in your inbox: <br>
+          🔹 Insights from my newest blog posts <br>
+          🔹 Behind-the-scenes of innovative projects <br>
+          🔹 Fresh ideas and experiments in tech
+        </p>
+      </div>
+
+      <p style="font-size:15px; margin-bottom:20px;">
+        I’m excited to share this journey with you — let’s explore, build, and innovate together.
+      </p>
+
+      <a href="https://rahulverma.is-a.dev"
+        style="display:inline-block; padding:10px 16px; background:#0d6efd; color:#fff; text-decoration:none; border-radius:5px; font-size:14px; font-weight:bold;">
+        🌐 Visit Portfolio
+      </a>
+    </div>
+
+
+
+    <!-- Footer -->
+    <div style="background:#f1f1f1; padding:10px; text-align:center; font-size:12px; color:#555;">
+      <p style="margin:5px 0;">Follow me:</p>
+      <a href="https://github.com/SudoRV" style="margin:0 5px;"><img
+          src="https://cdn-icons-png.flaticon.com/24/25/25231.png" alt="GitHub" /></a>
+      <a href="https://www.linkedin.com/in/rahul-verma-92a4b01b2/" style="margin:0 5px;"><img
+          src="https://cdn-icons-png.flaticon.com/24/174/174857.png" alt="LinkedIn" /></a>
+
+      <p style="margin:10px 0 5px; font-size:10px; color:#888;">
+        © 2025 Rahul Verma. All rights reserved.
+      </p>
+
+      <!-- Small unsubscribe button -->
+      <a href="https://rahulverma.is-a.dev/unsubscribe?email=${encodeURIComponent(email)}"
+        style="display:inline-block; padding:5px 10px; background:#ccc; color:#333; text-decoration:none; border-radius:3px; font-size:10px;">
+        Unsubscribe
+      </a>
+    </div>
+  </div>
+  `,
+    };
+
+
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error(error);
+        return res.status(500).json({ msg: "Subscription saved, but failed to send email." });
+      }
+      res.json({ msg: "Subscribed to the newsletter! Check your email for confirmation." });
+    });
+  });
+});
+
 
 app.post("/contactus", (req, res) => {
   const { name, email, message } = req.body;
   // Define email options
   const mailOptions = {
-    from: "rahulverma.1.2005@gmail.com", // Replace with your email address
-    to: "rahulverma.1.1618@gmail.com", // Replace with your recipient's email address
+    from: "help.sudorv@gmail.com", // Replace with your email address
+    to: email, // Replace with your recipient's email address
     subject: "New Contact Form Submission",
     text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
   };
@@ -506,11 +787,9 @@ app.post("/innovation/add/comment", async (req, res) => {
         "${req.body.parent}",
         indexes,
         "${req.body.projectId}"
-    from comments where projectId = "${req.body.projectId}" and username = "${
-      req.body.parent
-    }" and time = "${req.body.replyingCommentTime}" and parent = "${
-      req.body.replyingCommentParent
-    }"
+    from comments where projectId = "${req.body.projectId}" and username = "${req.body.parent
+      }" and time = "${req.body.replyingCommentTime}" and parent = "${req.body.replyingCommentParent
+      }"
     `;
   }
 
@@ -562,9 +841,8 @@ WHERE likedBy = '${data.subjectUsername}' AND projectId = '${data.projectId}' AN
   maxSrno = (
     await getSetData("select ifnull(max(srno),0) as srno from likes")
   )[0];
-  query3 = `insert into likes(srno,indexes,likedBy,type) values(${
-    maxSrno.srno + 1
-  },${index.indexes}, "${data.subjectUsername}", "comment")`;
+  query3 = `insert into likes(srno,indexes,likedBy,type) values(${maxSrno.srno + 1
+    },${index.indexes}, "${data.subjectUsername}", "comment")`;
 
   query4 = `delete from likes where indexes = ${index.indexes}`;
 

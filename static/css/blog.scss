@@ -1,0 +1,49 @@
+// Variables
+$bg-dark: #0d0d0d;
+$bg-card: #1a1a1a;
+$border: #2a2a2a;
+$text-light: #f1f1f1;
+$text-muted: #999;
+$accent: #6366f1;
+
+
+// Blog List
+.blog-list {
+  margin: auto;
+  width: 100%;
+  padding: 0 0.8rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+
+  .blog-card {
+    flex: 1 1 500px;
+    max-width: 500px;
+    background: $bg-card;
+    border: 1px solid $border;
+    padding: 1.25rem;
+    border-radius: 12px;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: darken($bg-card, 5%);
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .excerpt {
+      margin-top: 0.4rem;
+      font-size: 0.95rem;
+      color: $text-light;
+    }
+
+    .meta {
+      margin-top: 0.6rem;
+      font-size: 0.8rem;
+      color: $text-muted;
+    }
+  }
+}

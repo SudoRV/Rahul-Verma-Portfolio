@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link href="./css/universal.css" rel="stylesheet">
+  <link href="./css/media.css" rel="stylesheet">
+
+  <style>
+    h2{
+      font-size: 26px !important;
+      font-weight: bold !important;
+      margin-top: 1rem !important;
+      margin-bottom: 0.4rem !important;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-b from-gray-900 via-zinc-900 to-black text-gray-100">
+
+  <div id="psuedo-body" class="psuedo-body">
+    <!-- Blog Container -->
+    <div id="blog-container" class="max-w-4xl mx-auto px-6 py-12">
+      <div id="loader" class="text-center text-gray-400">Loading blog...</div>
+    </div>
+  </div>
+
+  <script>
+    async function loadBlog() {
+      try {
+        // ✅ Extract ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+        const loginData = JSON.parse(window.localStorage.getItem("loginData")) || {email: null};
+        const email = loginData.email;
+
+        const res = await fetch(`/search/blogs?id=${id}&email=${email}`);
+        if (!res.ok) {
+          document.getElementById("blog-container").innerHTML =
+            `<p class="text-red-500 text-center">Failed to load blog.</p>`;
+          return;
+        }
+
+        const blog = await res.json();
+
+        // ✅ Render blog content
+        document.getElementById("blog-container").innerHTML = `
+          <article>
+            <!-- Featured Image with Overlay -->
+            <div class="relative aspect-[16/6] rounded-2xl overflow-hidden shadow-lg mb-8">
+              <img src="${blog.featured_image || '/static/default.jpg'}" 
+                   alt="${blog.title}" 
+                   class="w-full h-full object-cover brightness-90">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+              <div class="absolute bottom-4 left-6">
+                <h1 class="text-4xl font-bold text-white drop-shadow-lg">${blog.title}</h1>
+              </div>
+            </div>
+
+            <!-- Meta -->
+            <div class="flex flex-wrap items-center space-x-4 text-sm text-gray-400 mb-8 select-none">
+              <img src="${blog.author_image || '/static/author.jpg'}" alt="${blog.author}" class="w-12 h-12 rounded-full shadow-md" />
+
+              <span class="flex items-center space-x-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#1384F2]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.75 6.879 2.034M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+
+                <span>By <span class="text-gray-200 font-semibold">${blog.author}</span></span>
+              </span>
+            
+              <span class="flex items-center space-x-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#1384F2]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2v-5H3v5a2 2 0 002 2z" />
+                </svg>
+                <time datetime="${blog.created_at}">${new Date(blog.created_at).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+              </span>
+
+              <span class="flex items-center space-x-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#1384F2]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A2 2 0 0122 9.618v4.764a2 2 0 01-2.447 1.894L15 14M4 6v12a2 2 0 002 2h8a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2z" />
+                </svg>
+                <span><span id="view-count" class="font-semibold">${blog.views}</span> views</span>
+              </span>
+
+            </div>
+
+            <!-- Excerpt -->
+            <p class="text-lg text-gray-300 italic mb-6">${blog.excerpt || ""}</p>
+
+            <!-- Content -->
+            <div class="prose prose-invert max-w-none">
+              ${blog.content.replace(/\*\*(.*?)\*\*/gm, "<strong>$1</strong>").replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" class="text-blue-400 underline">$1</a>')}
+            </div>
+
+            <!-- Category -->
+            <div class="mt-6 text-sm text-gray-400">
+              Category: <span class="text-gray-200 font-medium">${blog.category || "Uncategorized"}</span>
+            </div>
+
+            <!-- Tags (at bottom) -->
+            <div id="blog_tags" class="flex flex-wrap gap-3">
+               ${
+                blog.tags.split(" ").map(tag => `<span class="mt-4 px-3 py-1 text-sm rounded-md bg-zinc-800 border border-zinc-700 text-gray-300">${tag.trim()}</span>`).join("")
+               }
+            </div>
+          </article>
+        `;
+
+        console.log(blog.content)
+
+      } catch (err) {
+        console.error(err);
+        document.getElementById("blog-container").innerHTML =
+          `<p class="text-red-500 text-center">Error loading blog.</p>`;
+      }
+    }
+
+    loadBlog();
+  </script>
+  <!-- <script src="./js/universal.js"></script> -->
+</body>
+</html>
+
+
+
+<!-- INSERT INTO blogs 
+(title, excerpt, content, author, author_image, featured_image, tags, category, views, is_featured) 
+VALUES 
+(
+  'V2Vision: Enhancing Vehicle-to-Vehicle Awareness',
+  'V2Vision is a GPS-based V2V communication system that improves vehicle awareness in low-visibility and blind-spot conditions. It uses a hybrid grid system (1000x1000 + 10x10) with a decentralized concurrency model to ensure safety and scalability.',
+  
+  '<h2>Overview</h2>
+  The <strong>V2Vision project</strong> is designed to tackle the challenges of low-visibility driving conditions such as fog, curves, and blind spots by enabling real-time vehicle-to-vehicle (V2V) communication.<br>
+  Unlike traditional DSRC-based systems, V2Vision operates through GPS-based periodic data transmission to a central server, which then processes and broadcasts awareness information to nearby vehicles within a <strong>300m radius</strong>.
+
+  <h2>Key Features</h2>
+  <ol>
+    <li><strong>Decentralized Model with Concurrency:</strong> Vehicles continuously send and receive updates, enabling highly concurrent data exchange without relying on a single bottleneck.</li>
+    <li><strong>Hybrid Grid System (1000x1000 and 10x10):</strong> Large traffic areas are divided into a 1000x1000 grid for macro-level monitoring and a 10x10 micro-grid for local awareness.</li>
+    <li><strong>Real-time Alerts:</strong> Drivers receive instant notifications when a vehicle enters blind spots, changes lanes, or overtakes.</li>
+  </ol>
+
+  <h2>Problem Tackling</h2>
+  <ul>
+    <li><strong>Fog / Blind Spot Issues:</strong> Broadcasting nearby vehicle positions reduces accidents in low-visibility areas.</li>
+    <li><strong>Overtaking Safety:</strong> Vehicles share speed and indicator status, ensuring safe overtaking.</li>
+    <li><strong>Scalability:</strong> The decentralized concurrency model ensures the system can handle thousands of simultaneous vehicles without data lag.</li>
+  </ul>
+
+  <h2>Resources</h2>
+  🔗 GitHub Repository: https://github.com/SudoRV/V2Vision <br>
+  💼 LinkedIn: https://www.linkedin.com/in/sudorv<br>
+  📧 Email: rauhlverma.1.2005@gmail.com
+
+  <h2>Conclusion</h2>
+  <strong>V2Vision bridges the gap between affordability and safety</strong>, providing an IoT-driven, low-latency awareness layer for future smart transportation.<br>',
+  'Rahul Verma',
+  '/imgs/mine/profilePic.jpg',
+  '/imgs/blogs/v2vision_blog_cover.png',
+  '#V2V #IoT #Concurrency #GridSystem',
+  'Technology',
+  0,
+  1
+); -->

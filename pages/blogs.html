@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog - Rahul Verma</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="./css/universal.css" rel="stylesheet">
+  <link href="./css/media.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen bg-gradient-to-b from-gray-900 via-zinc-900 to-black text-gray-100">
+
+  <div class="psuedo-body" id="psuedo-body">
+    <!-- Header -->
+    <!-- <header class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div
+          class="w-10 h-10 bg-gradient-to-tr from-indigo-500 to-pink-500 rounded-2xl flex items-center justify-center text-black font-bold shadow-2xl"
+        >
+          RV
+        </div>
+        <div>
+          <h1 class="text-xl font-semibold tracking-tight">Rahul Verma</h1>
+          <p class="text-xs text-gray-400">Thoughts on code, hardware, and design</p>
+        </div>
+      </div>
+
+      <nav class="hidden sm:flex gap-4 items-center">
+        <a class="text-sm text-gray-300 hover:text-white transition" href="#">Home</a>
+        <a class="text-sm text-gray-300 hover:text-white transition" href="#">Projects</a>
+        <a class="text-sm text-gray-300 hover:text-white transition" href="#">About</a>
+        <button
+          class="ml-4 px-3 py-1.5 rounded-xl bg-zinc-800 border border-zinc-700 text-sm hover:bg-zinc-700 transition"
+        >
+          Subscribe
+        </button>
+      </nav>
+
+      <div class="sm:hidden">
+        <button class="p-2 rounded-md bg-zinc-800 border border-zinc-700">Menu</button>
+      </div>
+    </header> -->
+
+    <div id="menu" class="menu">
+      <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
+      <li onclick="redirectScroll('projects')" class="hand"><a>Projects</a></li>
+      <li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>
+      <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
+      <li class="hand"><a href="/login" class=" ">Login</a></li>
+    </div>
+
+    <div class="navbar">
+      <nav>
+        <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/icons/rahul1.png"
+            alt="">
+        </li>
+        <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
+        <li onclick="redirectScroll('projects')" class="hand"><a>Projects</a></li>
+        <li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>
+        <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
+        <li class="hand"><a href="/login" class=" ">Login</a></li>
+        <li class="hand">
+          <a href="/hireme" class="button" id="hire">Hire Me</a>
+        </li>
+        <li class="hand menuBtnLi">
+          <div id="menuBtn" class="hand menuBtn">
+          </div>
+        </li>
+      </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-6 py-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+        <div class="lg:col-span-2">
+          <h2 class="text-3xl sm:text-4xl font-extrabold">
+            Writing about hardware, web and design — dark mode first.
+          </h2>
+          <p class="mt-3 text-gray-400 max-w-2xl">
+            I share practical tutorials, project walkthroughs and design thoughts. New posts every few weeks —
+            curated and focused.
+          </p>
+
+          <div class="mt-6 flex gap-3">
+            <input id="search-blog" placeholder="Search posts..."
+              class="flex-1 bg-zinc-800 border border-zinc-700 placeholder-gray-500 rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#0F6EC0]" />
+            <button class="px-4 py-2 rounded-md bg-[rgb(19,132,232)] hover:bg-[#136BA5] text-sm font-medium">
+              Search
+            </button>
+          </div>
+
+          <div id="blog-filters" class="mt-6 flex flex-wrap gap-3">
+            <span data-filter="Tech"
+              class="cursor-pointer text-xs px-3 py-1 rounded-md bg-zinc-800 border border-zinc-700 text-gray-300 hover:bg-zinc-700">#Tech</span>
+            <span data-filter="Robotics"
+              class="cursor-pointer text-xs px-3 py-1 rounded-md bg-zinc-800 border border-zinc-700 text-gray-300 hover:bg-zinc-700">#Robotics</span>
+            <span data-filter="IoT"
+              class="cursor-pointer text-xs px-3 py-1 rounded-md bg-zinc-800 border border-zinc-700 text-gray-300 hover:bg-zinc-700">#IoT</span>
+
+            <div class="cursor-pointer text-xs px-3 py-1 rounded-md bg-zinc-800 border border-zinc-700 text-gray-300 hover:bg-zinc-700" onclick="fetchBlogs()">Reset Filters</div>
+          </div>
+
+        </div>
+
+        <aside class="hidden lg:block">
+          <div class="p-4 rounded-2xl bg-zinc-900 border border-zinc-800 shadow-sm">
+            <h3 class="text-sm text-gray-300 font-medium">Featured</h3>
+            <p class="mt-2 text-xs text-gray-400">
+              A short highlight or newsletter call-to-action can go here. Keep it short and inviting.
+            </p>
+            <div class="mt-4 flex gap-2">
+              <button class="flex-1 px-3 py-2 rounded-lg bg-[#375ebf] text-sm font-semibold" onclick="redirectScroll('newsLetter');">
+                Join Newsletter
+              </button>
+              <button class="px-3 py-2 rounded-lg bg-zinc-800 border border-zinc-700 text-sm">
+                About
+              </button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Blog Grid -->
+    <main class="max-w-7xl mx-auto px-6 pb-16 ">
+      <div id="blogs-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Blog Card -->
+        <article
+          class="rounded-2xl overflow-hidden bg-gradient-to-b from-zinc-900 to-zinc-950 border border-zinc-800 shadow-lg">
+          <div class="h-40 sm:h-48 relative">
+            <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1200&q=60"
+              alt="Blog cover" class="w-full h-full object-cover brightness-90" />
+            <div class="absolute inset-0 bg-black/25 backdrop-blur-sm"></div>
+          </div>
+          <div class="p-4 sm:p-5">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-14 aspect-square rounded-md bg-gradient-to-br from-[#1384F2] to-zinc-700 flex items-center justify-center text-black font-bold">
+                  R
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold leading-tight">
+                    Building a Wi-Fi OTA Flasher with ESP8266
+                  </h3>
+                  <p class="text-xs text-gray-400">Aug 15, 2025 • 6 min</p>
+                </div>
+              </div>
+              <div class="text-sm text-gray-400">#ESP8266 #IoT #OTA</div>
+            </div>
+            <p class="mt-3 text-gray-300 text-sm">
+              Step-by-step guide to creating an Over-The-Air flasher using an ESP8266 — plus best practices for
+              reliability.
+            </p>
+            <div class="mt-4 flex items-center justify-between">
+              <div class="flex gap-2">
+                <button class="px-3 py-1 rounded-lg bg-zinc-800 border border-zinc-700 text-xs">
+                  Read
+                </button>
+                <button class="px-3 py-1 rounded-lg bg-transparent border border-zinc-800 text-xs text-gray-300">
+                  Save
+                </button>
+              </div>
+              <a class="text-xs text-gray-400 hover:text-white" href="#">Continue →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <!-- Pagination Controls -->
+      <div class="flex justify-center items-center gap-4 mt-8">
+        <button id="prevBtn"
+          class="px-4 py-2 rounded-lg bg-zinc-800 border border-zinc-700 text-sm disabled:opacity-40">
+          ← Previous
+        </button>
+        <span id="pageInfo" class="text-gray-300 text-sm"></span>
+        <button id="nextBtn"
+          class="px-4 py-2 rounded-lg bg-zinc-800 border border-zinc-700 text-sm disabled:opacity-40">
+          Next →
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <script src="./js/blogs.js"></script>
+  <script src="./js/universal.js"></script>
+</body>
+
+</html>

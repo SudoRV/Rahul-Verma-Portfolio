@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Auth | Rahul Verma</title>
   <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.png" />
-  <link rel="stylesheet" href="./css/universal.css">
+  <link rel="stylesheet" href="./css/universal.css" />
+  <link rel="stylesheet" href="./css/media.css" />
   <style>
     :root {
       --primary: rgb(19, 132, 242);
@@ -22,7 +23,7 @@
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: "Segoe UI", sans-serif;
       background-color: var(--dark);
       color: var(--light);
       min-height: 100vh;
@@ -45,7 +46,6 @@
       overflow: hidden;
       position: relative;
       margin: auto;
-
     }
 
     .form-container {
@@ -91,7 +91,8 @@
 
     .switch-panel {
       width: 50%;
-      background-color: var(--primary);
+      /*background-color: var(--primary);*/
+      background-color: #3d3d3d;
       color: white;
       display: flex;
       flex-direction: column;
@@ -105,22 +106,43 @@
       transition: transform 0.3s linear;
     }
 
+    .switch-panel::after{
+      content: "";
+      position: absolute;
+      top:0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("../imgs/thumbnails/auth-background.png") no-repeat center 3.4rem;
+      background-size: 100%;
+
+      z-index: 10;
+    }
+
     .switch-panel h2 {
       margin-bottom: 20px;
     }
 
+    #switchText{
+      margin-top: -1.2rem;
+    }
+
     .switch-panel button {
-      background-color: white;
-      color: var(--primary);
-      padding: 10px 20px;
+      background-color: rgb(243, 116, 43);
+      color: white;
+      padding: 4px 12px;
       border-radius: 8px;
       border: none;
       cursor: pointer;
       transition: 0.3s;
+      margin-top: 10.6rem;
+      margin-left: 2rem;
+
+      z-index: 100;
     }
 
     .switch-panel button:hover {
-      background-color: #e1e1e1;
+      background-color: var(--lightblue);
     }
 
     .auth-wrapper.active .switch-panel {
@@ -218,8 +240,6 @@
       background-color: transparent;
     }
 
-
-
     @media screen and (max-width: 768px) {
       .auth-wrapper {
         flex-direction: column;
@@ -233,52 +253,48 @@
         transform: none !important;
       }
 
-      .switch-panel {
-        order: -1;
-        height: auto;
-      }
-
       .auth-wrapper.active .switch-panel {
         transform: none;
       }
     }
   </style>
 
-  <link href="./css/universal.css" rel="stylesheet">
-  <link href="./css/media.css" rel="stylesheet">
+  <link href="./css/universal.css" rel="stylesheet" />
+  <link href="./css/media.css" rel="stylesheet" />
 </head>
 
 <body>
   <div class="psuedo-body w100 h100 flex flex-direction-col" id="psuedo-body">
-
     <div id="menu" class="menu">
+      <li onclick="redirectScroll('about')" class="hand">
+        <a class=" ">About</a>
+      </li>
+      <li onclick="redirectScroll('projects')" class="hand">
+        <a class=" ">Projects</a>
+      </li>
+      <li onclick="redirectScroll('services')" class="hand">
+        <a class=" ">Services</a>
+      </li>
+      <li onclick="redirectScroll('contact')" class="hand">
+        <a class=" ">Contact</a>
+      </li>
+    </div>
+
+    <nav>
+      <li class="hand logo">
+        <img onclick="window.location.href='/'" class="img100" src="./imgs/icons/rahul1.png" alt />
+      </li>
       <li class="hand" onclick="getPage('about')"><a>About</a></li>
       <li onclick="getPage('projects')" class="hand"><a>Projects</a></li>
       <li onclick="getPage('services')" class="hand"><a>Services</a></li>
       <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
-    </div>
-
-    <div class="navbar">
-      <nav>
-        <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/icons/rahul1.png" alt></li>
-        <li class="hand" onclick="getPage('about')"><a>About</a></li>
-        <li onclick="getPage('projects')" class="hand"><a>Projects</a></li>
-        <li onclick="getPage('services')" class="hand"><a>Services</a></li>
-        <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
-        <li class="hand">
-          <a href="/hireme" class="button curvy-btn  " id="hire">Hire Me</a>
-        </li>
-        <li class="hand menuBtnLi">
-          <div id="menuBtn" class="hand menuBtn">
-          </div>
-        </li>
-      </nav>
-
-      <!-- <div class="skew-div">
-                <div class="skew"></div>
-                <div class="skew"></div>
-            </div> -->
-    </div>
+      <li class="hand">
+        <a href="/hireme" class="button curvy-btn" id="hire">Hire Me</a>
+      </li>
+      <li class="hand menuBtnLi">
+        <div id="menuBtn" class="hand menuBtn"></div>
+      </li>
+    </nav>
 
     <div id="content" class="flex-grow-1 all-center">
       <div class="auth-wrapper" id="authBox">
@@ -311,98 +327,111 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <script>
-    const authBox = document.getElementById('authBox');
-    const switchText = document.getElementById('switchText');
+    const authBox = document.getElementById("authBox");
+    const switchText = document.getElementById("switchText");
 
-    if(location.href.includes("/signup")){
+    if (location.href.includes("/signup")) {
       toggleForm();
     }
 
     function toggleForm() {
-      authBox.classList.toggle('active');
+      authBox.classList.toggle("active");
 
-      if (!authBox.classList.contains("active") || authBox.classList.contains("revert")) {
-        authBox.classList.toggle('revert');
+      if (
+        !authBox.classList.contains("active") ||
+        authBox.classList.contains("revert")
+      ) {
+        authBox.classList.toggle("revert");
       }
 
-      const isSignup = authBox.classList.contains('active');
+      const isSignup = authBox.classList.contains("active");
       switchText.innerText = isSignup ? "Already a member?" : "New here?";
-      document.querySelector(".switch-panel button").innerText = isSignup ? "Login" : "Sign Up";
+      document.querySelector(".switch-panel button").innerText = isSignup
+        ? "Login"
+        : "Sign Up";
 
-      window.history.replaceState({}, isSignup ? "Signup" : "Login", isSignup ? "/signup" : "/login");
+      window.history.replaceState(
+        {},
+        isSignup ? "Signup" : "Login",
+        isSignup ? "/signup" : "/login"
+      );
     }
 
     // SIGNUP FORM SUBMIT
-    document.getElementById("signupForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const form = e.target;
+    document
+      .getElementById("signupForm")
+      .addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const form = e.target;
 
-      const data = {
-        name: form[0].value,
-        username: form[1].value,
-        email: form[2].value,
-        password: form[3].value
-      };
+        const data = {
+          name: form[0].value,
+          username: form[1].value,
+          email: form[2].value,
+          password: form[3].value,
+        };
 
-      try {
-        const res = await fetch("/signup", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          body: new URLSearchParams(data)  // send as form data
-        });
+        try {
+          const res = await fetch("/signup", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams(data), // send as form data
+          });
 
-        const message = await res.text();  // get plain text response
+          const message = await res.text(); // get plain text response
 
-        if (res.ok) {
-          alert("✅ " + message);
-          form.reset();
-          toggleForm(); // Switch to login
-        } else {
-          alert("❌ Signup failed: " + message);
+          if (res.ok) {
+            alert("✅ " + message);
+            form.reset();
+            toggleForm(); // Switch to login
+          } else {
+            alert("❌ Signup failed: " + message);
+          }
+        } catch (err) {
+          console.error("Signup error:", err);
+          alert("Something went wrong during signup.");
         }
-
-      } catch (err) {
-        console.error("Signup error:", err);
-        alert("Something went wrong during signup.");
-      }
-    });
+      });
 
     // LOGIN FORM SUBMIT
-    document.getElementById("loginForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const form = e.target;
-      const data = {
-        email: form[0].value,
-        password: form[1].value
-      };
+    document
+      .getElementById("loginForm")
+      .addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const data = {
+          email: form[0].value,
+          password: form[1].value,
+        };
 
-      try {
-        const res = await fetch("/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(data)
-        });
+        try {
+          const res = await fetch("/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
 
-        const response = await res.json();
-        if (response.success) {
-          alert("Login successful!");
-          window.location.href = "/dashboard" // or wherever you want to redirect
-        } else {
-          alert("Login failed: " + response.message);
+          const response = await res.json();
+          console.log(response)
+          if (response.success) {
+            alert("Login successful!");
+            localStorage.setItem("loginData", JSON.stringify(response.data));
+            window.history.back();
+          } else {
+            alert("Login failed: " + response.message);
+          }
+        } catch (err) {
+          console.error("Login error:", err);
+          alert("Something went wrong during login.");
         }
-      } catch (err) {
-        console.error("Login error:", err);
-        alert("Something went wrong during login.");
-      }
-    });
+      });
   </script>
 
   <script>
@@ -420,7 +449,9 @@
       if (!value.trim()) return;
 
       try {
-        const res = await fetch(`/check-signup-creds?${field}=${encodeURIComponent(value)}`);
+        const res = await fetch(
+          `/check-signup-creds?${field}=${encodeURIComponent(value)}`
+        );
         const data = await res.json();
 
         if (data.available) {
@@ -456,18 +487,22 @@
 
     const signupForm = document.getElementById("signupForm");
     const usernameInput = signupForm[1]; // Username field
-    const emailInput = signupForm[2];    // Email field
+    const emailInput = signupForm[2]; // Email field
 
-    usernameInput.addEventListener("input", debounce(() => {
-      validateField("username", usernameInput.value, usernameInput);
-    }, 500));
+    usernameInput.addEventListener(
+      "input",
+      debounce(() => {
+        validateField("username", usernameInput.value, usernameInput);
+      }, 500)
+    );
 
-    emailInput.addEventListener("input", debounce(() => {
-      validateField("email", emailInput.value, emailInput);
-    }, 500));
+    emailInput.addEventListener(
+      "input",
+      debounce(() => {
+        validateField("email", emailInput.value, emailInput);
+      }, 500)
+    );
   </script>
-
-
 </body>
 
 </html>

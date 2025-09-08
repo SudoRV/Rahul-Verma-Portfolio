@@ -23,7 +23,7 @@ Thank you for taking the time to visit my portfolio. I'm excited to connect with
 //     }
 //     else {
 //         aboutText.innerText = `Hey there! I'm Rahul Verma, a passionate individual currently pursuing my B.Tech in Computer Science and Engineering at Dr. APJ Abdul Kalam Institute of Technology. My educational journey started at Kendriya Vidyalaya No.2 NHPC Banbasa, where I completed my schooling. 🎓
-        
+
 //         I consider myself a versatile developer with expertise in various areas. My skills span across full-stack web development, utilizing HTML, CSS, JavaScript, Node.js, and working with databases such as SQLite, MongoDB, and MySQL. I also have a strong foundation in Python, which I employ for software development. Additionally, I possess intermediate knowledge in the C programming language. 💻
 
 //         One of my areas of interest lies in the field of Artificial Intelligence and Machine Learning, where I leverage my Python skills to develop AI/ML applications. I enjoy exploring the potential of these technologies and applying them to solve real-world problems.🤖`
@@ -36,27 +36,27 @@ skillItemMain = document.getElementsByClassName("skillItemMain")
 skillItemChildMain = document.getElementsByClassName("skillItem-child-main")
 skillItemChild = document.getElementsByClassName("skillItem-child")
 
-arr=Array.from(skillItemMain)
-arr2=Array.from(skillItemChildMain)
-arr3=Array.from(skillItemChild)
+arr = Array.from(skillItemMain)
+arr2 = Array.from(skillItemChildMain)
+arr3 = Array.from(skillItemChild)
 
-for (let i=0;i<skillItemMain.length;i++){
-    item=skillItemMain[i]
-    item.addEventListener("click",(event)=>{
+for (let i = 0; i < skillItemMain.length; i++) {
+    item = skillItemMain[i]
+    item.addEventListener("click", (event) => {
         index = arr.indexOf(event.currentTarget)
-        
-        if(window.getComputedStyle(arr2[index]).getPropertyValue("display")=="none"){
+
+        if (window.getComputedStyle(arr2[index]).getPropertyValue("display") == "none") {
             arr2[index].classList.remove("skills-display-none")
             arr2[index].classList.add("skills-display-flex")
 
             arr2[index].classList.remove("skillItem-child-main-heightn")
             arr2[index].classList.add("skillItem-child-main-heightp")
         }
-        else{
+        else {
             arr2[index].classList.remove("skills-display-flex")
 
             arr2[index].classList.remove("skillItem-child-main-heightp")
-            arr2[index].classList.add("skillItem-child-main-heightn") 
+            arr2[index].classList.add("skillItem-child-main-heightn")
 
             setTimeout(() => {
                 arr2[index].classList.add("skills-display-none")
@@ -66,37 +66,40 @@ for (let i=0;i<skillItemMain.length;i++){
         crntSkillVisible = arr2[index]
         lastSkillVisible = document.getElementsByClassName("skills-display-flex")[0]
 
-        if(crntSkillVisible != lastSkillVisible){
+        if (crntSkillVisible != lastSkillVisible) {
             // alert()
             // lastSkillVisible.style.cssText="display:none !important";
         }
     })
 }
 
-if (window.history.scrollRestoration){
+// load page on a click
+// scroll to the page onclick
+async function getPage(id) {
+  const page = document.getElementById(id)
+  sudo_body = document.getElementById("psuedo-body");
+  y = page.getBoundingClientRect().top + sudo_body.scrollTop - ((window.innerHeight * 12) / 100)
+  sudo_body.scrollTo(0, y)
+  window.history.pushState("", "", `#${id}`)
+}
+
+if (window.history.scrollRestoration) {
     // console.log(window.history.scrollRestoration)
     // window.history.scrollRestoration = "auto"
     // console.log(window.history.scrollRestoration)
 }
 //  reload on refer
-if (window.localStorage.getItem("scrollId")){
-    id = window.localStorage.getItem("scrollId")
-    elt = document.getElementById(id)
-    y = elt.getBoundingClientRect().top - window.innerHeight - ((window.innerHeight * 12) / 100)
-    // window.history.replaceState("", "", `#${id}`)
-    window.scrollTo(0,y)
-    window.localStorage.removeItem("scrollId")
-}
+if (window.localStorage.getItem("scrollId")) {
+    const id = window.localStorage.getItem("scrollId");
+    const elt = document.getElementById(id);
+    const sudo_body = document.getElementById("psuedo-body")
 
-
-// load page on a click
-// scroll to the page onclick
-async function getPage(id) {
-    page = document.getElementById(id)
-    sudo_body = document.getElementById("psuedo-body");
-    y = page.getBoundingClientRect().top + sudo_body.scrollTop - ((window.innerHeight * 12) / 100)
-    sudo_body.scrollTo(0, y)
-    window.history.pushState("", "", `#${id}`)
+    setTimeout(() => {
+        const y = elt.getBoundingClientRect().top + sudo_body.scrollTop - ((window.innerHeight * 12) / 100)
+        sudo_body.scrollTo(0, y);
+    }, 300);
+    
+    window.localStorage.removeItem("scrollId");
 }
 
 async function sleepFor(time, loop, code) {

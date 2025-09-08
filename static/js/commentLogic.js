@@ -490,7 +490,7 @@ async function loadMediaForProject(mode = "normal", payload) {
       .then((res) => res.json())
       .then((res) => {
         let data = res.data[0];
-        // console.log("Project Data:", data);
+        console.log("Project Data:", data);
 
         // If mode is not 'advance', skip fetching media
         if (mode !== "advance") {

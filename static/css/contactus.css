@@ -1,7 +1,6 @@
-
-
 .contactCont {
     min-height: 300px;
+    gap: 1rem;
 }
 
 .formBack .under-lg::before{
@@ -15,37 +14,30 @@
 
 .formBack {    
     width: 45%;
-    padding: 4% 2%;
-    margin: 2% 0;
-    border-radius: 16px;
-    background-color: var(--primaryPageColor);
-    
-    box-shadow: 0 0 16px 0px rgba(40,42,46,1),
-                8px 8px 8px 0 rgba(0,0,2,1);
 }
 
 .formBack form{
-    width: 65%;
+    width: 100%;
     display:block;
     margin:auto;
 }
 
 .formBack form label{
-    font-size: 15px;
     color: rgb(200,200,200);
     font-weight: 600;
 }
 
 .formInput {
     width: 100%;
-    height: 40px;       
-    margin-bottom: 6%; 
-    padding: 0 2%;
-    font-size: 16px;
+    height: 3rem;       
+    margin-bottom: 6%;
+    margin-top: 4px;
+    padding: 0 1rem;
     background-color: transparent;
-    border: 0;
-    border-bottom: 1px solid grey;
+    border: 1px solid rgb(49, 49, 49);
+    border-radius: 6px;
     outline: none;
+    font-size: 16px;
 }
 
 .formInput:focus,
@@ -53,12 +45,9 @@
     border-color: rgb(19, 136, 242);
 }
 
-.formLabel {   
-    
-}
 
 #contactMessage {
-    min-height: 80px;
+    min-height: 100px;
     resize: none;
     padding: 2%;
 }
@@ -69,11 +58,16 @@
 }
 
 .formSubmit { 
-    width: 104%; 
-    margin-left:-2%;     
-    margin-top:2%;
+    width: 100%;   
+    margin-top: 8%;
     border: 0;
-    border-radius: 16px;    
-    background: var(--primaryGrad);
+    border-radius: 10px;    
+    background: linear-gradient(90deg, rgb(10, 13, 16), var(--lightblue), rgb(10, 13, 16));
+    background-size: 200% 200%;
     color: white;
+    transition: all 0.3s ease;
+}
+
+.formSubmit:hover{
+    background-position: 100% 0;
 }

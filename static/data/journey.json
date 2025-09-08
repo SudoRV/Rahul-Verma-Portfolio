@@ -1,0 +1,77 @@
+[
+  {
+    "year": 2025,
+    "title": "The Final Year: College Adventures",
+    "desc": "Entered the 4th and final year of my college, a thrilling phase filled with hackathons, boot camps, and collaborative projects. Working closely with peers in teams, I pushed my limits, applied my skills to real-world challenges, and gained invaluable experience that rounded off my academic journey with excitement and accomplishment.",
+    "detailed": [
+      "💡 Teamwork & Leadership: Discovered how group dynamics shape outcomes during hackathons & bootcamps.",
+      "👨‍💻 From Theory to Practice: Applied academic knowledge to real-world projects that solved meaningful challenges.",
+      "🚀 Under Pressure: Learned to perform under tight deadlines with calm focus.",
+      "🔑 Key Takeaway: Transitioned from just a student to a problem-solver & developer."
+    ],
+    "visibility": "visible"
+  },
+  {
+    "year": 2023,
+    "title": "First Arduino Project",
+    "desc": "Created my first Arduino-based project — an Auto Cooking Machine. It was a small but impactful experiment where I combined sensors, motors, and simple logic to automate everyday tasks. This project taught me how hardware and software can come together to solve real-life problems and sparked my interest in IoT development.",
+    "detailed": [
+      "🔧 First Experiment with Hardware: Combining motors, sensors & Arduino opened up a whole new world.",
+      "🍳 Auto Cooking Machine: A fun project where logic & wires turned into something useful.",
+      "🌐 Bridging Hardware & Software: Understood how code can literally move machines.",
+      "🔑 Key Takeaway: Sparked my journey in IoT & Embedded Systems."
+    ],
+    "visibility": "visible"
+  },
+  {
+    "year": 2022,
+    "title": "A Fresh Chapter: College Life",
+    "desc": "Enrolled at Dr. APJ Abdul Kalam Institute of Technology, where I started diving deeper into computer science. My college journey became the place where I not only studied academics but also explored coding projects, hackathons, and collaboration with peers, building the foundation for my technical career.",
+    "detailed": [
+      "📘 New Beginning: Entering college felt like stepping into an entirely new world.",
+      "🧑‍🤝‍🧑 Collaboration: Learned the importance of teamwork beyond academics.",
+      "💻 Early Projects: Took on small coding challenges & slowly built confidence.",
+      "🔑 Key Takeaway: Built the foundation of my technical career."
+    ],
+    "visibility": "visible"
+  },
+  {
+    "year": 2022,
+    "title": "Inter (Senior Secondary, Science Stream)",
+    "desc": "Completed my 12th grade at Kendriya Vidyalaya NHPC Banbasa with a score of 72%. Beyond academics, this phase gave me discipline, a problem-solving attitude, and confidence to take on future challenges. Although I’m not fully satisfied with my grades, it motivated me to work harder, focus on personal growth, and pursue opportunities that would help me improve and learn.",
+    "detailed": [
+      "📚 Academic Pressure: Faced board exams that tested my consistency & focus.",
+      "🎯 Discipline: Developed habits of structured study and perseverance.",
+      "💡 Self-Reflection: Learned that marks don’t define you, but your growth mindset does.",
+      "🔑 Key Takeaway: Resilience is built during struggles, not achievements."
+    ],
+    "visibility": "hidden",
+    "class": "extra-timeline-cards"
+  },
+  {
+    "year": 2020,
+    "title": "High School (Secondary Education)",
+    "desc": "Successfully passed 10th grade from Kendriya Vidyalaya NHPC Banbasa with 87.4%. It was an important milestone that shaped my academic journey, giving me the motivation to push further and take on more challenging subjects in science and technology.",
+    "detailed": [
+      "🎓 First Big Milestone: Passing class 10th gave me the courage to aim higher.",
+      "🔍 Curiosity: Started exploring science & maths with more depth.",
+      "🧑‍🏫 Guidance: Teachers & mentors influenced my study approach.",
+      "🔑 Key Takeaway: Built a strong academic base for future learning."
+    ],
+    "visibility": "hidden",
+    "class": "extra-timeline-cards"
+  },
+  {
+    "year": 2017,
+    "title": "My First PC",
+    "desc": "In 7th grade, I got my very first personal computer — a moment that completely changed my perspective. I spent hours exploring, experimenting with text-to-speech tools, basic software, and understanding how things worked. That curiosity was the very spark that later drove me towards programming and technology.",
+    "detailed": [
+      "💻 First Computer: This was not just a gadget, but a gateway to curiosity.",
+      "🕹️ Exploration: Spent countless hours experimenting with tools, TTS, and small programs.",
+      "🌱 Curiosity Sparked: Realized tech is something I enjoyed, not just studied.",
+      "🔑 Key Takeaway: The first seed of programming passion was planted here."
+    ],
+    "visibility": "hidden",
+    "class": "extra-timeline-cards"
+  }
+]

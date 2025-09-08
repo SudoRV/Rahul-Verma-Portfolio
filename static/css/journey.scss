@@ -1,0 +1,206 @@
+.journey {
+    
+    .left-timeline {
+        width: 35%;
+        max-width: 360px;
+        height: 100%;
+        margin-left: 2%;
+
+        position: sticky;
+        top: 20px;
+    }
+
+    .details-panel {
+        width: 100%;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        font-size: 15px;
+        color: #eee;
+        line-height: 1.6;
+        transition: all 0.3s ease;
+    }
+
+    .main-timeline {
+        width: 65%;
+        margin-top: 3.6rem;
+    }
+
+    .timeline {
+        max-width: 800px;
+        position: relative;
+        margin: auto;
+        padding: 2rem 0;
+
+        transition: all 0.3s ease;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        width: 4px;
+        background: linear-gradient(to bottom, #58a6ff, #bc8cff);
+        top: 0;
+        bottom: 20px;
+        left: 10%;
+        margin-left: -2px;
+        border-radius: 4px;
+        z-index: 0;
+    }
+
+    .container {
+        padding: 1rem 2rem;
+        position: relative;
+        width: 92%;
+        opacity: 0;
+        transform: translateY(40px);
+        animation: fadeInUp 1s ease forwards;
+    }
+
+    #view-full-timeline-btn {
+        display: block;
+        margin: auto;
+        margin-top: 30px;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 6px;
+        background: #1793f8;
+        color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        transform: translateX(10%);
+
+        &:hover {
+            background: #155fb3;
+        }
+    }
+
+    .container.hidden {
+        display: none;
+    }
+
+    .container:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+
+    .container:nth-child(2) {
+        animation-delay: 0.4s;
+    }
+
+    .container:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+
+    .container:nth-child(4) {
+        animation-delay: 0.8s;
+    }
+
+    .container:nth-child(5) {
+        animation-delay: 1s;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .container:nth-child(odd) {
+        left: 10%;
+    }
+
+    .container:nth-child(even) {
+        left: 10%;
+    }
+
+    .content:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    .circle {
+        position: absolute;
+        top: 32px;
+        width: 14px;
+        height: 14px;
+        background: #58a6ff;
+        // border: 3px solid #0d1117;
+        border-radius: 50%;
+        z-index: 10;
+        box-shadow: 0 0 15px rgba(88, 166, 255, 0.6);
+    }
+
+    .container.left .circle {
+        /*right: -7px;*/
+        left: -7px;
+    }
+
+    .container.right .circle {
+        left: -7px;
+    }
+
+    .content {
+        background: linear-gradient(145deg, #161b22, #1c2129);
+        padding: 1rem 1.3rem;
+        border-radius: 15px;
+        border: 1px solid #30363d;
+        position: relative;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        p {
+            width: 100%;
+            text-align: left;
+        }
+    }
+
+    .title {
+        font-size: 1.2rem;
+        color: #ffffff;
+    }
+
+
+    .year {
+        font-weight: bold;
+        color: #58a6ffb4;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+    }
+
+    .desc {
+        color: #c9d1d9;
+    }
+
+    /*@media screen and (max-width: 768px) {
+        .container {
+            width: 100%;
+            padding-left: 4rem;
+            padding-right: 2rem;
+        }
+
+        .container.right {
+            left: 0;
+        }
+
+        .timeline::after {
+            left: 20px;
+        }
+
+        .circle {
+            left: 8px !important;
+        }
+
+        .container.left::before,
+        .container.right::before {
+            left: 20px;
+            border: none;
+        }
+    }*/
+}

@@ -9,23 +9,39 @@ const sql = mysql.createConnection({
 });
 
 const data = {
-  title: "CPU_Monitor",
+  title: "Auto Cooking Machine",
   status: "Completed",
-  type: "project",
+  type: "innovation",
   description: `
-CPU_Monitor is a lightweight, frameless desktop widget built with PyQt5 for Windows. It displays real-time CPU metrics—temperature, usage, power, and clock speed—by leveraging data from OpenHardwareMonitor via WMI.
+Auto Cooking Machine is an innovative kitchen automation system designed to prepare meals with minimal human intervention. It integrates hardware sensors, microcontrollers, and intelligent software to automate the cooking process, making it efficient, safe, and convenient for users.
 
 Core Features:
-- ⚙️ Real-time CPU stats: temperature, usage percentage, power consumption (W), and clock frequency (GHz).
-- Adaptive light/dark theme detection matching Windows UI.
-- Draggable, always-on-top UI with custom trapezoidal design and frameless window.
-- Automatic launch of OpenHardwareMonitor if it’s not running.
+- 🤖 Fully automated cooking process: ingredients are added, measured, and cooked automatically.
+- 🌡 Temperature and time control for precise cooking of various dishes.
+- 🥘 Multi-stage cooking: supports frying, boiling, steaming, and mixing.
+- 💡 Smart recipe management: users can select pre-programmed recipes or customize their own.
+- 🔔 Alerts and notifications via mobile app when cooking stages are complete.
+- 🧼 Safety mechanisms: auto shut-off, overheat detection, and lid sensors to prevent accidents.
+
+How It Works:
+1. User selects a recipe via a touchscreen interface or mobile app.
+2. Ingredients are automatically dispensed in measured quantities.
+3. The system controls cooking temperature, mixing speed, and timing for each stage.
+4. Cooking progress is monitored with sensors, and adjustments are made in real-time.
+5. Once the meal is ready, the machine notifies the user and keeps it warm until served.
+
+Use Cases:
+- Home kitchens for convenient meal preparation.
+- Offices or cafeterias to automate meal cooking for multiple people.
+- Smart home integration to reduce manual cooking effort.
 
 Requirements:
-- Python 3.6+ on Windows.
-- OpenHardwareMonitor installed (e.g. at "C:\\\\OpenHardwareMonitor\\\\OpenHardwareMonitor.exe").
+- Microcontroller (e.g., Arduino or ESP-based system) for hardware control.
+- Sensors for temperature, weight, and motion detection.
+- Motorized actuators for ingredient dispensing and stirring.
+- Software interface (mobile app or touchscreen) for recipe selection and monitoring.
 
-GitHub: https://github.com/SudoRV/CPU_Monitor
+This project represents a significant innovation in kitchen automation, reducing cooking effort and ensuring consistent results.
 `
 };
 
@@ -49,7 +65,7 @@ async function setdata(data) {
     )`,
     (err, result) => {
       if (err) throw err;
-      else console.log("CPU_Monitor inserted:", result);
+      else console.log("Auto Cooking Machine inserted:", result);
     }
   );
 }

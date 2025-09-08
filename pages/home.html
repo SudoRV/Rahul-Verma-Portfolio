@@ -5,24 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#171A1DD8" />
-    
-    <title>Rahul Verma</title>    
-    <meta name="description" content="Rahul Verma - Software Developer specializing in Web, Android, IoT, and Robotics. Passionate about innovation and technology. Let's build something amazing!">
+
+    <title>Rahul Verma</title>
+    <meta name="description"
+        content="Rahul Verma - Software Developer specializing in Web, Android, IoT, and Robotics. Passionate about innovation and technology. Let's build something amazing!">
     <link rel="canonical" href="https://rahul-verma.onrender.com/">
-    
+
     <!-- og tags -->
     <meta property="og:title" content="Rahul Verma | Web & Android Developer | IoT & Robotics Enthusiast">
-    <meta property="og:description" content="Passionate about Web & Android Development, IoT, and Robotics. Explore my projects and let's collaborate!">
+    <meta property="og:description"
+        content="Passionate about Web & Android Development, IoT, and Robotics. Explore my projects and let's collaborate!">
     <meta property="og:image" content="https://rahul-verma.onrender.com/imgs/icons/mine/profilePic.jpg">
     <meta property="og:url" content="https://rahul-verma.onrender.com/">
-    <meta property="og:type" content="website">    
-     
+    <meta property="og:type" content="website">
+
     <!-- twitter card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Rahul Verma | Web & Android Developer | IoT & Robotics Enthusiast">
-    <meta name="twitter:description" content="Passionate about Web & Android Development, IoT, and Robotics. Explore my projects and let's collaborate!">
+    <meta name="twitter:description"
+        content="Passionate about Web & Android Development, IoT, and Robotics. Explore my projects and let's collaborate!">
     <meta name="twitter:image" content="https://rahul-verma.onrender.com/imgs/icons/mine/prifilePic.jpg">
-    
+
     <!-- schema markup -->
     <script type="application/ld+json">
         {
@@ -38,17 +41,17 @@
             ]
         }
     </script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-     
+
     <!-- robots meta tags-->
     <meta name="robots" content="index, follow">
-        
-    <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.png">   
+    <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto:wght@300&family=Playfair+Display&display=swap&family=PT+Serif&family=Playfair+Display&display=swap"
-        rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+        rel="stylesheet">
 
     <link href="./css/universal.css" rel="stylesheet">
     <link href="./css/media.css" rel="stylesheet">
@@ -64,212 +67,208 @@
     <link rel="stylesheet" href="./css/resume.css">
     <link rel="stylesheet" href="./css/hireme.css">
     <link rel="stylesheet" href="./css/innovation.css">
-    
+    <link rel="stylesheet" href="./css/journey.css">
+    <link rel="stylesheet" href="./css/blog.css">
+
 </head>
 
-<body>
+<body class="bg-gradient-to-b from-gray-900 via-zinc-900 to-black text-gray-100">
 
     <!-- <div class="animation-cont">
         <img class="background" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/221808/sky.jpg"/>
     </div> -->
 
-    <div class="psuedo-body" id="psuedo-body"> 
-         
+    <div class="psuedo-body" id="psuedo-body">
+
         <div id="menu" class="menu">
             <li class="hand" onclick="getPage('about')"><a>About</a></li>
             <li onclick="getPage('projects')" class="hand"><a>Projects</a></li>
             <li onclick="getPage('services')" class="hand"><a>Services</a></li>
             <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
             <li class="hand"><a href="/login" class=" ">Login</a></li>
-        </div> 
-        
+        </div>
+
         <div class="navbar">
             <nav>
-                <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/icons/rahul1.png" alt=""></li>                      
+                <li class="hand logo"><img onclick="window.location.href='/'" class="img100"
+                        src="./imgs/icons/rahul1.png" alt=""></li>
                 <li class="hand" onclick="getPage('about')"><a>About</a></li>
                 <li onclick="getPage('projects')" class="hand"><a>Projects</a></li>
                 <li onclick="getPage('services')" class="hand"><a>Services</a></li>
                 <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
                 <li class="hand"><a href="/login" class=" ">Login</a></li>
                 <li class="hand">
-                    <a href="/hireme" class="button curvy-btn  " id="hire">Hire Me</a>          
+                    <a href="/hireme" class="button" id="hire">Hire Me</a>
                 </li>
                 <li class="hand menuBtnLi">
-                    <div id="menuBtn" class="hand menuBtn">                   
+                    <div id="menuBtn" class="hand menuBtn">
                     </div>
                 </li>
-            </nav> 
+            </nav>
+        </div>
 
-            <!-- <div class="skew-div">
-                <div class="skew"></div>
-                <div class="skew"></div>
-            </div> -->
-        </div>                                   
-    
-        <div id="home" class="home-page page flex"> 
+        <div id="home" class="home-page page flex">
             <div id="about-profile">
-                <h1 style="display: inline;" class="my-name animatedHeadings">Rahul </h1><h1 style="color: var(--lightblue);display: inline;" class="my-name">Verma</h1>
-    
-                <p class="profile-bio animatedTexts bold">Web & Android Developer | Software Developer | Exploring IoT & Robotics
-</p>
-    
+                <h1 style="display: inline;" class="my-name animatedHeadings">Rahul </h1>
+                <h1 style="color: var(--lightblue);display: inline;" class="my-name">Verma</h1>
+
+                <p class="profile-bio animatedTexts bold">Web & Android Developer | Software Developer | Exploring IoT &
+                    Robotics
+                </p>
+
                 <h3 class="bold18">Introduction</h3>
-                <p class="ans animatedTexts lightWhite">Hello! I'm Rahul Verma, a passionate Software, Android and Web Developer with a keen interest in IoT & Robotics. I love building intuitive and efficient applications, creating smart solutions, and exploring emerging technologies to drive innovation.</p>
-    
+                <p class="ans animatedTexts lightWhite">Hello! I'm Rahul Verma, a passionate Software, Android and Web
+                    Developer with a keen interest in IoT & Robotics. I love building intuitive and efficient
+                    applications, creating smart solutions, and exploring emerging technologies to drive innovation.</p>
+
                 <div id="resgal" class="allCenter">
-                    <a href="/resume" class="button curvy-btn" id="resume">Resume</a>                                  
-                    <a onclick="getPage('innovation')" class="button curvy-btn  " id="">Innovation</a> 
+                    <a href="/resume" class="button curvy-btn" id="resume">Resume</a>
+                    <a onclick="getPage('innovation')" class="button curvy-btn  " id="">Innovation</a>
                 </div>
-            </div>         
-                 
+            </div>
+
             <div id="profile-photo-container">
                 <div id="profile-photo"></div>
-                
-                <!-- <div class="flex innovation" id="">
-                    <div class="button curvy-btn" id="">Innovation</div>
-                    <div class="button curvy-btn" id="">Projects</div> 
-                </div> -->
-                
-                <!-- <div class="socialLink all-center">
-                    <div>
-                        <img class="hand" src="./imgs/icons/whats.png" alt="">
-                    </div>
-                    <div>
-                        <img class="hand" src="./imgs/icons/fb.png" alt="">
-                    </div>
-                    <div>
-                        <img class="hand" src="./imgs/icons/insta.png" alt="">
-                    </div>
-                    <div>
-                        <img class="hand" src="./imgs/icons/tweet.png" alt="">
-                    </div>
-                    <div>
-                        <img class="hand" src="./imgs/icons/linked.png" alt="">
-                    </div>
-                </div>        -->                       
-            </div>                        
+            </div>
         </div>
-        
-        
-        
+
+
+
         <!-- about -->
-        
+
         <div id="about" class="about page">
-        <h2 class="text-center under-lg bold22">About</h2>
-               
-        <div id="info" class="info">
-            <p class="info">Hey there! I'm Rahul Verma, a passionate individual currently pursuing my B.Tech in Computer Science and Engineering at Dr. APJ Abdul Kalam Institute of Technology. My educational journey started at Kendriya Vidyalaya No.2 NHPC Banbasa, where I completed my schooling. 🎓
+            <h2 class="text-center under-lg bold22">About</h2>
 
-I consider myself a versatile developer with expertise in various areas. My skills span across full-stack web development, utilizing HTML, CSS, JavaScript, Node.js, and working with databases such as SQLite, MongoDB, and MySQL. I also have a strong foundation in Python, which I employ for software development. Additionally, I possess intermediate knowledge in the C programming language. 💻</p>
-        </div>
-                        
-     <div class="about-ih flex jcc">                 
-        <div class="info-left">
-            <p>Beyond theory, I believe in bringing ideas to life through code. I’ve worked on impactful projects that reflect both creativity and real-world problem-solving. My work includes tools like ESP-OTA-Flasher and PushNotify API, built to simplify developer workflows and enable seamless communication in connected systems. I’m also developing a Vehicle-to-Vehicle (V2V) communication system using GPS data to improve vehicle awareness in low-visibility conditions, contributing to smarter, safer transportation.
+            <div id="info" class="info">
+                <p class="info">Hey there! I'm Rahul Verma, a passionate individual currently pursuing my B.Tech in
+                    Computer Science and Engineering at Dr. APJ Abdul Kalam Institute of Technology. My educational
+                    journey started at Kendriya Vidyalaya No.2 NHPC Banbasa, where I completed my schooling. 🎓
 
-As part of my continuous learning journey, I’m actively exploring Machine Learning and Artificial Intelligence, applying them in innovative ways. I'm currently building a driving agent simulation with a game-like perspective to model autonomous behavior in dynamic traffic environments — combining elements of reinforcement learning, decision-making, and simulation design.
-
-I’m passionate about building solutions that matter — whether it’s web apps, intelligent systems, or tools that enhance everyday technology. Proficient in technologies like Python, Node.js, MongoDB, and cloud platforms such as AWS and Render, I’m always eager to grow, experiment, and collaborate on meaningful projects</p>
-        </div>
-
-        <div class="skills">
-            <h2>Tech Stack</h2>
-            <div class='tech-stack'>
-              <img src="./imgs/icons/Python.svg" />
-              <img src="./imgs/icons/java.svg" />
-              <img src="./imgs/icons/c.svg" />
-              <img src="./imgs/icons/node-js.svg" />
-              <img src="./imgs/icons/javascript.svg" />
-              <img src="./imgs/icons/react.svg" />
-              <img src="./imgs/icons/android.svg" />
-              <img src="./imgs/icons/mysql.svg" /> 
-              <img src="./imgs/icons/DynamoDB.svg" />
-              <img src="./imgs/icons/Lambda.svg" />                                        
+                    I consider myself a versatile developer with expertise in various areas. My skills span across
+                    full-stack web development, utilizing HTML, CSS, JavaScript, Node.js, and working with databases
+                    such as SQLite, MongoDB, and MySQL. I also have a strong foundation in Python, which I employ for
+                    software development. Additionally, I possess intermediate knowledge in the C programming language.
+                    💻</p>
             </div>
-            
-            <h2>Hobbies</h2>
-            <p>Tinkering with electronics, building projects like my drone with the ESP8266 and diving into machine learning for disease detection in fruits and vegetables Tinkering with electronics, building projects like my drone with the ESP8266 and diving into machine learning for disease detection in fruits and vegetables.</p>
-            
-            <div class="hobbies icons">
-                <div class="img1 hexagon"></div>
-                <div class="img2 hexagon"></div>
-                <div class="img3 hexagon"></div>
+
+            <div class="about-ih flex jcc">
+                <div class="info-left">
+                    <p>Beyond theory, I believe in bringing ideas to life through code. I’ve worked on impactful
+                        projects that reflect both creativity and real-world problem-solving. My work includes tools
+                        like ESP-OTA-Flasher and PushNotify API, built to simplify developer workflows and enable
+                        seamless communication in connected systems. I’m also developing a Vehicle-to-Vehicle (V2V)
+                        communication system using GPS data to improve vehicle awareness in low-visibility conditions,
+                        contributing to smarter, safer transportation.
+
+                        As part of my continuous learning journey, I’m actively exploring Machine Learning and
+                        Artificial Intelligence, applying them in innovative ways. I'm currently building a driving
+                        agent simulation with a game-like perspective to model autonomous behavior in dynamic traffic
+                        environments — combining elements of reinforcement learning, decision-making, and simulation
+                        design.
+
+                        I’m passionate about building solutions that matter — whether it’s web apps, intelligent
+                        systems, or tools that enhance everyday technology. Proficient in technologies like Python,
+                        Node.js, MongoDB, and cloud platforms such as AWS and Render, I’m always eager to grow,
+                        experiment, and collaborate on meaningful projects</p>
+                </div>
+
+                <div class="skills">
+                    <h2>Tech Stack</h2>
+                    <div class='tech-stack'>
+                        <img src="./imgs/icons/Python.svg" />
+                        <img src="./imgs/icons/java.svg" />
+                        <img src="./imgs/icons/c.svg" />
+                        <img src="./imgs/icons/node-js.svg" />
+                        <img src="./imgs/icons/javascript.svg" />
+                        <img src="./imgs/icons/react.svg" />
+                        <img src="./imgs/icons/android.svg" />
+                        <img src="./imgs/icons/mysql.svg" />
+                        <img src="./imgs/icons/DynamoDB.svg" />
+                        <img src="./imgs/icons/Lambda.svg" />
+                    </div>
+
+                    <h2>Hobbies</h2>
+                    <p>Tinkering with electronics, building projects like my drone with the ESP8266 and diving into
+                        machine learning for disease detection in fruits and vegetables Tinkering with electronics,
+                        building projects like my drone with the ESP8266 and diving into machine learning for disease
+                        detection in fruits and vegetables.</p>
+
+                    <div class="hobbies icons">
+                        <div class="img1 hexagon"></div>
+                        <div class="img2 hexagon"></div>
+                        <div class="img3 hexagon"></div>
+                    </div>
+
+                </div>
             </div>
-            
         </div>
-     </div>
+
+        <!-- Journey -->
+        <div id="journey" class="page journey">
+            <!-- <h2 class="text-center under-lg bold22">Journey</h2> -->
+
+
+            <div class="flex jcc m-auto " style="width: fit-content;">
+
+                <div class="left-timeline">
+                    <h2 class="text-center under-lg bold22">Journey</h2>
+                    <div id="timeline-details" class="details-panel">
+                        <p>Hover on a milestone → details will appear here</p>
+                    </div>
+                </div>
+
+                <div class="main-timeline">
+
+                    <div class="timeline">
+                        <!-- Button -->
+                        <button id="view-full-timeline-btn">View Full Journey ↓</button>
+                    </div>
+                </div>
+
+            </div>
+
+
         </div>
-    
+
+
+
+
         <!-- skills -->
         <div id="skills" class="page">
             <h2 class="text-center under-lg bold22">Skills</h2>
             <div id="skillsCont" class="skillsCont">
-                
+
             </div>
         </div>
-    
-        
+
+
         <div id="innovation" class="page">
             <h2 class="text-center under-lg bold22">Innovation</h2>
             <div id="innovationProjectsCont" class="mgt2">
-                
+
             </div>
-            <a class="expandAll button curvy-btn  " href="/innovation">Explore All</a>  
+            <div class="explore">
+                <a class="btn" href="/innovations">Explore All →</a>
+            </div>
         </div>
-    
-        
-        
+
+
+
         <!-- projects -->
         <div id="projects" class="page">
             <h2 class="text-center   under-lg bold22">Projects</h2>
             <div class="all-center project-cont" id="projectsContainer">
-                <!-- <div class="projectItem">
-                    <div class="projectImg"><img src="" alt=""></div>
-                    <div class="projectInfo">
-                        <div class="projectLang"><p class="roboto primary-blue text-center">Python</p></div>
-                        <div class="projectTitle"><p class="roboto">Music Player : GUI - Tkinter/ttk</p></div>
-                        <div class="projectDesc"><p class=" lightWhite
-                            ">This music player made with tkinter for GUI playback with PyGame and eyed3 libraries and can fetch all  mp3 files from your system. </p></div>
-                        <div class="jcsb">
-                            <div class="projectViews arial mg2">2M views</div>
-                            <div class="projectDate arial">23 May 2023</div>                            
-                        </div>
-                    </div>
-                </div>
-                <div class="projectItem">
-                    <div class="projectImg"><img src="" alt=""></div>
-                    <div class="projectInfo">
-                        <div class="projectLang"><p class="roboto primary-blue text-center">Python</p></div>
-                        <div class="projectTitle"><p class="roboto">Music Player : GUI - Tkinter/ttk</p></div>
-                        <div class="projectDesc"><p class=" lightWhite
-                            ">This music player made with tkinter for GUI playback with PyGame and eyed3 libraries and can fetch all  mp3 files from your system. </p></div>
-                        <div class="jcsb">
-                            <div class="projectViews arial mg2">2M views</div>
-                            <div class="projectDate arial">23 May 2023</div>                           
-                        </div>
-                    </div>
-                </div>
-                <div class="projectItem">
-                    <div class="projectImg"><img src="" alt=""></div>
-                    <div class="projectInfo">
-                        <div class="projectLang"><p class="roboto primary-blue text-center">Python</p></div>
-                        <div class="projectTitle"><p class="roboto">Music Player : GUI - Tkinter/ttk</p></div>
-                        <div class="projectDesc"><p class=" lightWhite
-                            ">This music player made with tkinter for GUI playback with PyGame and eyed3 libraries and can fetch all  mp3 files from your system. </p></div>
-                        <div class="jcsb">
-                            <div class="projectViews arial mg2">2M views</div>
-                            <div class="projectDate arial">23 May 2023</div>                           
-                        </div>
-                    </div>
-                </div> -->
             </div>
-            <a class="expandAll button curvy-btn  " href="/projects">Explore All</a>         
+
+            <div class="explore">
+                <a class="btn" href="/projects">Explore All →</a>
+            </div>
         </div>
-                  
+
 
 
         <!-- services -->
-        <div id="services" class="page">
+        <div id="services" class="page" style="display: none;">
             <h2 class="text-center      under-lg bold22">Services</h2>
             <div id="servCont" class="">
                 <div id="webDevelopment" class="servItems">
@@ -283,11 +282,13 @@ I’m passionate about building solutions that matter — whether it’s web app
                             <p class="bold18 text-center">Expert Web Development</p>
                         </div>
                         <div class="serviceDesc">
-                            <p class="lightWhite text-center">Crafting professional, responsive, and user-friendly websites. We also specialize in integrating Twilio/WhatsApp functionalities to enhance customer engagement and provide seamless communication.</p>
+                            <p class="lightWhite text-center">Crafting professional, responsive, and user-friendly
+                                websites. We also specialize in integrating Twilio/WhatsApp functionalities to enhance
+                                customer engagement and provide seamless communication.</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <div id="softwareDevelopment" class="servItems">
                     <span></span>
                     <span></span>
@@ -299,7 +300,9 @@ I’m passionate about building solutions that matter — whether it’s web app
                             <p class="bold18 text-center">Innovative Software Solutions</p>
                         </div>
                         <div class="serviceDesc">
-                            <p class="lightWhite text-center">Building scalable and cutting-edge applications for diverse industries. Our expertise includes integrating AI-powered chatbots to streamline user interactions and optimize business processes.</p>
+                            <p class="lightWhite text-center">Building scalable and cutting-edge applications for
+                                diverse industries. Our expertise includes integrating AI-powered chatbots to streamline
+                                user interactions and optimize business processes.</p>
                         </div>
                     </div>
                 </div>
@@ -314,12 +317,14 @@ I’m passionate about building solutions that matter — whether it’s web app
                             <p class="bold18 text-center">Creative Design Services</p>
                         </div>
                         <div class="serviceDesc">
-                            <p class="lightWhite text-center">Unlocking the power of visual communication through compelling designs. Additionally, we offer UI/UX design services for chatbots and AI-powered software, ensuring an intuitive and delightful user experience.</p>
+                            <p class="lightWhite text-center">Unlocking the power of visual communication through
+                                compelling designs. Additionally, we offer UI/UX design services for chatbots and
+                                AI-powered software, ensuring an intuitive and delightful user experience.</p>
                         </div>
                     </div>
                 </div>
-                
-                
+
+
                 <div style="display: none;" id="cad" class="servItems">
                     <span></span>
                     <span></span>
@@ -331,51 +336,71 @@ I’m passionate about building solutions that matter — whether it’s web app
                             <p class="bold18 text-center">CAD</p>
                         </div>
                         <div class="serviceDesc">
-                            <p class="lightWhite text-center">Unlocking the power of visual communication through compelling designs. Additionally, we offer UI/UX design services for chatbots and AI-powered software, ensuring an intuitive and delightful user experience.</p>
+                            <p class="lightWhite text-center">Unlocking the power of visual communication through
+                                compelling designs. Additionally, we offer UI/UX design services for chatbots and
+                                AI-powered software, ensuring an intuitive and delightful user experience.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <a href="/services" class="expandAll button curvy-btn  ">Explore All</a>
+
+            <div class="explore">
+                <a href="/services" class="btn">Explore All →</a>
+            </div>
         </div>
 
-    
+        <!-- blog section -->
+        <div id="blogs" class="page">
+            <h2 class="text-center under-lg bold22">Blogs</h2>
+
+            <main id="blogs-list" class="blog-list">
+
+            </main>
+
+            <div class="explore">
+                <a href="/blogs" class="btn">Explore All Blogs →</a>
+            </div>
+        </div>
+
         <!-- newsletter -->
-    
+
         <div id="newsLetter" class="page flex all-center">
-            <div class="newsletter-icon w50">
+            <div class="newsletter-icon w50 all-center">
                 <img style="width: 80%;" class="" src="./imgs/icons/newsback.png" alt="">
             </div>
-        
-            <div id="newsFormBack" class="formBack flexJcc  flex-direction-col">
+
+            <div id="newsFormBack" class="formBack flex-direction-col">
                 <p class="under-lg bold22 text-center newsHead">Get Updated</p>
-        
+
                 <form onsubmit="submitForm(event)" action="newsletter" method="post">
                     <label for="newsName newsLabel" class="formLabel">Name</label>
-                    <input autocapitalize="online" title="online" placeholder="Enter your full name" type="text" name="name"
-                        class="formInput newsInp" id="newsName">
-        
+                    <input autocapitalize="online" title="online" placeholder="Enter your full name" type="text"
+                        name="name" class="formInput newsInp" id="newsName" required>
+
                     <label for="newsEmail newsLabel" class="formLabel">Email</label>
-                    <input placeholder="Enter your email" type="email" name="email" class="formInput newsInp" id="newsEmail">
-        
-                    <input type="submit" name="" value="Subscribe" class="formInput formSubmit" id="newsSubmit">
+                    <input placeholder="Enter your email" type="email" name="email" class="formInput newsInp"
+                        id="newsEmail" required>
+
+                    <input onclick="clicked(this)" type="submit" name="" value="Subscribe" class="formInput formSubmit"
+                        id="newsSubmit">
                 </form>
             </div>
         </div>
-    
+
         <!-- Contact section -->
         <div id="contact" class="contactCont page all-center" id="contactCont">
             <div class="w50 left-contact ">
                 <p class="bold22">Let's Talk About Everything</p>
                 <p class="      contactSocialsChild">Address</p>
-                <p class="ans primary-blue contact-fields"> 🌍 Bilhairi Chakarpur khatima (262308) Udham Singh Nagar Uttarakhand</p>
-    
+                <p class="ans primary-blue contact-fields"> 🌍 Bilhairi Chakarpur khatima (262308) Udham Singh Nagar
+                    Uttarakhand</p>
+
                 <p class="   contactSocials">Let's Talk</p>
                 <p class="ans primary-blue contact-fields">📞 +918126936663 || +918057578564</p>
-    
+
                 <p class="   contactSocials">General Support</p>
                 <p class="ans primary-blue contact-fields">📧 rahulverma.1.2005@gmail.com</p>
-    
+
                 <div class="socialLink">
                     <div>
                         <img class="hand" src="./imgs/icons/whats.png" alt="twitter">
@@ -393,29 +418,32 @@ I’m passionate about building solutions that matter — whether it’s web app
                         <img class="hand" src="./imgs/icons/linked.png" alt="twitter">
                     </div>
                 </div>
-    
+
             </div>
-    
+
             <div class="formBack">
                 <p class="bold22 under-lg text-center">Get In Touch</p>
-    
+
                 <form onsubmit="submitForm(event)" action="/contactus" method="post">
                     <label for="contactName" class="formLabel">Name</label>
-                    <input autocapitalize="online" title="online" placeholder="Enter your full name" type="text" name="name" class="formInput" id="contactName">
-                    
+                    <input autocapitalize="online" title="online" placeholder="Enter your full name" type="text"
+                        name="name" class="formInput" id="contactName" required>
+
                     <label for="contactEmail" class="formLabel">Email</label>
-                    <input placeholder="Enter your email" type="email" name="email" class="formInput" id="contactEmail">
-                    
+                    <input placeholder="Enter your email" type="email" name="email" class="formInput" id="contactEmail"
+                        required>
+
                     <label for="contactMessage" class="formLabel">Message</label>
-                    <textarea placeholder="Enter message to send" id="contactMessage" class="formInput" name="message" id="" cols="30"
-                        rows="10"></textarea>
-                    
-                    <input type="submit" name="" value="Send Message" class="formInput formSubmit" id="contactSubmit">
+                    <textarea placeholder="Enter message to send" id="contactMessage" class="formInput" name="message"
+                        id="" cols="30" rows="10" minlength="6"></textarea>
+
+                    <input onclick="clicked(this)" type="submit" name="" value="Send Message"
+                        class="formInput formSubmit" id="contactSubmit">
                 </form>
-                
+
             </div>
         </div>
-    
+
         <footer id="footer" class="footer">
             <div class="header">
                 <div></div>
@@ -424,7 +452,7 @@ I’m passionate about building solutions that matter — whether it’s web app
 
             <div class="container">
                 <div class="footer-container">
-            
+
                 </div>
             </div>
         </footer>
@@ -433,9 +461,48 @@ I’m passionate about building solutions that matter — whether it’s web app
     <script src="./js/universal.js"></script>
     <script src="./js/home.js"></script>
     <script src="./js/skills.js"></script>
+    <script src="./js/journey.js"></script>
     <script>
-        setData(type="all");
+        setData(type = "all");
     </script>
+
+
+    <script>
+        //loading blogs
+        const page = 1;
+        const limit = 3; // Only fetch 3 blogs
+
+        async function loadBlogs() {
+            try {
+                const res = await fetch(`/get/blogs?page=${page}&limit=${limit}`);
+                const data = await res.json();
+                console.log(data)
+
+                const container = document.getElementById('blogs-list');
+                container.innerHTML = ''; // Clear previous content if any
+
+                data.blogs.forEach(blog => {
+                    const article = document.createElement('article');
+                    article.className = 'blog-card border p-4 rounded-md shadow-md hover:shadow-xl transition';
+
+                    article.innerHTML = `
+          <h3 class="text-xl font-semibold mb-2">${blog.title}</h3>
+          <p class="line-clamp-2 excerpt text-gray-700 mb-2">${blog.excerpt}</p>
+          <p class="meta text-gray-500 text-sm">${new Date(blog.created_at).toDateString()} • ${Math.ceil((blog.content?.split(" ").length || 200) / 200)} min</p>
+        `;
+
+                    container.appendChild(article);
+                });
+
+            } catch (err) {
+                console.error('Error fetching blogs:', err);
+            }
+        }
+
+        loadBlogs();
+    </script>
+
+
 </body>
 
 </html>

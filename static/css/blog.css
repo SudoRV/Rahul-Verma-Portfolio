@@ -1,0 +1,36 @@
+.blog-list {
+  margin: auto;
+  width: 100%;
+  padding: 0 0.8rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.blog-list .blog-card {
+  flex: 1 1 500px;
+  max-width: 500px;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  padding: 1.25rem;
+  border-radius: 12px;
+  transition: background 0.2s ease;
+}
+.blog-list .blog-card:hover {
+  background: rgb(13.25, 13.25, 13.25);
+}
+.blog-list .blog-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.blog-list .blog-card .excerpt {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  color: #f1f1f1;
+}
+.blog-list .blog-card .meta {
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  color: #999;
+}
+
+/*# sourceMappingURL=blog.css.map */

@@ -1,13 +1,20 @@
 .journey {
+    display: flex;
+    justify-content: center;
+
+    // 
     
+    .main-container{
+        display: flex;
+        justify-content: center;
+    }
+
     .left-timeline {
         width: 35%;
         max-width: 360px;
-        height: 100%;
-        margin-left: 2%;
-
+        height: fit-content;
         position: sticky;
-        top: 20px;
+        top: 60px;
     }
 
     .details-panel {
@@ -27,7 +34,7 @@
     }
 
     .timeline {
-        max-width: 800px;
+        max-width: 900px;
         position: relative;
         margin: auto;
         padding: 2rem 0;
@@ -178,29 +185,63 @@
         color: #c9d1d9;
     }
 
-    /*@media screen and (max-width: 768px) {
-        .container {
+
+
+    @media screen and (max-width: 768px) {
+
+        div:has(.left-timeline){
+            flex-direction: column;
+        }
+
+        .details-panel {
+            display: none;
+        }
+
+        .main-timeline {
+            padding: 0;
             width: 100%;
-            padding-left: 4rem;
-            padding-right: 2rem;
+            margin-top: 0rem !important;
+
+            all: unset !important;
         }
 
-        .container.right {
-            left: 0;
+        .left-timeline {
+            position: initial;
+            width: 100%;
+            max-width: none;
         }
 
-        .timeline::after {
-            left: 20px;
+        .timeline::before {
+            left: 50%;
+            bottom: 100px !important;
         }
 
-        .circle {
-            left: 8px !important;
+        .container .circle {
+            top: -7px;
+            left: 50% !important;
+            transform: translateX(-50%);
         }
 
-        .container.left::before,
-        .container.right::before {
-            left: 20px;
-            border: none;
+        .container {
+            padding: 0rem;
+            width: 100%;
+            left: 0 !important;
+
+            &:nth-child(1) {
+                margin-top: 0rem;
+            }
+
+            .content {
+                padding: 1rem;
+            }
         }
-    }*/
+
+        #view-full-timeline-btn {
+            margin-top: 4rem;
+            transform: translateX(0%);
+            margin: initial;
+            margin-top: 60px;
+            margin-left: auto;
+        }
+    }
 }

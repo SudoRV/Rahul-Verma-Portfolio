@@ -2,3 +2,25 @@
     /* border-radius: 80px; */
     max-width: 480px;
 }
+
+.news-phone-view-heading{
+    display: none;
+}
+
+@media screen and (max-width: 720px) {
+    #newsLetter.page{
+        flex-direction: column;
+    }
+
+    .news-phone-view-heading{
+        display: block;
+    }
+
+    .news-desk-view-heading{
+    display: none;
+    }
+
+    .newsletter-icon,#newsFormBack{
+        width: 90%;
+    }
+}

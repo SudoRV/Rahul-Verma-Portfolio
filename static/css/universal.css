@@ -20,50 +20,54 @@ body {
     background: linear-gradient(to bottom, #111827, #18181b, #000000);
 }
 
-nav {
-    width: 100%;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--primaryPageColor);
+.navbar{
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 10;
-    border-bottom: 1ps solid rgb(120, 120, 120);
+    z-index: 100;
 }
 
-nav::before {
-    content: '';
+.navbar::after{
     position: absolute;
+    content: "";
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(8px);
-    z-index: 10;
+    backdrop-filter: blur(2px);
+    z-index: -1;
 }
 
-nav li:last-child {
-    margin-right: 2.2%;
-}
-
-nav li:nth-child(1) {
-    margin-right: auto;
-    margin-left: 1.2%;
-    height: 80%;
-    aspect-ratio: 1;
-    position: relative;
-}
-
-nav .logo a img {
-    all: unset;
+nav {
     width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0 0.6rem;
+    border-bottom: 1ps solid rgb(120, 120, 120); 
+
+    user-select: none;
 }
 
-nav li:last-child a {
-    all: unset;
+nav .logo{
+    height: 100%;
+    aspect-ratio: 16/13;
+    border-radius: 8px;
+}
+
+nav .center{
+    width: fit-content;
+    height: 80%;
+    padding: 0 8rem;
+    border-radius: 12px;
+    background-color: rgba(35, 39, 43, 0.42);
+    backdrop-filter: blur(8px);
+}
+
+nav .menu-btn{
+    display: none;
 }
 
 nav li {
@@ -80,22 +84,21 @@ nav a {
 }
 
 nav a:hover {
-    color: cyan;
-    background-color: rgb(10, 10, 10);
+    color: var(--lightblue);
+    border: 0;
+    background-color: rgb(44, 44, 44);
 }
 
 nav a:active {
-    color: cyan;
+    color: var(--lightblue);
 }
 
-nav li:hover {
-    transform: translateY(4px);
-}
 
 nav .button:hover {
     box-shadow: none;
     transform: none;
 }
+
 
 /* .navbar .skew-div{
     display: flex;
@@ -118,7 +121,6 @@ nav .button:hover {
 } */
 
 
-h,
 h1,
 h2,
 h3,
@@ -197,9 +199,12 @@ h6 {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
-    position: absolute;
+    /* position: absolute;
     top: 0;
-    left: 0;
+    left: 0; */
+
+    display: flex;
+    flex-direction: column;
 }
 
 .flex {
@@ -211,8 +216,10 @@ h6 {
 }
 
 .jcsb {
-    display: flex;
     justify-content: space-between;
+}
+
+.aic{
     align-items: center;
 }
 
@@ -307,19 +314,19 @@ h6 {
 }
 
 .under-lg {
-    font-size: 2rem;
+    font-size: 2.6rem;
     position: relative;
     margin: auto;
     width: fit-content;
-    margin-bottom: 3.2rem;
+    margin-bottom: 3rem;
 }
 
 .under-lg::before {
     content: "";
     position: absolute;
-    width: 120%;
+    width: 100%;
     height: 8px;
-    left: -10%;
+    left: 0%;
     bottom: -1.2rem;
     border-radius: 16px;
     background: linear-gradient(90deg, rgb(180, 180, 180), var(--lightblue));
@@ -332,7 +339,7 @@ h6 {
 
     width: 100px;
     height: 35px;
-    border-radius: 10px;
+    border-radius: 8px;
     background: var(--lightblue);
 
     text-align: center;
@@ -355,8 +362,8 @@ h6 {
     box-shadow: 2px 2px 2px rgb(20, 20, 20);
     transform: translateY(2px);
     color: var(--lightblue);
-    font-weight: bold;
-    background-color: rgb(30, 30, 30);
+    /* font-weight: bold; */
+    background-color: rgb(44, 44, 44);
 }
 
 .hand {
@@ -372,6 +379,8 @@ h6 {
 }
 
 .explore {
+    width: auto;
+    height: fit-content;
     text-align: right;
     margin-bottom: 1rem;
 }
@@ -432,4 +441,51 @@ h6 {
     width: 100%;
     height: 300px;
     background-color: var(--primaryPageColor);
+}
+
+
+@media screen and (min-width :1980px){
+    .page{
+        width: 100%;
+        margin: 1.6rem  auto !important;
+    }
+}
+
+
+@media screen and (min-width :1440px){
+    .page{
+        padding: 3rem 10rem !important;
+        max-width: 1980px;
+        margin: 1.4rem 5rem;
+    }
+
+    p{
+        font-size: 18px;
+    }
+
+    a{
+        font-size: 18px;
+    }
+}
+
+
+
+@media screen and (max-width: 480px) {
+    .page{
+        margin: 1.6rem 0.6rem !important;
+        /* padding: 0 rem; */
+    }
+
+    *{
+        font-size: 18px;
+    }
+
+    .explore .btn{
+        font-size: 0.75rem;
+        padding: 0.65rem 1.2rem;
+    }
+
+    .under-lg{
+        font-size: 1.8rem;
+    }
 }

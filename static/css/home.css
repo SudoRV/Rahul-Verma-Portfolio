@@ -1,19 +1,23 @@
-.home-page{
+.home-page {
     padding: 4%;
+}
+
+.home-page .button{
+    padding: 1.4rem 4rem !important;
 }
 
 #about-profile {
     width: 60%;
-    padding: 0 2%;
+    /* padding: 0 2%; */
 }
 
 .my-name {
-    font-size: 45px;
+    font-size: 52px;
 }
 
 .profile-bio {
     width: 100%;
-    margin: 6% 0; 
+    margin: 6% 0;
 }
 
 #profile-photo-container {
@@ -25,21 +29,21 @@
 }
 
 #profile-photo {
-  width: 300px;
-  aspect-ratio: 1;
-  border-radius: 65% 35% 45% 55% / 43% 33% 67% 57% ;
-  background: url("../imgs/mine/profilePic.jpg") no-repeat center;
-  background-size: cover;
-  transition: all 0.4s ease;
+    width: 300px;
+    aspect-ratio: 1;
+    border-radius: 65% 35% 45% 55% / 43% 33% 67% 57%;
+    background: url("../imgs/mine/profilePic.jpg") no-repeat center;
+    background-size: cover;
+    transition: all 0.4s ease;
 
-  box-shadow:
-    0 2px 8px rgba(62, 157, 221, 0.945),
-    6px 12px 26px rgba(28, 62, 124, 0.712);
+    box-shadow:
+        0 2px 8px rgba(62, 157, 221, 0.945),
+        6px 12px 26px rgba(28, 62, 124, 0.712);
 }
 
 #profile-photo:hover {
-  border-radius:  37% 63% 68% 32% / 65% 55% 45% 35%;
-  transform: scale(1.06) rotate(1deg);
+    border-radius: 37% 63% 68% 32% / 65% 55% 45% 35%;
+    transform: scale(1.06) rotate(1deg);
 }
 
 
@@ -58,4 +62,36 @@
     display: flex;
     margin: 8% 0 2% 0;
     gap: 16px;
+}
+
+
+@media screen and (min-width :1440px){
+   
+}
+
+
+@media screen and (max-width :720px) {
+    .home-page {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #about-profile {
+        width: 100%;
+        order: 2;
+    }
+
+    #profile-photo-container {
+        width: 100%;
+        order: 1;
+        margin: 1rem auto 2rem auto;
+    }
+
+    #profile-photo {
+        width: 180px;
+    }
+
+    .my-name{
+        font-size: 40px;
+    }
 }

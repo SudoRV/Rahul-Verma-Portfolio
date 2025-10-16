@@ -45,35 +45,37 @@ function check(cls, newcls) {
 check("checkbox", "checked");
 
 //menu button
-menuBtn = document.getElementById("menuBtn");
-menu = document.getElementById("menu");
-nav = document.getElementsByTagName("nav")[0];
-document.head.innerHTML += `<style>
-:root{
-    --topVal:${menu.clientHeight}px;
-    --navH:${nav.clientHeight}px;
-</style>`;
+// menuBtn = document.getElementById("menuBtn");
+// menu = document.getElementById("menu");
+// nav = document.getElementsByTagName("nav")[0];
+// document.head.innerHTML += `<style>
+// :root{
+//     --topVal:${menu.clientHeight}px;
+//     --navH:${nav.clientHeight}px;
+// </style>`;
 
-menu.style.cssText = "display:none;";
+// menu.style.cssText = "display:none;";
 
-menuBtn.addEventListener("click", () => {
-  if (window.getComputedStyle(menu).display == "none") {
-    menu.classList.remove("menuUp");
-    menu.classList.add("menuDown");
+// menuBtn.addEventListener("click", () => {
+//   if (window.getComputedStyle(menu).display == "none") {
+//     menu.classList.remove("menuUp");
+//     menu.classList.add("menuDown");
 
-    nav.classList.remove("navUp");
-    nav.classList.add("navDown");
-  } else {
-    menu.classList.add("menuUp");
-    nav.classList.add("navUp");
-    setTimeout(() => {
-      menu.classList.remove("menuDown");
-      nav.classList.remove("navDown");
-      nav.classList.remove("navUp");
-      menu.style.display = "none";
-    }, 300);
-  }
-});
+//     nav.classList.remove("navUp");
+//     nav.classList.add("navDown");
+//   } else {
+//     menu.classList.add("menuUp");
+//     nav.classList.add("navUp");
+//     setTimeout(() => {
+//       menu.classList.remove("menuDown");
+//       nav.classList.remove("navDown");
+//       nav.classList.remove("navUp");
+//       menu.style.display = "none";
+//     }, 300);
+//   }
+// });
+
+
 
 function redirectScroll(id) {
   window.localStorage.setItem("scrollId", id);
@@ -109,16 +111,16 @@ function redirectScroll(id) {
 //     prev=crnt;
 // })
 
-document.body.addEventListener("touchstart", () => { });
-document.body.addEventListener("touchend", () => {
-  navTop = parseInt(window.getComputedStyle(nav).top.replace("px"));
+// document.body.addEventListener("touchstart", () => { });
+// document.body.addEventListener("touchend", () => {
+//   navTop = parseInt(window.getComputedStyle(nav).top.replace("px"));
 
-  if (navTop <= -nav.clientHeight / 2) {
-    //nav.style.top="0px";
-  } else {
-    //nav.style.background="0px";
-  }
-});
+//   if (navTop <= -nav.clientHeight / 2) {
+//     //nav.style.top="0px";
+//   } else {
+//     //nav.style.background="0px";
+//   }
+// });
 
 // set PID on click on comment field
 function setPid(field) {
@@ -132,7 +134,7 @@ function setPid(field) {
 
 //open description in full mode 
 function expandProjectDescription(elt) {
-  elt.classList.toglle("expanded");
+  elt.classList.toggle("expanded");
 }
 
 
@@ -182,7 +184,7 @@ async function setData(queryType) {
     method: "get",
     headers: {
       body: JSON.stringify({
-        query: "select * from projects " + queryType,
+        query_type: queryType,
       }),
     },
   })
@@ -220,7 +222,7 @@ async function setData(queryType) {
 
         mainDiv.innerHTML = `
           <div class="innovationGalAll innovationChild">
-              <img class="galChild" src="${thumbnail}">
+              <img class="galChild thumbnail" src="${thumbnail}">
           </div>
 
           <div class="innovationTitle innovationChild">
@@ -232,7 +234,7 @@ async function setData(queryType) {
           </div>
 
           <div class="innovationChild description mg2">
-              <p>${description.trim()}</p>
+              <p>${getShortDesc(description)}</p>
           </div>
 
           <div class="analyticsChild analyticsChildAll innovationChild force-flex">
@@ -244,12 +246,20 @@ async function setData(queryType) {
         // Append to appropriate container
         const container = queryType == "" ?
           (type === "innovation"
-            ? document.getElementById("innovationProjectsCont")
+            ? document.querySelector("#innovation #innovationProjectsCont")
             : document.getElementById("projectsContainer")) : document.getElementById("innovationProjectsCont");
 
         container?.appendChild(mainDiv);
       });
     });
+}
+
+function getShortDesc(text) {
+  // Match everything between the first and second newline
+  const match = text.match(/~\s*([\s\S]*?)\s*~/);
+  if (!match) return text;
+
+  return match[1];
 }
 
 

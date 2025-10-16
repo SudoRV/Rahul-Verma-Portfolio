@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Right Sidebar → Transform to Left Full Width</title>
+  <style>
+    :root{
+      --transition: 350ms cubic-bezier(.2,.9,.2,1);
+      --sidebar-width: 320px;
+      --bg: #0f172a;
+      --panel: #fff;
+      --accent: #06b6d4;
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#eef2ff 0%, #f8fafc 100%);
+      color:#0b1220;
+    }
+
+    /* Main page content */
+    .page {
+      min-height:100vh;
+      padding:24px;
+      box-sizing:border-box;
+    }
+
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:24px;
+    }
+
+    h1 { margin:0; font-size:20px; letter-spacing:-0.2px; }
+
+    .controls {
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    button {
+      appearance:none;
+      border:0;
+      background:var(--accent);
+      color:white;
+      padding:10px 14px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:600;
+      transition: transform 120ms ease, box-shadow 120ms;
+    }
+    button:active{ transform:scale(.98); }
+    .ghost {
+      background:transparent;
+      color:var(--accent);
+      box-shadow: inset 0 0 0 1px rgba(6,182,212,.14);
+    }
+
+    /* The right sidebar (hidden by default off-screen to the right) */
+    .sidebar {
+      position:fixed;
+      top:0;
+      right: calc(-1 * var(--sidebar-width)); /* hidden off-screen */
+      width:var(--sidebar-width);
+      height:100vh;
+      background:linear-gradient(180deg,#fff,#f8fafc);
+      box-shadow: -6px 0 24px rgba(2,6,23,.12);
+      transition: right var(--transition), width var(--transition), left var(--transition);
+      z-index:1200;
+      overflow:auto;
+      padding:20px;
+      box-sizing:border-box;
+      border-left:1px solid rgba(2,6,23,.04);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    /* small helper: show when panel is visible on the right */
+    .sidebar.open-right {
+      right:0;
+    }
+
+    /* When transformed to full-left, we move it to left:0 and expand width to 100% */
+    .sidebar.full-left {
+      right:auto;
+      left:0;
+      width:100vw;
+      height:100vh;
+      box-shadow: none;
+      border-left: 0;
+      padding:28px;
+    }
+
+    /* overlay behind full-left panel */
+    .overlay {
+      position:fixed;
+      inset:0;
+      background:rgba(2,6,23,0.45);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity var(--transition);
+      z-index:1100;
+    }
+    .overlay.visible { opacity:1; pointer-events:auto; }
+
+    /* inside panel header */
+    .panel-head {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .close {
+      background:transparent;
+      border:0;
+      font-weight:700;
+      font-size:16px;
+      color:var(--bg);
+      padding:8px;
+      border-radius:8px;
+      cursor:pointer;
+    }
+    .close:focus, button:focus { outline:2px solid rgba(6,182,212,.18); outline-offset:2px; }
+
+    /* responsive: reduce sidebar width on small screens */
+    @media (max-width:420px){
+      :root { --sidebar-width: 90vw; }
+      .sidebar { right: calc(-1 * var(--sidebar-width)); }
+    }
+
+    /* sample content styles */
+    .card {
+      background:var(--panel);
+      padding:14px;
+      border-radius:10px;
+      box-shadow: 0 6px 18px rgba(11,17,34,0.04);
+      border:1px solid rgba(2,6,23,.03);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <h1>Demo — Right Sidebar (hidden) → Transform to Left Full Width</h1>
+        <p style="margin:6px 0 0;color:#374151;font-size:13px">Click the buttons to open sidebar on right or transform it to a full-width left panel.</p>
+      </div>
+
+      <div class="controls" aria-hidden="false">
+        <!-- open as right sidebar (slides in from right) -->
+        <button id="openRightBtn" title="Open as right sidebar">Open Right Sidebar</button>
+
+        <!-- transform to left full width -->
+        <button id="fullLeftBtn" class="ghost" title="Open as left full width">Open Left Full Width</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="card">
+        <h3>Page content</h3>
+        <p>This area represents your normal page. The sidebar is off-screen to the right by default. Use the top-right buttons to reveal it either as a right panel or to transform it into a full-screen left panel.</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Sidebar element (hidden off-screen initially) -->
+  <aside id="sidebar" class="sidebar" aria-hidden="true" aria-label="Right sidebar panel">
+    <div class="panel-head">
+      <strong>Sidebar</strong>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button id="toRight" class="ghost" title="Show as right panel">Right</button>
+        <button id="toFullLeft" title="Transform to left full width">Left Full</button>
+        <button id="closeSidebar" class="close" aria-label="Close sidebar">✕</button>
+      </div>
+    </div>
+
+    <div style="flex:1;display:flex;flex-direction:column;gap:10px">
+      <div class="card">
+        <h4>Panel content</h4>
+        <p>Put any controls, menus, settings or forms here.</p>
+      </div>
+
+      <div class="card">
+        <h4>Example list</h4>
+        <ul>
+          <li>Item one</li>
+          <li>Item two</li>
+          <li>Item three</li>
+        </ul>
+      </div>
+    </div>
+
+    <footer style="font-size:13px;color:#6b7280">
+      <p>Tip: press ESC to close.</p>
+    </footer>
+  </aside>
+
+  <!-- overlay (used when sidebar becomes full-left to darken background) -->
+  <div id="overlay" class="overlay" tabindex="-1" aria-hidden="true"></div>
+
+  <script>
+    // Elements
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const openRightBtn = document.getElementById('openRightBtn');
+    const fullLeftBtn = document.getElementById('fullLeftBtn');
+    const closeSidebar = document.getElementById('closeSidebar');
+    const toRight = document.getElementById('toRight');
+    const toFullLeft = document.getElementById('toFullLeft');
+
+    // helper: open as right panel
+    function openAsRight(){
+      sidebar.classList.remove('full-left');
+      // ensure it's positioned on right
+      sidebar.classList.add('open-right');
+      sidebar.setAttribute('aria-hidden','false');
+      overlay.classList.remove('visible');
+      overlay.setAttribute('aria-hidden','true');
+      // ensure focus inside
+      sidebar.focus?.();
+      // update buttons
+      fullLeftBtn.classList.remove('ghost');
+      openRightBtn.classList.add('ghost'); // visual hint (optional)
+    }
+
+    // helper: open as left full width
+    function openAsFullLeft(){
+      // move panel to left and expand
+      sidebar.classList.remove('open-right');
+      // tiny delay ensures transition between right->full-left looks nice
+      setTimeout(()=> sidebar.classList.add('full-left'), 10);
+      sidebar.setAttribute('aria-hidden','false');
+      overlay.classList.add('visible');
+      overlay.setAttribute('aria-hidden','false');
+      // update buttons
+      fullLeftBtn.classList.add('ghost');
+      openRightBtn.classList.remove('ghost');
+      // trap focus simply by focusing close button
+      closeSidebar.focus();
+    }
+
+    function closePanel(){
+      sidebar.classList.remove('open-right','full-left');
+      sidebar.setAttribute('aria-hidden','true');
+      overlay.classList.remove('visible');
+      overlay.setAttribute('aria-hidden','true');
+      // restore button styles
+      openRightBtn.classList.remove('ghost');
+      fullLeftBtn.classList.remove('ghost');
+    }
+
+    // wire up controls
+    openRightBtn.addEventListener('click', openAsRight);
+    fullLeftBtn.addEventListener('click', openAsFullLeft);
+    toRight.addEventListener('click', openAsRight);
+    toFullLeft.addEventListener('click', openAsFullLeft);
+    closeSidebar.addEventListener('click', closePanel);
+    overlay.addEventListener('click', closePanel);
+
+    // keyboard: ESC to close
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') closePanel();
+    });
+
+    // optional: close on focus loss when full-left (simple)
+    overlay.addEventListener('focus', closePanel);
+
+    // initial state: sidebar hidden (off-screen right) — nothing to do (CSS already does)
+    // accessibility: ensure elements have accessible names/roles if you expand this demo
+  </script>
+</body>
+</html>

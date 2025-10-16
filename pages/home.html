@@ -80,32 +80,48 @@
 
     <div class="psuedo-body" id="psuedo-body">
 
-        <div id="menu" class="menu">
-            <li class="hand" onclick="getPage('about')"><a>About</a></li>
-            <li onclick="getPage('projects')" class="hand"><a>Projects</a></li>
-            <li onclick="getPage('services')" class="hand"><a>Services</a></li>
-            <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
-            <li class="hand"><a href="/login" class=" ">Login</a></li>
-        </div>
-
         <div class="navbar">
             <nav>
-                <li class="hand logo"><img onclick="window.location.href='/'" class="img100"
-                        src="./imgs/icons/rahul1.png" alt=""></li>
-                <li class="hand" onclick="getPage('about')"><a>About</a></li>
-                <li onclick="getPage('projects')" class="hand"><a>Projects</a></li>
-                <li onclick="getPage('services')" class="hand"><a>Services</a></li>
-                <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
-                <li class="hand"><a href="/login" class=" ">Login</a></li>
-                <li class="hand">
+                <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/icons/logo.svg" alt="">
+                </li>
+            
+                <div class="center all-center">
+                    <li class="hand" onclick="getPage('about')"><a>About</a></li>
+                    <li onclick="getPage('projects')" class="hand projects-link"><a>Projects</a></li>
+                    <!--<li onclick="getPage('services')" class="hand"><a>Services</a></li>-->
+                    <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
+                    <li class="hand"><a href="/login" class=" ">Sign In</a></li>
+                </div>
+            
+                <li class="hand hireme-btn">
                     <a href="/hireme" class="button" id="hire">Hire Me</a>
                 </li>
-                <li class="hand menuBtnLi">
-                    <div id="menuBtn" class="hand menuBtn">
+
+                <div id="menuBtn" class="hand menu-btn">
+                    <input id="menu-toggle" type="checkbox">
+                    <label for="menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+
+                    <div id="menu" class="menu">
+                        <li class="hand" onclick="getPage('about')"><a>About</a></li>
+                        <li onclick="getPage('projects')" class="hand"><a>Projects</a></li>
+                        <!--<li onclick="getPage('services')" class="hand"><a>Services</a></li>-->
+                        <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
+                        <li class="hand"><a href="/login" class=" ">Login</a></li>
+
+                        <li class="hand hireme-btn">
+                            <a href="/hireme" class="button" id="hire">Hire Me</a>
+                        </li>
                     </div>
-                </li>
+                    
+                </div>
             </nav>
         </div>
+
+        
 
         <div id="home" class="home-page page flex">
             <div id="about-profile">
@@ -122,8 +138,8 @@
                     applications, creating smart solutions, and exploring emerging technologies to drive innovation.</p>
 
                 <div id="resgal" class="allCenter">
-                    <a href="/resume" class="button curvy-btn" id="resume">Resume</a>
-                    <a onclick="getPage('innovation')" class="button curvy-btn  " id="">Innovation</a>
+                    <a href="/resume" class="button" id="resume">Resume</a>
+                    <a onclick="getPage('innovation')" class="button" id="">Innovation</a>
                 </div>
             </div>
 
@@ -208,7 +224,7 @@
             <!-- <h2 class="text-center under-lg bold22">Journey</h2> -->
 
 
-            <div class="flex jcc m-auto " style="width: fit-content;">
+            <div class="main-container">
 
                 <div class="left-timeline">
                     <h2 class="text-center under-lg bold22">Journey</h2>
@@ -365,12 +381,14 @@
         <!-- newsletter -->
 
         <div id="newsLetter" class="page flex all-center">
+            <p class="under-lg bold22 text-center newsHead news-phone-view-heading">Get Updated</p>
+
             <div class="newsletter-icon w50 all-center">
                 <img style="width: 80%;" class="" src="./imgs/icons/newsback.png" alt="">
             </div>
 
             <div id="newsFormBack" class="formBack flex-direction-col">
-                <p class="under-lg bold22 text-center newsHead">Get Updated</p>
+                <p class="under-lg bold22 text-center newsHead news-desk-view-heading">Get Updated</p>
 
                 <form onsubmit="submitForm(event)" action="newsletter" method="post">
                     <label for="newsName newsLabel" class="formLabel">Name</label>
@@ -389,7 +407,7 @@
 
         <!-- Contact section -->
         <div id="contact" class="contactCont page all-center" id="contactCont">
-            <div class="w50 left-contact ">
+            <div class="w50 left-contact address">
                 <p class="bold22">Let's Talk About Everything</p>
                 <p class="      contactSocialsChild">Address</p>
                 <p class="ans primary-blue contact-fields"> 🌍 Bilhairi Chakarpur khatima (262308) Udham Singh Nagar
@@ -421,7 +439,7 @@
 
             </div>
 
-            <div class="formBack">
+            <div class="formBack contactus">
                 <p class="bold22 under-lg text-center">Get In Touch</p>
 
                 <form onsubmit="submitForm(event)" action="/contactus" method="post">
@@ -486,10 +504,10 @@
                     article.className = 'blog-card border p-4 rounded-md shadow-md hover:shadow-xl transition';
 
                     article.innerHTML = `
-          <h3 class="text-xl font-semibold mb-2">${blog.title}</h3>
-          <p class="line-clamp-2 excerpt text-gray-700 mb-2">${blog.excerpt}</p>
-          <p class="meta text-gray-500 text-sm">${new Date(blog.created_at).toDateString()} • ${Math.ceil((blog.content?.split(" ").length || 200) / 200)} min</p>
-        `;
+                        <h3 class="text-md md:text-xl font-semibold mb-2">${blog.title}</h3>
+                        <p class="line-clamp-2 excerpt text-sm text-gray-700 mb-2">${blog.excerpt}</p>
+                        <p class="meta text-gray-500 text-sm">${new Date(blog.created_at).toDateString()} • ${Math.ceil((blog.content?.split(" ").length || 200) / 200)} min</p>
+                        `;
 
                     container.appendChild(article);
                 });

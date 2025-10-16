@@ -22,17 +22,7 @@
       padding: 0;
     }
 
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background-color: var(--dark);
-      color: var(--light);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
+  
     .auth-wrapper {
       background: var(--glass-bg);
       border-radius: 16px;
@@ -40,16 +30,17 @@
       backdrop-filter: blur(10px);
       width: 90%;
       max-width: 700px;
-      height: 100%;
-      height: auto;
-      display: flex;
+      height: 300px;
       overflow: hidden;
       position: relative;
       margin: auto;
+      display: flex;
+      align-items: center;
     }
 
     .form-container {
       width: 50%;
+      height: fit-content;
       padding: 40px;
       transition: transform 0.6s ease;
     }
@@ -76,7 +67,7 @@
     .btn {
       width: 100%;
       padding: 12px;
-      margin-top: 20px;
+      margin-top: 0.2rem;
       background-color: var(--primary);
       color: white;
       border: none;
@@ -91,7 +82,6 @@
 
     .switch-panel {
       width: 50%;
-      /*background-color: var(--primary);*/
       background-color: #3d3d3d;
       color: white;
       display: flex;
@@ -106,10 +96,10 @@
       transition: transform 0.3s linear;
     }
 
-    .switch-panel::after{
+    .switch-panel::after {
       content: "";
       position: absolute;
-      top:0;
+      top: 0;
       left: 0;
       width: 100%;
       height: 100%;
@@ -123,7 +113,7 @@
       margin-bottom: 20px;
     }
 
-    #switchText{
+    #switchText {
       margin-top: -1.2rem;
     }
 
@@ -135,7 +125,7 @@
       border: none;
       cursor: pointer;
       transition: 0.3s;
-      margin-top: 10.6rem;
+      margin-top: 11rem;
       margin-left: 2rem;
 
       z-index: 100;
@@ -186,13 +176,8 @@
     }
 
     .form-container.signup {
-      position: absolute;
-      left: 0;
-      top: 0;
       height: 100%;
       background-color: transparent;
-      transform: translateX(100%);
-
       overflow-y: scroll;
     }
 
@@ -206,15 +191,15 @@
 
     @keyframes switch-signup {
       0% {
-        transform: translateX(100%);
+        transform: translateX(0%);
       }
 
       50% {
-        transform: translateX(40%);
+        transform: translateX(-40%);
       }
 
       100% {
-        transform: translateX(100%);
+        transform: translateX(0%);
       }
     }
 
@@ -224,15 +209,15 @@
 
     @keyframes revert-signup {
       0% {
-        transform: translateX(100%);
+        transform: translateX(0%);
       }
 
       50% {
-        transform: translateX(40%);
+        transform: translateX(-40%);
       }
 
       100% {
-        transform: translateX(100%);
+        transform: translateX(0%);
       }
     }
 
@@ -242,19 +227,68 @@
 
     @media screen and (max-width: 768px) {
       .auth-wrapper {
-        flex-direction: column;
+        max-width: 460px;
         height: auto;
+        margin: 0 2rem;
       }
 
-      .form-container,
-      .switch-panel {
-        width: 100%;
-        position: static;
+      .form-container {
+        width: 100% !important;
+        padding: 1.5rem;
+        padding-bottom: 4rem;
         transform: none !important;
       }
 
-      .auth-wrapper.active .switch-panel {
-        transform: none;
+      .form-container.signup{
+        display: none;
+      }
+
+      .form-container h2{
+        font-size: 24px;
+      }
+
+      /* When active, hide signup and show login */
+      .auth-wrapper.active .form-container.login {
+        display: none;
+      }
+
+      .auth-wrapper.active .form-container.signup {
+        display: block;
+      }
+
+      /* When revert, hide login and show signup */
+      .auth-wrapper.revert .form-container.login {
+        display: block;
+      }
+
+      .auth-wrapper.revert .form-container.signup {
+        display: none;
+      }
+
+      .switch-panel {
+        width: 100%;
+        height: fit-content;
+        padding: 0;
+        bottom: 8px;
+        margin-top: auto;
+        background-color: transparent;
+        align-items: end;
+        transform: none !important;
+      }
+
+      .toggle-btn {
+        margin: 0 1rem !important;
+        background-color: transparent !important;
+        text-decoration: underline;
+        color: rgb(52, 123, 255) !important;
+      }
+
+      .switch-panel>*:not(.toggle-btn) {
+        display: none;
+      }
+
+      .switch-panel::after {
+        display: none;
       }
     }
   </style>
@@ -264,37 +298,50 @@
 </head>
 
 <body>
-  <div class="psuedo-body w100 h100 flex flex-direction-col" id="psuedo-body">
-    <div id="menu" class="menu">
-      <li onclick="redirectScroll('about')" class="hand">
-        <a class=" ">About</a>
-      </li>
-      <li onclick="redirectScroll('projects')" class="hand">
-        <a class=" ">Projects</a>
-      </li>
-      <li onclick="redirectScroll('services')" class="hand">
-        <a class=" ">Services</a>
-      </li>
-      <li onclick="redirectScroll('contact')" class="hand">
-        <a class=" ">Contact</a>
-      </li>
+  <div class="psuedo-body" id="psuedo-body">
+
+    <!-- navabar -->
+    <div class="navbar">
+      <nav>
+        <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/icons/logo.svg" alt="">
+        </li>
+
+        <div class="center all-center">
+          <li class="hand" onclick="getPage('about')"><a>About</a></li>
+          <li onclick="getPage('projects')" class="hand projects-link"><a>Projects</a></li>
+          <!--<li onclick="getPage('services')" class="hand"><a>Services</a></li>-->
+          <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
+          <li class="hand"><a href="/login" class=" ">Sign In</a></li>
+        </div>
+
+        <li class="hand hireme-btn">
+          <a href="/hireme" class="button" id="hire">Hire Me</a>
+        </li>
+
+        <div id="menuBtn" class="hand menu-btn">
+          <input id="menu-toggle" type="checkbox">
+          <label for="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+
+          <div id="menu" class="menu">
+            <li class="hand" onclick="getPage('about')"><a>About</a></li>
+            <li onclick="getPage('projects')" class="hand"><a>Projects</a></li>
+            <!--<li onclick="getPage('services')" class="hand"><a>Services</a></li>-->
+            <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
+            <li class="hand"><a href="/login" class=" ">Login</a></li>
+
+            <li class="hand hireme-btn">
+              <a href="/hireme" class="button" id="hire">Hire Me</a>
+            </li>
+          </div>
+
+        </div>
+      </nav>
     </div>
 
-    <nav>
-      <li class="hand logo">
-        <img onclick="window.location.href='/'" class="img100" src="./imgs/icons/rahul1.png" alt />
-      </li>
-      <li class="hand" onclick="getPage('about')"><a>About</a></li>
-      <li onclick="getPage('projects')" class="hand"><a>Projects</a></li>
-      <li onclick="getPage('services')" class="hand"><a>Services</a></li>
-      <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
-      <li class="hand">
-        <a href="/hireme" class="button curvy-btn" id="hire">Hire Me</a>
-      </li>
-      <li class="hand menuBtnLi">
-        <div id="menuBtn" class="hand menuBtn"></div>
-      </li>
-    </nav>
 
     <div id="content" class="flex-grow-1 all-center">
       <div class="auth-wrapper" id="authBox">
@@ -323,7 +370,7 @@
         <!-- Switch Panel -->
         <div class="switch-panel">
           <h2 id="switchText">New here?</h2>
-          <button onclick="toggleForm()">Sign Up</button>
+          <button class="toggle-btn" onclick="toggleForm()">Sign Up</button>
         </div>
       </div>
     </div>

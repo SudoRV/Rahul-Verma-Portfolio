@@ -19,6 +19,7 @@ const sql = mysql.createConnection({
   host: "localhost",
   password: "rahul@1992#",
   database: "rahulPortfolio",
+  charset: 'utf8mb4'
 });
 
 sql.query("show tables like 'loginData'", (err, result) => {
@@ -110,11 +111,30 @@ app.get("/innovation/get/projectData", async (req, res) => {
   const headers = JSON.parse(req.headers.body);
   const pid = headers.pid;
   const payload = headers.payload;
-  const query = headers.query;
+  const request = headers.request;
   let like_check = null;
 
+  const query = request == "data+media" ? `
+      SELECT p.*, 
+      JSON_ARRAYAGG(
+        JSON_OBJECT(
+            'media_id', m.id,
+            'media_url', m.media_url,
+            'media_type', m.media_type,
+            'caption', m.caption,
+            'sort_order', m.sort_order
+        )
+      ) AS media
+      FROM projects p
+      LEFT JOIN (
+          SELECT *
+          FROM project_media
+          ORDER BY sort_order
+      ) m ON p.pid = m.pid
+      WHERE p.pid = '${pid}'
+      GROUP BY p.pid, p.title, p.description, p.status, p.time;` : `select * from projects ${headers.query_type}`;
 
-  if (query.includes("pid") && !query.includes("mediaurl")) {
+  if (query.includes("pid") && !query.includes("media_url")) {
     const ip = cleanIP(req.ip);
 
     // check if liked or not

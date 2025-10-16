@@ -19,7 +19,7 @@ async function fetchBlogs(page = 1) {
         data.blogs.forEach(blog => {
             const article = document.createElement("article");
             article.className =
-                "rounded-2xl overflow-hidden bg-gradient-to-b from-zinc-900 to-zinc-950 border border-zinc-800 shadow-lg";
+                "rounded-xl overflow-hidden bg-gradient-to-b from-zinc-900 to-zinc-950 border border-zinc-800 shadow-lg max-w-[400px]";
 
             article.innerHTML = `
           <div class="h-40 sm:h-48 relative">
@@ -29,26 +29,22 @@ async function fetchBlogs(page = 1) {
             <div class="absolute inset-0 bg-black/25 backdrop-blur-sm"></div>
           </div>
           <div class="p-4 sm:p-5">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
+            <div class="flex flex-row items-center justify-between mt-0">
+              <div class="flex flex-row items-center gap-3 mt-0">
                 <div
-                  class="w-[5rem] aspect-square rounded-full overflow-hidden bg-gradient-to-br from-[#1384F2] to-zinc-700 flex items-center justify-center text-black font-bold">
+                  class="w-[5rem] aspect-square rounded-full overflow-hidden bg-gradient-to-br from-[#1384F2] to-zinc-700 flex items-center justify-center text-black font-bold mt-0">
                     <img src="${blog.author_image}">
                 </div>
                 <div>
-                  <h3 class="text-lg font-semibold leading-tight w-fit mr-1">${blog.title}</h3>
+                  <h3 class="text-md md:text-lg font-semibold leading-tight w-fit mr-1">${blog.title}</h3>
                   <p class="text-xs text-gray-400">${new Date(blog.created_at).toDateString()}</p>
                 </div>
               </div>
-              <div class="text-sm text-gray-400">${blog.tags || ""}</div>
+              <div class="hidden md:flex text-xs md:text-md text-gray-400">${blog.tags || ""}</div>
             </div>
-            <p class="mt-3 text-gray-300 text-sm line-clamp-3">${blog.excerpt}</p>
-            <div class="mt-4 flex items-center justify-between">
-              <div class="flex gap-2">
-                <button class="px-3 py-1 rounded-lg bg-zinc-800 border border-zinc-700 text-xs">Read</button>
-                <button class="px-3 py-1 rounded-lg bg-transparent border border-zinc-800 text-xs text-gray-300">Save</button>
-              </div>
-              <a class="text-xs text-gray-400 hover:text-white" href="/blog?title=${blog.title.split(" ")[0].toLocaleLowerCase()}&id=${blog.id}" target="_blank">Continue →</a>
+            <p class="mt-3 text-gray-300 text-sm line-clamp-2 md:line-clamp-3">${blog.excerpt}</p>
+            <div class="mt-4 flex flex-row items-center justify-end">           
+              <a class="text-xs text-gray-400 hover:text-white" href="/blog?title=${blog.title.split(" ")[0].replace(/[^a-zA-Z0-9 ]/g, '').toLocaleLowerCase()}&id=${blog.id}" target="_blank">Continue →</a>
             </div>
           </div>
         `;

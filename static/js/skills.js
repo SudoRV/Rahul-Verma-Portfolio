@@ -91,6 +91,37 @@ categoryData.forEach((cat) => {
 const categories = [...document.querySelectorAll(".skill-categories")];
 let originalHeight = 0;
 
+let activeCat = null;
+let isMobile = document.body.clientWidth <= 720;
+let isMobileSm = document.body.clientWidth <= 450;
+let resizing = false;
+
+window.addEventListener("resize", () => {
+    if (activeCat) {
+        resizing = true;
+        const skills = categoryData[categories.indexOf(activeCat)].skills;
+
+        isMobile ? createSkillElementsMobile(skillsContainer, activeCat, skills) : createSkillElements(skillsContainer, activeCat, skills);
+
+
+        // remove the added ui of skills
+        const skill_lines = [...document.getElementsByClassName("branch-line")];
+        const skill_wrapper = [...document.getElementsByClassName("skill-wrapper")];
+        skill_lines.forEach((line) => {
+            line.remove();
+            skill_wrapper[skill_lines.indexOf(line)]?.remove();
+        })
+        skillsContainer.style.height = `${originalHeight}px`;
+
+        setTimeout(() => {
+            resizing = false;
+        }, 2000);
+    }
+
+    isMobile = document.body.clientWidth <= 720;
+    isMobileSm = document.body.clientWidth <= 450;
+})
+
 categories.forEach((category) => {
     category.addEventListener("click", async (event) => {
         const currentEl = event.currentTarget;
@@ -112,8 +143,11 @@ categories.forEach((category) => {
 
         if (!isActive) {
             originalHeight = skillsContainer.clientHeight;
-            createSkillElements(skillsContainer, currentEl, skills);
+            isMobile ? createSkillElementsMobile(skillsContainer, currentEl, skills) : createSkillElements(skillsContainer, currentEl, skills);
+
+            activeCat = currentEl;
         } else {
+            activeCat = null;
             // remove the added ui of skills
             const skill_lines = [...document.getElementsByClassName("branch-line")];
             const skill_wrapper = [...document.getElementsByClassName("skill-wrapper")];
@@ -251,17 +285,177 @@ function createSkillElements(container, currentEl, skills, maxww = 0, maxhh = 0)
         setTimeout(() => {
             let currentRect = currentEl.getBoundingClientRect();
             containerRect = container.getBoundingClientRect();
+            const containerGap = parseInt(window.getComputedStyle(container).gap.replace("normal", "").replace("px", ""));
+
+            console.log(containerGap)
 
             const yOffset =
                 containerRect.height / 2 -
                 (currentRect.top - containerRect.top) -
                 currentEl.offsetHeight / 2;
 
-            const xOffset = (containerRect.width - maxw) / 2 - currentRect.left;
+            let offset = 20;
+            if(containerRect.width > 800) offset = 60;
+            if(containerRect.width > 1000) offset = 120;
 
-            console.log(xOffset, yOffset, containerRect.width, maxw, maxh);
+            const xOffset = (containerRect.width - maxw) / 2 - currentRect.left +  containerGap - offset;
+
             currentEl.style.transform = `translate(${xOffset}px,${yOffset}px)`;
             createSkillElements(container, currentEl, skills, maxw, maxh);
+        }, 350);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+function createSkillElementsMobile(container, currentEl, skills, maxww = 0, maxhh = 0) {
+    const baseAngle = 180 / skills.length;
+    let containerRect = container.getBoundingClientRect();
+
+    let maxw = 0;
+    let maxh = 0;
+    let firstT;
+
+    // const isMobile = document.body.clientWidth <= 720;
+
+    let updatedLeft = maxww != 0 ? (containerRect.width - maxww) / 2 : 0;
+    // console.log("cont", containerRect.width, maxww, updatedLeft)
+
+    skills.forEach((skill, index) => {
+        // prepare lines
+        const skillIndex = skills.indexOf(skill);
+        let angle = baseAngle * skillIndex + baseAngle / 2;
+        angle = angle + 90;
+        const h = (currentEl.clientWidth / 2) * 0.7;
+        const y = h * Math.cos(angle * Math.PI / 180);
+        const x = h * Math.sin(angle * Math.PI / 180);
+
+        const line1 = document.createElement("div");
+        line1.classList.add("branch-line");
+        line1.classList.add("tail-line");
+        line1.style.left = containerRect.width / 2 + x + "px";
+        line1.style.top = currentEl.clientHeight - y + "px";
+
+        // console.log(angle)
+        const transformAngle = angle <= 180 ? (angle == 180 ? 90 : (isMobileSm ? 60 : 30)) : (isMobileSm ? 120 : 150);
+        line1.style.transform = `rotate(${transformAngle}deg)`;
+
+        const baseLength = 0;
+        let angleDiff = Math.abs(angle); // 0 to 90
+        angleDiff = 270 - (angleDiff > 180 ? 360 - angleDiff : angleDiff)
+
+        // Exponential scale (steeper than quadratic)
+        const scale = Math.exp(angleDiff / 33) - 1;
+        const length = baseLength + scale * 1;
+
+        line1.style.width = length + "px";
+        container.appendChild(line1);
+
+
+
+
+        // line2 head
+        const line1Rect = line1.getBoundingClientRect();
+        // head line or bent line
+        const line2 = document.createElement("div");
+
+        if (angle != 90) {
+            line2.classList.add("branch-line");
+            line2.classList.add("end-line");
+
+            if (angle > 180) {
+                line2.style.left = line1Rect.left - containerRect.left + "px";
+            } else {
+                line2.style.left = line1Rect.right - containerRect.left - 4 + "px";
+            }
+            line2.style.top = line1Rect.bottom - containerRect.top - 2 + "px";
+
+            container.appendChild(line2);
+        } else {
+            line1.classList.add("center-line");
+        }
+
+
+
+
+        // prepare skill divs
+        const line2Rect = line2.getBoundingClientRect();
+        let sx = angle == -90 ? line1Rect.right : line2Rect.right;
+        let sy = angle == -90 ? line1Rect.top : line2Rect.top;
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "skill-wrapper";
+
+        wrapper.innerHTML = `
+            <div class="skill-icon">
+                <img class="icon" src="${skill.icon}"/>
+            </div>
+            <div class="info-box">
+                <h3>${skill.title}</h3>
+                <p>${skill.description}</p>
+            </div>
+        `;
+
+        // Temporarily attach to DOM to measure size
+        wrapper.style.position = 'absolute';
+        container.appendChild(wrapper);
+
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const l = sx - container.getBoundingClientRect().left - wrapperRect.width / 2;
+        const t = sy - container.getBoundingClientRect().top + (isMobileSm ? 10 : 20) + wrapperRect.width;
+        wrapper.style.left = `${l}px`;
+        wrapper.style.top = `${t}px`;
+
+        if (index == 0) {
+            firstT = t;
+        }
+        // calculate the max width and height
+        maxw = Math.max(maxw, l + wrapperRect.width - currentEl.clientWidth / 2) + 30;
+        maxh = wrapperRect.height + t;
+
+
+        // remove the ui 
+        if (!maxww || !maxhh) {
+            try {
+                container.removeChild(line1);
+                container.removeChild(wrapper);
+                container.removeChild(line2);
+            } catch (err) {
+                console.log(err)
+            }
+        }
+    });
+
+    // console.log(maxw, maxh)
+    if (!maxhh || !maxww) {
+        container.style.height = maxh + 0 + "px";
+
+        setTimeout(() => {
+            let currentRect = currentEl.getBoundingClientRect();
+            containerRect = container.getBoundingClientRect();
+
+            const yOffset =
+                containerRect.y - currentRect.top;
+
+            const xOffset = containerRect.width / 2 - currentRect.left - currentRect.width / 2 + containerRect.left;
+
+            currentEl.style.transform = `translate(${xOffset}px,${yOffset}px)`;
+
+            if (!resizing) {
+                currentEl.parentElement.parentElement.scrollIntoView({
+                    behavior: "smooth"
+                });
+            }
+
+            createSkillElementsMobile(container, currentEl, skills, maxw, maxh);
         }, 350);
     }
 }

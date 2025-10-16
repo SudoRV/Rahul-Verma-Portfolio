@@ -1,37 +1,17 @@
 .journey {
-  /*@media screen and (max-width: 768px) {
-      .container {
-          width: 100%;
-          padding-left: 4rem;
-          padding-right: 2rem;
-      }
-
-      .container.right {
-          left: 0;
-      }
-
-      .timeline::after {
-          left: 20px;
-      }
-
-      .circle {
-          left: 8px !important;
-      }
-
-      .container.left::before,
-      .container.right::before {
-          left: 20px;
-          border: none;
-      }
-  }*/
+  display: flex;
+  justify-content: center;
+}
+.journey .main-container {
+  display: flex;
+  justify-content: center;
 }
 .journey .left-timeline {
   width: 35%;
   max-width: 360px;
-  height: 100%;
-  margin-left: 2%;
+  height: fit-content;
   position: sticky;
-  top: 20px;
+  top: 60px;
 }
 .journey .details-panel {
   width: 100%;
@@ -48,7 +28,7 @@
   margin-top: 3.6rem;
 }
 .journey .timeline {
-  max-width: 800px;
+  max-width: 900px;
   position: relative;
   margin: auto;
   padding: 2rem 0;
@@ -171,6 +151,52 @@
 }
 .journey .desc {
   color: #c9d1d9;
+}
+@media screen and (max-width: 768px) {
+  .journey div:has(.left-timeline) {
+    flex-direction: column;
+  }
+  .journey .details-panel {
+    display: none;
+  }
+  .journey .main-timeline {
+    padding: 0;
+    width: 100%;
+    margin-top: 0rem !important;
+    all: unset !important;
+  }
+  .journey .left-timeline {
+    position: initial;
+    width: 100%;
+    max-width: none;
+  }
+  .journey .timeline::before {
+    left: 50%;
+    bottom: 100px !important;
+  }
+  .journey .container .circle {
+    top: -7px;
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
+  .journey .container {
+    padding: 0rem;
+    width: 100%;
+    left: 0 !important;
+  }
+  .journey .container:nth-child(1) {
+    margin-top: 0rem;
+  }
+  .journey .container .content {
+    padding: 1rem;
+  }
+  .journey #view-full-timeline-btn {
+    margin-top: 4rem;
+    transform: translateX(0%);
+    margin: initial;
+    margin-top: 60px;
+    margin-left: auto;
+  }
 }
 
 /*# sourceMappingURL=journey.css.map */

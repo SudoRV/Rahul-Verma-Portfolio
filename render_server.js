@@ -14,11 +14,14 @@ app.use(express.static(path.join(__dirname, "static")));
 app.use(express.urlencoded({ extended: true }));
 
 // database
-const sql = mysql.createConnection({
+const sql = mysql.createPool({
   user: "upu6jdctcxjf6f6a",
   host: "byodwdp9gst6ojbbl16c-mysql.services.clever-cloud.com",
   password: "iAW5FVLu4LmqDsixB21m",
-  database: "byodwdp9gst6ojbbl16c"
+  database: "byodwdp9gst6ojbbl16c",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
 sql.query("show tables like 'loginData'", (err, result) => {
@@ -883,6 +886,13 @@ async function getSetData(q) {
         resolve(result);
       }
     });
+  });
+}
+
+function sqlConEnd(){
+  sql.end(err => {
+    if (err) console.error('Error closing connection:', err);
+    else console.log('Connection closed');
   });
 }
 

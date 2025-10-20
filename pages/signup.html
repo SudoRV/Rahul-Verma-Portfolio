@@ -466,7 +466,6 @@
           });
 
           const response = await res.json();
-          console.log(response)
           if (response.success) {
             alert("Login successful!");
             localStorage.setItem("loginData", JSON.stringify(response.data));

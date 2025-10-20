@@ -481,7 +481,6 @@
             try {
                 const res = await fetch(`/get/blogs?page=${page}&limit=${limit}`);
                 const data = await res.json();
-                console.log(data)
 
                 const container = document.getElementById('blogs-list');
                 container.innerHTML = ''; // Clear previous content if any

@@ -139,7 +139,6 @@ function createSkillElements(container, currentEl, skills, maxww = 0, maxhh = 0)
     let firstT;
 
     const isMobile = document.body.clientWidth <= 720;
-    console.log(isMobile)
 
     let updatedLeft = maxww != 0 ? (containerRect.width - maxww) / 2 : 0;
     // console.log("cont", containerRect.width, maxww, updatedLeft)

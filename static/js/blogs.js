@@ -10,7 +10,6 @@ async function fetchBlogs(page = 1) {
     try {
         const res = await fetch(`/get/blogs?page=${page}&limit=${limit}`);
         const data = await res.json();
-        console.log(data)
 
         // Clear container
         blogsContainer.innerHTML = "";
@@ -90,7 +89,6 @@ async function fetchSearchBlogs(query, page = 1) {
         renderBlogs(blogs);
 
         // ✅ Pagination logic can go here
-        console.log("Pagination info:", data.pagination);
 
     } catch (err) {
         console.error(err);
@@ -154,7 +152,7 @@ document.querySelectorAll("#blog-filters span").forEach(el => {
         fetch(`/search/blogs?filter=${filter}`)
             .then(res => res.json())
             .then(data => {
-                console.log("Filtered blogs:", data);
+                // console.log("Filtered blogs:", data);
                 renderBlogs(data);
             });
     });

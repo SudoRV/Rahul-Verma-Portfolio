@@ -1,0 +1,14 @@
+# Ignore Node modules
+/node_modules/
+
+# Ignore build or distribution files
+/dist/
+
+# Ignore dependency lock file
+package-lock.json
+
+# Ignore server-side or local setup scripts (optional)
+sql.js
+setup_sql.js
+server.js
+insert.js

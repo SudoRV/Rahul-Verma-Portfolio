@@ -24,78 +24,76 @@
 
     <!-- navbar -->
     <div class="navbar">
-      <div class="navbar">
-        <nav>
-          <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/icons/logo.svg"
-              alt="">
+      <nav>
+          <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/icons/logo.svg" alt="">
           </li>
-
+      
           <div class="center all-center">
-            <li class="hand" onclick="getPage('about')"><a>About</a></li>
-            <li onclick="getPage('projects')" class="hand projects-link"><a>Projects</a></li>
-            <!--<li onclick="getPage('services')" class="hand"><a>Services</a></li>-->
-            <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
-            <li class="hand"><a href="/login" class=" ">Sign In</a></li>
+              <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
+              <li onclick="redirectScroll('projects')" class="hand projects-link"><a>Projects</a></li>
+              <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
+              <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
+              <li class="hand"><a href="/login" class=" ">Sign In</a></li>
           </div>
-
+      
           <li class="hand hireme-btn">
-            <a href="/hireme" class="button" id="hire">Hire Me</a>
+              <a href="/hireme" class="button" id="hire">Hire Me</a>
           </li>
 
           <div id="menuBtn" class="hand menu-btn">
-            <input id="menu-toggle" type="checkbox">
-            <label for="menu-toggle">
-              <span></span>
-              <span></span>
-              <span></span>
-            </label>
+              <input id="menu-toggle" type="checkbox">
+              <label for="menu-toggle">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </label>
 
-            <div id="menu" class="menu">
-              <li class="hand" onclick="getPage('about')"><a>About</a></li>
-              <li onclick="getPage('projects')" class="hand"><a>Projects</a></li>
-              <!--<li onclick="getPage('services')" class="hand"><a>Services</a></li>-->
-              <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
-              <li class="hand"><a href="/login" class=" ">Login</a></li>
+              <div id="menu" class="menu">
+                  <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
+                  <li onclick="redirectScroll('projects')" class="hand"><a>Projects</a></li>
+                  <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
+                  <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
+                  <li class="hand"><a href="/login" class=" ">Login</a></li>
 
-              <li class="hand hireme-btn">
-                <a href="/hireme" class="button" id="hire">Hire Me</a>
-              </li>
-            </div>
-
+                  <li class="hand hireme-btn">
+                      <a href="/hireme" class="button" id="hire">Hire Me</a>
+                  </li>
+              </div>
+              
           </div>
-        </nav>
-      </div>
+      </nav>
+  </div>
 
 
 
-      <!-- Blog Container -->
-      <div id="blog-container" class="max-w-4xl mx-auto px-6 py-12">
-        <div id="loader" class="text-center text-gray-400">Loading blog...</div>
-      </div>
+    <!-- Blog Container -->
+    <div id="blog-container" class="max-w-4xl mx-auto px-6 py-12">
+      <div id="loader" class="text-center text-gray-400">Loading blog...</div>
     </div>
+  </div>
 
-    <script>
-      async function loadBlog() {
-        try {
-          // ✅ Extract ID from URL
-          const urlParams = new URLSearchParams(window.location.search);
-          const id = urlParams.get("id");
-          const loginData = JSON.parse(window.localStorage.getItem("loginData")) || { email: null };
-          const email = loginData.email;
+  <script>
+    async function loadBlog() {
+      try {
+        // ✅ Extract ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+        const loginData = JSON.parse(window.localStorage.getItem("loginData")) || { email: null };
+        const email = loginData.email;
 
-          document.title = "Blog - " + urlParams.get("title") + " - Rahul Verma";
+        document.title = "Blog - " + urlParams.get("title") + " - Rahul Verma";
 
-          const res = await fetch(`/search/blogs?id=${id}&email=${email}`);
-          if (!res.ok) {
-            document.getElementById("blog-container").innerHTML =
-              `<p class="text-red-500 text-center">Failed to load blog.</p>`;
-            return;
-          }
+        const res = await fetch(`/search/blogs?id=${id}&email=${email}`);
+        if (!res.ok) {
+          document.getElementById("blog-container").innerHTML =
+            `<p class="text-red-500 text-center">Failed to load blog.</p>`;
+          return;
+        }
 
-          const blog = await res.json();
+        const blog = await res.json();
 
-          // ✅ Render blog content
-          document.getElementById("blog-container").innerHTML = `
+        // ✅ Render blog content
+        document.getElementById("blog-container").innerHTML = `
           <article>
             <!-- Featured Image with Overlay -->
             <div class="relative aspect-[16/6] rounded-2xl overflow-hidden shadow-lg mb-8">
@@ -152,66 +150,24 @@
             <!-- Tags (at bottom) -->
             <div id="blog_tags" class="flex flex-row flex-wrap gap-3">
                ${blog.tags.split(" ").map(tag => `<span class="mt-3 px-3 py-1 text-sm rounded-md bg-zinc-800 border border-zinc-700 text-gray-300">${tag.trim()}</span>`).join("")
-            }
+          }
             </div>
           </article>
         `;
 
-          console.log(blog.content)
+        console.log(blog.content)
 
-        } catch (err) {
-          console.error(err);
-          document.getElementById("blog-container").innerHTML =
-            `<p class="text-red-500 text-center">Error loading blog.</p>`;
-        }
+      } catch (err) {
+        console.error(err);
+        document.getElementById("blog-container").innerHTML =
+          `<p class="text-red-500 text-center">Error loading blog.</p>`;
       }
+    }
 
-      loadBlog();
-    </script>
-    <!-- <script src="./js/universal.js"></script> -->
+    loadBlog();
+  </script>
+  <script src="./js/universal.js"></script>
 </body>
 
 </html>
 
-
-
-<!-- INSERT INTO blogs 
-(title, excerpt, content, author, author_image, featured_image, tags, category, views, is_featured) 
-VALUES 
-(
-  'V2Vision: Enhancing Vehicle-to-Vehicle Awareness',
-  'V2Vision is a GPS-based V2V communication system that improves vehicle awareness in low-visibility and blind-spot conditions. It uses a hybrid grid system (1000x1000 + 10x10) with a decentralized concurrency model to ensure safety and scalability.',
-  
-  '<h2>Overview</h2>
-  The <strong>V2Vision project</strong> is designed to tackle the challenges of low-visibility driving conditions such as fog, curves, and blind spots by enabling real-time vehicle-to-vehicle (V2V) communication.<br>
-  Unlike traditional DSRC-based systems, V2Vision operates through GPS-based periodic data transmission to a central server, which then processes and broadcasts awareness information to nearby vehicles within a <strong>300m radius</strong>.
-
-  <h2>Key Features</h2>
-  <ol>
-    <li><strong>Decentralized Model with Concurrency:</strong> Vehicles continuously send and receive updates, enabling highly concurrent data exchange without relying on a single bottleneck.</li>
-    <li><strong>Hybrid Grid System (1000x1000 and 10x10):</strong> Large traffic areas are divided into a 1000x1000 grid for macro-level monitoring and a 10x10 micro-grid for local awareness.</li>
-    <li><strong>Real-time Alerts:</strong> Drivers receive instant notifications when a vehicle enters blind spots, changes lanes, or overtakes.</li>
-  </ol>
-
-  <h2>Problem Tackling</h2>
-  <ul>
-    <li><strong>Fog / Blind Spot Issues:</strong> Broadcasting nearby vehicle positions reduces accidents in low-visibility areas.</li>
-    <li><strong>Overtaking Safety:</strong> Vehicles share speed and indicator status, ensuring safe overtaking.</li>
-    <li><strong>Scalability:</strong> The decentralized concurrency model ensures the system can handle thousands of simultaneous vehicles without data lag.</li>
-  </ul>
-
-  <h2>Resources</h2>
-  🔗 GitHub Repository: https://github.com/SudoRV/V2Vision <br>
-  💼 LinkedIn: https://www.linkedin.com/in/sudorv<br>
-  📧 Email: rauhlverma.1.2005@gmail.com
-
-  <h2>Conclusion</h2>
-  <strong>V2Vision bridges the gap between affordability and safety</strong>, providing an IoT-driven, low-latency awareness layer for future smart transportation.<br>',
-  'Rahul Verma',
-  '/imgs/mine/profilePic.jpg',
-  '/imgs/blogs/v2vision_blog_cover.png',
-  '#V2V #IoT #Concurrency #GridSystem',
-  'Technology',
-  0,
-  1
-); -->

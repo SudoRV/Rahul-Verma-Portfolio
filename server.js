@@ -134,13 +134,12 @@ app.get("/innovation/get/projectData", async (req, res) => {
       WHERE p.pid = '${pid}'
       GROUP BY p.pid, p.title, p.description, p.status, p.time;` : `select * from projects ${headers.query_type}`;
 
-  if (query.includes("pid") && !query.includes("media_url")) {
+  if (pid) {
     const ip = cleanIP(req.ip);
 
     // check if liked or not
     const like_result = await getSetData(`SELECT * FROM likes WHERE pid = '${pid}' AND likedBy = '${payload.username}' AND email = '${payload.email}'`);
     like_check = like_result.length > 0 ? 1 : 0;
-    console.log(like_check)
 
     // Build conditional fetch_query and insert_query
     let fetch_query = "";

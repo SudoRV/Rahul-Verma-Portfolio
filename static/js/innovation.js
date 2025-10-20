@@ -459,7 +459,7 @@ function closeInnovationDisplay() {
     openInnovationDisplayStat && prevPID != projectId
   ) {
     // window.history.pushState("null", "", `${window.location.pathname}`);
-    // window.history.replaceState(null, "", `${window.location.pathname}`);
+    window.history.replaceState(null, "", `${window.location.pathname}`);
 
     // prevPID = projectId;
   }

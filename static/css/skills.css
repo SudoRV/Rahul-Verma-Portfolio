@@ -196,12 +196,13 @@
     .center-line::after {
         position: absolute;
         content: "";
-        top: calc(100% - 4px);
+        top: calc(100% - 6px);
         right: 0%;
         width: 8px;
         height: 8px;
         border-radius: 8px;
         background-color: white;
+        transform-origin: center;
         transform: translateX(25%);
     }
 
@@ -224,7 +225,7 @@
 
 @media screen and (min-width :1440px) {
     .skillsCont {
-        column-gap: 16rem !important;
+        column-gap: 15rem !important;
     }
 
     .container p {

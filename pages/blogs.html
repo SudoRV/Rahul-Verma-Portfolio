@@ -44,47 +44,47 @@
     </header> -->
 
 
-
+    <!-- navbar -->
     <div class="navbar">
       <nav>
-        <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/icons/logo.svg" alt="">
-        </li>
-
-        <div class="center all-center">
-          <li class="hand" onclick="getPage('about')"><a>About</a></li>
-          <li onclick="getPage('projects')" class="hand projects-link"><a>Projects</a></li>
-          <!--<li onclick="getPage('services')" class="hand"><a>Services</a></li>-->
-          <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
-          <li class="hand"><a href="/login" class=" ">Sign In</a></li>
-        </div>
-
-        <li class="hand hireme-btn">
-          <a href="/hireme" class="button" id="hire">Hire Me</a>
-        </li>
-
-        <div id="menuBtn" class="hand menu-btn">
-          <input id="menu-toggle" type="checkbox">
-          <label for="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-          </label>
-
-          <div id="menu" class="menu">
-            <li class="hand" onclick="getPage('about')"><a>About</a></li>
-            <li onclick="getPage('projects')" class="hand"><a>Projects</a></li>
-            <!--<li onclick="getPage('services')" class="hand"><a>Services</a></li>-->
-            <li onclick="getPage('contact')" class="hand"><a>Contact</a></li>
-            <li class="hand"><a href="/login" class=" ">Login</a></li>
-
-            <li class="hand hireme-btn">
-              <a href="/hireme" class="button" id="hire">Hire Me</a>
-            </li>
+          <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/icons/logo.svg" alt="">
+          </li>
+      
+          <div class="center all-center">
+              <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
+              <li onclick="redirectScroll('projects')" class="hand projects-link"><a>Projects</a></li>
+              <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
+              <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
+              <li class="hand"><a href="/login" class=" ">Sign In</a></li>
           </div>
+      
+          <li class="hand hireme-btn">
+              <a href="/hireme" class="button" id="hire">Hire Me</a>
+          </li>
 
-        </div>
+          <div id="menuBtn" class="hand menu-btn">
+              <input id="menu-toggle" type="checkbox">
+              <label for="menu-toggle">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </label>
+
+              <div id="menu" class="menu">
+                  <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
+                  <li onclick="redirectScroll('projects')" class="hand"><a>Projects</a></li>
+                  <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
+                  <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
+                  <li class="hand"><a href="/login" class=" ">Login</a></li>
+
+                  <li class="hand hireme-btn">
+                      <a href="/hireme" class="button" id="hire">Hire Me</a>
+                  </li>
+              </div>
+              
+          </div>
       </nav>
-    </div>
+  </div>
 
 
     <!-- Hero Section -->

@@ -15,11 +15,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // database
 const sql = mysql.createConnection({
-  user: "root",
-  host: "localhost",
-  password: "rahul@1992#",
-  database: "rahulPortfolio",
-  charset: 'utf8mb4'
+  user: "upu6jdctcxjf6f6a",
+  host: "byodwdp9gst6ojbbl16c-mysql.services.clever-cloud.com",
+  password: "iAW5FVLu4LmqDsixB21m",
+  database: "byodwdp9gst6ojbbl16c"
 });
 
 sql.query("show tables like 'loginData'", (err, result) => {

@@ -4,8 +4,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+  <meta name="theme-color" content="#171A1DD8" />
+
   <title>Auth | Rahul Verma</title>
-  <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.png" />
+  <meta name="description"
+    content="Access your account or create a new one to stay connected with Rahul Verma's projects, blogs, and updates. Secure authentication and personalized experience.">
+  <link rel="canonical" href="https://rahulverma.is-a.dev/signin">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Sign In / Sign Up | Rahul Verma">
+  <meta property="og:description"
+    content="Log in or create a new account to explore Rahul Verma's blogs, projects, and updates. Secure and easy access.">
+  <meta property="og:image" content="https://rahulverma.is-a.dev/imgs/mine/profilePic.jpg">
+  <meta property="og:url" content="https://rahulverma.is-a.dev/signin">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sign In / Sign Up | Rahul Verma">
+  <meta name="twitter:description"
+    content="Sign in or register to stay updated with Rahul Verma's projects, blogs, and tech insights. Safe and seamless authentication.">
+  <meta name="twitter:image" content="https://rahulverma.is-a.dev/imgs/mine/profilePic.jpg">
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Sign In / Sign Up | Rahul Verma",
+  "url": "https://rahulverma.is-a.dev/signin",
+  "description": "Sign in or create an account to access Rahul Verma's projects, blogs, and updates. Secure and user-friendly authentication page."
+}
+</script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- robots meta tags -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/x-icon" href="/imgs/icons/icon-1024.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+    rel="stylesheet">
+
+
+
   <link rel="stylesheet" href="./css/universal.css" />
   <link rel="stylesheet" href="./css/media.css" />
   <style>
@@ -22,7 +68,7 @@
       padding: 0;
     }
 
-  
+
     .auth-wrapper {
       background: var(--glass-bg);
       border-radius: 16px;
@@ -239,11 +285,11 @@
         transform: none !important;
       }
 
-      .form-container.signup{
+      .form-container.signup {
         display: none;
       }
 
-      .form-container h2{
+      .form-container h2 {
         font-size: 24px;
       }
 
@@ -303,44 +349,44 @@
     <!-- navabar -->
     <div class="navbar">
       <nav>
-          <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/icons/logo.svg" alt="">
-          </li>
-      
-          <div class="center all-center">
-              <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
-              <li onclick="redirectScroll('projects')" class="hand projects-link"><a>Projects</a></li>
-              <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
-              <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
-              <li class="hand"><a href="/login" class=" ">Sign In</a></li>
-          </div>
-      
-          <li class="hand hireme-btn">
+        <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/icons/logo.svg" alt="">
+        </li>
+
+        <div class="center all-center">
+          <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
+          <li onclick="redirectScroll('projects')" class="hand projects-link"><a>Projects</a></li>
+          <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
+          <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
+          <li class="hand"><a href="/login" class=" ">Sign In</a></li>
+        </div>
+
+        <li class="hand hireme-btn">
+          <a href="/hireme" class="button" id="hire">Hire Me</a>
+        </li>
+
+        <div id="menuBtn" class="hand menu-btn">
+          <input id="menu-toggle" type="checkbox">
+          <label for="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+
+          <div id="menu" class="menu">
+            <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
+            <li onclick="redirectScroll('projects')" class="hand"><a>Projects</a></li>
+            <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
+            <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
+            <li class="hand"><a href="/login" class=" ">Login</a></li>
+
+            <li class="hand hireme-btn">
               <a href="/hireme" class="button" id="hire">Hire Me</a>
-          </li>
-
-          <div id="menuBtn" class="hand menu-btn">
-              <input id="menu-toggle" type="checkbox">
-              <label for="menu-toggle">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-              </label>
-
-              <div id="menu" class="menu">
-                  <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
-                  <li onclick="redirectScroll('projects')" class="hand"><a>Projects</a></li>
-                  <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
-                  <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
-                  <li class="hand"><a href="/login" class=" ">Login</a></li>
-
-                  <li class="hand hireme-btn">
-                      <a href="/hireme" class="button" id="hire">Hire Me</a>
-                  </li>
-              </div>
-              
+            </li>
           </div>
+
+        </div>
       </nav>
-  </div>
+    </div>
 
 
     <div id="content" class="flex-grow-1 all-center">

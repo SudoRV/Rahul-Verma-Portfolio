@@ -2,10 +2,64 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blogs - Rahul Verma</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171A1DD8" />
+
+  <title>Blogs | Rahul Verma</title>
+  <meta name="description"
+    content="Read the latest blogs by Rahul Verma, covering Web & Android Development, IoT, Robotics, and tech insights. Stay updated with innovative projects and tutorials.">
+  <link rel="canonical" href="https://rahulverma.is-a.dev/blogs">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Blogs | Rahul Verma - Web & Android Developer | IoT & Robotics">
+  <meta property="og:description"
+    content="Explore Rahul Verma's blogs on Web & Android Development, IoT, and Robotics. Learn, innovate, and stay inspired with tech insights.">
+  <meta property="og:image" content="https://rahulverma.is-a.dev/imgs/mine/profilePic.jpg">
+  <meta property="og:url" content="https://rahulverma.is-a.dev/blogs">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blogs | Rahul Verma - Web & Android Developer | IoT & Robotics">
+  <meta name="twitter:description"
+    content="Dive into Rahul Verma's blogs covering Web & Android Development, IoT, and Robotics projects. Get inspired and learn new tech skills.">
+  <meta name="twitter:image" content="https://rahulverma.is-a.dev/imgs/mine/profilePic.jpg">
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Rahul Verma Blogs",
+  "url": "https://rahulverma.is-a.dev/blogs",
+  "description": "Insights and tutorials by Rahul Verma on Web & Android Development, IoT, and Robotics.",
+  "publisher": {
+    "@type": "Person",
+    "name": "Rahul Verma",
+    "url": "https://rahulverma.is-a.dev/",
+    "sameAs": [
+      "https://github.com/SudoRV",
+      "https://www.linkedin.com/in/rahulverma-tech",
+      "https://www.instagram.com/rahul_1822_verma/"
+    ]
+  }
+}
+</script>
+
   <script src="https://cdn.tailwindcss.com"></script>
+
+
+  <!-- robots meta tags-->
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/x-icon" href="/imgs/icons/icon-1024.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+    rel="stylesheet">
+
+
   <link href="./css/universal.css" rel="stylesheet">
   <link href="./css/media.css" rel="stylesheet">
 </head>
@@ -13,78 +67,48 @@
 <body class="min-h-screen bg-gradient-to-b from-gray-900 via-zinc-900 to-black text-gray-100">
 
   <div class="psuedo-body" id="psuedo-body">
-    <!-- Header -->
-    <!-- <header class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div
-          class="w-10 h-10 bg-gradient-to-tr from-indigo-500 to-pink-500 rounded-2xl flex items-center justify-center text-black font-bold shadow-2xl"
-        >
-          RV
-        </div>
-        <div>
-          <h1 class="text-xl font-semibold tracking-tight">Rahul Verma</h1>
-          <p class="text-xs text-gray-400">Thoughts on code, hardware, and design</p>
-        </div>
-      </div>
-
-      <nav class="hidden sm:flex gap-4 items-center">
-        <a class="text-sm text-gray-300 hover:text-white transition" href="#">Home</a>
-        <a class="text-sm text-gray-300 hover:text-white transition" href="#">Projects</a>
-        <a class="text-sm text-gray-300 hover:text-white transition" href="#">About</a>
-        <button
-          class="ml-4 px-3 py-1.5 rounded-xl bg-zinc-800 border border-zinc-700 text-sm hover:bg-zinc-700 transition"
-        >
-          Subscribe
-        </button>
-      </nav>
-
-      <div class="sm:hidden">
-        <button class="p-2 rounded-md bg-zinc-800 border border-zinc-700">Menu</button>
-      </div>
-    </header> -->
-
 
     <!-- navbar -->
     <div class="navbar">
       <nav>
-          <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/icons/logo.svg" alt="">
-          </li>
-      
-          <div class="center all-center">
-              <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
-              <li onclick="redirectScroll('projects')" class="hand projects-link"><a>Projects</a></li>
-              <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
-              <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
-              <li class="hand"><a href="/login" class=" ">Sign In</a></li>
-          </div>
-      
-          <li class="hand hireme-btn">
+        <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/icons/logo.svg" alt="">
+        </li>
+
+        <div class="center all-center">
+          <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
+          <li onclick="redirectScroll('projects')" class="hand projects-link"><a>Projects</a></li>
+          <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
+          <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
+          <li class="hand"><a href="/login" class=" ">Sign In</a></li>
+        </div>
+
+        <li class="hand hireme-btn">
+          <a href="/hireme" class="button" id="hire">Hire Me</a>
+        </li>
+
+        <div id="menuBtn" class="hand menu-btn">
+          <input id="menu-toggle" type="checkbox">
+          <label for="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+
+          <div id="menu" class="menu">
+            <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
+            <li onclick="redirectScroll('projects')" class="hand"><a>Projects</a></li>
+            <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
+            <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
+            <li class="hand"><a href="/login" class=" ">Login</a></li>
+
+            <li class="hand hireme-btn">
               <a href="/hireme" class="button" id="hire">Hire Me</a>
-          </li>
-
-          <div id="menuBtn" class="hand menu-btn">
-              <input id="menu-toggle" type="checkbox">
-              <label for="menu-toggle">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-              </label>
-
-              <div id="menu" class="menu">
-                  <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
-                  <li onclick="redirectScroll('projects')" class="hand"><a>Projects</a></li>
-                  <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
-                  <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
-                  <li class="hand"><a href="/login" class=" ">Login</a></li>
-
-                  <li class="hand hireme-btn">
-                      <a href="/hireme" class="button" id="hire">Hire Me</a>
-                  </li>
-              </div>
-              
+            </li>
           </div>
+
+        </div>
       </nav>
-  </div>
+    </div>
 
 
     <!-- Hero Section -->

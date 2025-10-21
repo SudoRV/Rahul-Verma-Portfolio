@@ -427,6 +427,30 @@ footer .links img {
     height: 50px;
 }
 
+@media screen and (max-width: 684px) {
+    footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    footer .rights{
+        width: 100%;
+        order: 2;    
+    }
+    
+    footer .links{
+        width: 100%;
+        order: 1;
+    }
+}
+
+@media screen and (max-width: 320px){
+    footer{
+        padding: 0.8rem;
+    }
+}
+
 
 
 

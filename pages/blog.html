@@ -3,8 +3,56 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171A1DD8" />
+
+  <title>blog</title>
+  <meta name="description"
+    content="Rahul Verma - Software Developer specializing in Web, Android, IoT, and Robotics. Passionate about innovation and technology. Let's build something amazing!">
+  <link rel="canonical" href="https://rahulverma.is-a.dev/">
+
+  <!-- og tags -->
+  <meta property="og:title" content="Rahul Verma | Web & Android Developer | IoT & Robotics Enthusiast">
+  <meta property="og:description"
+    content="Passionate about Web & Android Development, IoT, and Robotics. Explore my projects and let's collaborate!">
+  <meta property="og:image" content="https://rahulverma.is-a.dev/imgs/mine/profilePic.jpg">
+  <meta property="og:url" content="https://rahulverma.is-a.dev/">
+  <meta property="og:type" content="website">
+
+  <!-- twitter card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rahul Verma | Web & Android Developer | IoT & Robotics Enthusiast">
+  <meta name="twitter:description"
+    content="Passionate about Web & Android Development, IoT, and Robotics. Explore my projects and let's collaborate!">
+  <meta name="twitter:image" content="https://rahulverma.is-a.dev/imgs/icons/mine/prifilePic.jpg">
+
+  <!-- schema markup -->
+  <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Rahul Verma",
+            "url": "https://rahulverma.is-a.dev/",
+            "jobTitle": "Web & Android Developer, IoT & Robotics Enthusiast",
+            "sameAs": [
+                "https://github.com/SudoRV",
+                "https://www.linkedin.com/in/rahulverma-tech",
+                "https://www.instagram.com/rahul_1822_verma/"
+            ]
+        }
+    </script>
   <script src="https://cdn.tailwindcss.com"></script>
+
+
+  <!-- robots meta tags-->
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/x-icon" href="/imgs/icons/icon-1024.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+    rel="stylesheet">
+
 
   <link href="./css/universal.css" rel="stylesheet">
   <link href="./css/media.css" rel="stylesheet">
@@ -25,44 +73,44 @@
     <!-- navbar -->
     <div class="navbar">
       <nav>
-          <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/icons/logo.svg" alt="">
-          </li>
-      
-          <div class="center all-center">
-              <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
-              <li onclick="redirectScroll('projects')" class="hand projects-link"><a>Projects</a></li>
-              <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
-              <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
-              <li class="hand"><a href="/login" class=" ">Sign In</a></li>
-          </div>
-      
-          <li class="hand hireme-btn">
+        <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/icons/logo.svg" alt="">
+        </li>
+
+        <div class="center all-center">
+          <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
+          <li onclick="redirectScroll('projects')" class="hand projects-link"><a>Projects</a></li>
+          <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
+          <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
+          <li class="hand"><a href="/login" class=" ">Sign In</a></li>
+        </div>
+
+        <li class="hand hireme-btn">
+          <a href="/hireme" class="button" id="hire">Hire Me</a>
+        </li>
+
+        <div id="menuBtn" class="hand menu-btn">
+          <input id="menu-toggle" type="checkbox">
+          <label for="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+
+          <div id="menu" class="menu">
+            <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
+            <li onclick="redirectScroll('projects')" class="hand"><a>Projects</a></li>
+            <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
+            <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
+            <li class="hand"><a href="/login" class=" ">Login</a></li>
+
+            <li class="hand hireme-btn">
               <a href="/hireme" class="button" id="hire">Hire Me</a>
-          </li>
-
-          <div id="menuBtn" class="hand menu-btn">
-              <input id="menu-toggle" type="checkbox">
-              <label for="menu-toggle">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-              </label>
-
-              <div id="menu" class="menu">
-                  <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
-                  <li onclick="redirectScroll('projects')" class="hand"><a>Projects</a></li>
-                  <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
-                  <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
-                  <li class="hand"><a href="/login" class=" ">Login</a></li>
-
-                  <li class="hand hireme-btn">
-                      <a href="/hireme" class="button" id="hire">Hire Me</a>
-                  </li>
-              </div>
-              
+            </li>
           </div>
+
+        </div>
       </nav>
-  </div>
+    </div>
 
 
 
@@ -81,7 +129,7 @@
         const loginData = JSON.parse(window.localStorage.getItem("loginData")) || { email: null };
         const email = loginData.email;
 
-        document.title = "Blog - " + urlParams.get("title") + " - Rahul Verma";
+        document.title = "Blog - " + urlParams.get("title");
 
         const res = await fetch(`/search/blogs?id=${id}&email=${email}`);
         if (!res.ok) {
@@ -169,4 +217,3 @@
 </body>
 
 </html>
-

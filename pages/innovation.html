@@ -4,8 +4,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Innovation-Rahul Verma</title>
-  <link rel="icon" type="image/x-icon" href="/imgs/icons/favicon.png" />
+
+  <meta name="theme-color" content="#171A1DD8" />
+
+  <title>Innovations | Rahul Verma</title>
+  <meta name="description"
+    content="Explore Rahul Verma's innovative projects, creative ideas, and tech experiments in Web & Android Development, IoT, and Robotics. Get inspired and spark your own creativity.">
+  <link rel="canonical" href="https://rahulverma.is-a.dev/innovation-ideas">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Innovation & Ideas | Rahul Verma - Web & Android Developer | IoT & Robotics">
+  <meta property="og:description"
+    content="Discover creative tech ideas and innovative projects by Rahul Verma in Web & Android Development, IoT, and Robotics. Let inspiration strike and explore new possibilities.">
+  <meta property="og:image" content="https://rahulverma.is-a.dev/imgs/mine/profilePic.jpg">
+  <meta property="og:url" content="https://rahulverma.is-a.dev/innovation-ideas">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Innovation & Ideas | Rahul Verma - Web & Android Developer | IoT & Robotics">
+  <meta name="twitter:description"
+    content="Explore Rahul Verma's tech innovations, creative projects, and ideas in Web & Android Development, IoT, and Robotics. Ignite your curiosity and creativity.">
+  <meta name="twitter:image" content="https://rahulverma.is-a.dev/imgs/mine/profilePic.jpg">
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Innovation & Ideas by Rahul Verma",
+  "url": "https://rahulverma.is-a.dev/innovation-ideas",
+  "description": "Showcasing innovative projects, creative ideas, and tech experiments by Rahul Verma in Web & Android Development, IoT, and Robotics.",
+  "author": {
+    "@type": "Person",
+    "name": "Rahul Verma",
+    "url": "https://rahulverma.is-a.dev/",
+    "sameAs": [
+      "https://github.com/SudoRV",
+      "https://www.linkedin.com/in/rahulverma-tech",
+      "https://www.instagram.com/rahul_1822_verma/"
+    ]
+  }
+}
+</script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- robots meta tags -->
+  <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/x-icon" href="/imgs/icons/icon-1024.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+    rel="stylesheet">
+
+
+
   <link href="./css/universal.css" rel="stylesheet" />
   <link href="./css/media.css" rel="stylesheet" />
   <link rel="stylesheet" href="./css/innovation.css" />
@@ -17,44 +72,44 @@
     <!-- navbar -->
     <div class="navbar">
       <nav>
-          <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/icons/logo.svg" alt="">
-          </li>
-      
-          <div class="center all-center">
-              <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
-              <li onclick="redirectScroll('projects')" class="hand projects-link"><a>Projects</a></li>
-              <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
-              <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
-              <li class="hand"><a href="/login" class=" ">Sign In</a></li>
-          </div>
-      
-          <li class="hand hireme-btn">
+        <li class="hand logo"><img onclick="window.location.href='/'" class="img100" src="./imgs/icons/logo.svg" alt="">
+        </li>
+
+        <div class="center all-center">
+          <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
+          <li onclick="redirectScroll('projects')" class="hand projects-link"><a>Projects</a></li>
+          <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
+          <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
+          <li class="hand"><a href="/login" class=" ">Sign In</a></li>
+        </div>
+
+        <li class="hand hireme-btn">
+          <a href="/hireme" class="button" id="hire">Hire Me</a>
+        </li>
+
+        <div id="menuBtn" class="hand menu-btn">
+          <input id="menu-toggle" type="checkbox">
+          <label for="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+
+          <div id="menu" class="menu">
+            <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
+            <li onclick="redirectScroll('projects')" class="hand"><a>Projects</a></li>
+            <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
+            <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
+            <li class="hand"><a href="/login" class=" ">Login</a></li>
+
+            <li class="hand hireme-btn">
               <a href="/hireme" class="button" id="hire">Hire Me</a>
-          </li>
-
-          <div id="menuBtn" class="hand menu-btn">
-              <input id="menu-toggle" type="checkbox">
-              <label for="menu-toggle">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-              </label>
-
-              <div id="menu" class="menu">
-                  <li class="hand" onclick="redirectScroll('about')"><a>About</a></li>
-                  <li onclick="redirectScroll('projects')" class="hand"><a>Projects</a></li>
-                  <!--<li onclick="redirectScroll('services')" class="hand"><a>Services</a></li>-->
-                  <li onclick="redirectScroll('contact')" class="hand"><a>Contact</a></li>
-                  <li class="hand"><a href="/login" class=" ">Login</a></li>
-
-                  <li class="hand hireme-btn">
-                      <a href="/hireme" class="button" id="hire">Hire Me</a>
-                  </li>
-              </div>
-              
+            </li>
           </div>
+
+        </div>
       </nav>
-  </div>
+    </div>
 
 
     <div id="innovation" class="page">
@@ -154,6 +209,8 @@
   <script>
     const type = new URL(window.location.href).pathname.replace("/", "");
     document.getElementById("page-title").innerText = type.slice(0, 1).toUpperCase() + type.slice(1);
+
+    document.title = type.slice(0, 1).toUpperCase() + type.slice(1) + " | Rahul Verma";
     setData(type.slice(0, -1));
   </script>
 </body>
